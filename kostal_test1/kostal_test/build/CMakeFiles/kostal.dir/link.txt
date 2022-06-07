@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/kostal.dir/source/kostal.cpp.o  -o source/kostal   -L/home/flexiv/Case/2022/Kostal/kostal_test1/kostal_test/thirdparty/Ginko/lib/linux_64bit  -Wl,-rpath,/home/flexiv/Case/2022/Kostal/kostal_test1/kostal_test/thirdparty/Ginko/lib/linux_64bit ../lib/libFlexivRdk.a -lGinkgo_Driver -lanl -pthread 

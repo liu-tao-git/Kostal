@@ -1,0 +1,86 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.1.3"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "FlexivRdkKolstarTest",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "display_robot_states::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-display_robot_states-Release-4d9d2534cc3742140d5c.json",
+					"name" : "display_robot_states",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kolstar::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kolstar-Release-1dd0aa9c019d0d7a058d.json",
+					"name" : "kolstar",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "showplanlist::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-showplanlist-Release-1fa4847b194f6ce09538.json",
+					"name" : "showplanlist",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-Release-b2cdae3a410308e7af49.json",
+					"name" : "test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ae/Desktop/kolstar_test/build",
+		"source" : "/home/ae/Desktop/kolstar_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

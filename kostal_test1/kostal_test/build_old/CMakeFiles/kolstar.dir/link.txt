@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/kolstar.dir/source/kolstar.cpp.o  -o source/kolstar   -L/home/ae/Desktop/kolstar_test/thirdparty/Ginko/lib/linux_64bit  -Wl,-rpath,/home/ae/Desktop/kolstar_test/thirdparty/Ginko/lib/linux_64bit ../lib/libFlexivRdk.a -lGinkgo_Driver -lanl -lfmt -pthread 

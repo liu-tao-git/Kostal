@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/flexiv/Case/2022/Kostal/kostal_test1/kostal_test/source/test.cpp
+iostream
+-
+stack
+-
+array
+-
+
