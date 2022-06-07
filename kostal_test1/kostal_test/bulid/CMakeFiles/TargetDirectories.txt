@@ -1,0 +1,6 @@
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/rebuild_cache.dir
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/kostal.dir
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/showplanlist.dir
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/edit_cache.dir
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/test.dir
+/home/flexiv/Documents/Case/2022/Kostal/kostal_test1/kostal_test/bulid/CMakeFiles/display_robot_states.dir

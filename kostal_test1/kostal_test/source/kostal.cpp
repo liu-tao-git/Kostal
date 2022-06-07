@@ -32,10 +32,10 @@ namespace {
     double outdata[20] ={0};
     uint8_t SPIout[16] = {0};
     int ret;
+    bool stackFlag = false;
     double M_Pi;
     double rad = 180/M_Pi;
     Eigen::Quaternion<double> q; // new a quaternion
-
 
     //stack for data storage
     std::stack<std::array<double, 16>> data_stack;
@@ -44,9 +44,6 @@ namespace {
     std::stack<std::array<uint8_t, 16>> SPI_stack_rev;
     std::stack<std::string> nodeName_stack;
     std::stack<std::string> nodeName_stack_rev;
-
-
-
 
     struct PrintData
     {
@@ -106,64 +103,76 @@ Struct Quaternion_to_Euler (double w, double x, double y, double z)
 
 // read robot data and push robot data &SPI data to stack
 
-void highPriorityPeriodicTask(std::shared_ptr<flexiv::RobotStates> robotStates,
+void highPriorityPeriodicTask(
+    std::shared_ptr<flexiv::RobotStates> robotStates,
     std::shared_ptr<flexiv::Robot> robot,
     std::shared_ptr<flexiv::PlanInfo> planInfo
     )
 {
     robot->getRobotStates(robotStates.get());
-    robot->getPlanInfo(planInfo.get());
+    
     {
         std::lock_guard<std::mutex> lock(g_printDataMutex);
         g_printData.tcp_pose = robotStates->m_tcpPose;
         g_printData.raw_sensor_data = robotStates->m_rawDataFromForceSensor;
         g_printData.flangePose = robotStates->m_flangePose;
-        g_printData.nodeName = planInfo->m_nodeName;
-
-
     }
-    outdata[0]=g_printData.tcp_pose[0];
-    outdata[1]=g_printData.tcp_pose[1];
-    outdata[2]=g_printData.tcp_pose[2];
-    outdata[3]=g_printData.tcp_pose[3];
-    outdata[4]=g_printData.tcp_pose[4];
-    outdata[5]=g_printData.tcp_pose[5];
-    outdata[6]=g_printData.tcp_pose[6];
-
-
-    outdata[7]=g_printData.raw_sensor_data[0];
-    outdata[8]=g_printData.raw_sensor_data[1];
-    outdata[9]=g_printData.raw_sensor_data[2];
-    outdata[10]=g_printData.raw_sensor_data[3];
-    outdata[11]=g_printData.raw_sensor_data[4];
-    outdata[12]=g_printData.raw_sensor_data[5];
-
-
-    outdata[13]=g_printData.flangePose[0];
-    outdata[14]=g_printData.flangePose[1];
-    outdata[15]=g_printData.flangePose[2];
-    // outdata[16]=g_printData.flangePose[3];
-    // outdata[17]=g_printData.flangePose[4];
-    // outdata[18]=g_printData.flangePose[5];
-    // outdata[19]=g_printData.flangePose[6];
-
-
-    nodeName_stack.push(g_printData.nodeName);
-    {
-        std::lock_guard<std::mutex> lock(g_printDataMutex);
-        data_stack.push({outdata[0],outdata[1],outdata[2],outdata[3],outdata[4],outdata[5],outdata[6],outdata[7],outdata[8],outdata[9],outdata[10],outdata[11],outdata[12],outdata[13],outdata[14],outdata[15]/*,outdata[16],outdata[17],outdata[18],outdata[19]*/});
-    }
-    {
-    std::lock_guard<std::mutex> lock(SPImutex);
-    SPI_stack.push({SPIout[0],SPIout[1],SPIout[2],SPIout[3],SPIout[4],SPIout[5],SPIout[6],SPIout[7],SPIout[8],SPIout[9],SPIout[10],SPIout[11],SPIout[12],SPIout[13],SPIout[14],SPIout[15]});
-    }
-    std::cout<<SPI_stack.size()<<g_printData.nodeName<<std::endl;
-
     
+
+    if (stackFlag != true ){
+        
+        if (g_printData.nodeName == "Start"){
+        stackFlag = true;
+        // std::cout<<("OK!!")<<std::endl;
+        }
+    }
+    if (g_printData.nodeName == "Stop"){
+        stackFlag = false;
+        
+    }
+    if (stackFlag == true){
+        std::cout<<SPI_stack.size()<<g_printData.nodeName<<std::endl;  
+        outdata[0]=g_printData.tcp_pose[0];
+        outdata[1]=g_printData.tcp_pose[1];
+        outdata[2]=g_printData.tcp_pose[2];
+        outdata[3]=g_printData.tcp_pose[3];
+        outdata[4]=g_printData.tcp_pose[4];
+        outdata[5]=g_printData.tcp_pose[5];
+        outdata[6]=g_printData.tcp_pose[6];
+
+
+        outdata[7]=g_printData.raw_sensor_data[0];
+        outdata[8]=g_printData.raw_sensor_data[1];
+        outdata[9]=g_printData.raw_sensor_data[2];
+        outdata[10]=g_printData.raw_sensor_data[3];
+        outdata[11]=g_printData.raw_sensor_data[4];
+        outdata[12]=g_printData.raw_sensor_data[5];
+
+
+        outdata[13]=g_printData.flangePose[0];
+        outdata[14]=g_printData.flangePose[1];
+        outdata[15]=g_printData.flangePose[2];
+        // outdata[16]=g_printData.flangePose[3];
+        // outdata[17]=g_printData.flangePose[4];
+        // outdata[18]=g_printData.flangePose[5];
+        // outdata[19]=g_printData.flangePose[6];
+
+
+        nodeName_stack.push(g_printData.nodeName);
+        {
+            std::lock_guard<std::mutex> lock(g_printDataMutex);
+            data_stack.push({outdata[0],outdata[1],outdata[2],outdata[3],outdata[4],outdata[5],outdata[6],outdata[7],outdata[8],outdata[9],outdata[10],outdata[11],outdata[12],outdata[13],outdata[14],outdata[15]/*,outdata[16],outdata[17],outdata[18],outdata[19]*/});
+        }
+        {
+            std::lock_guard<std::mutex> lock(SPImutex);
+            SPI_stack.push({SPIout[0],SPIout[1],SPIout[2],SPIout[3],SPIout[4],SPIout[5],SPIout[6],SPIout[7],SPIout[8],SPIout[9],SPIout[10],SPIout[11],SPIout[12],SPIout[13],SPIout[14],SPIout[15]});
+        }
+        
+    }
 }
 
-
-void hptask(std::shared_ptr<flexiv::RobotStates> robotStates,
+void hptask(
+    std::shared_ptr<flexiv::RobotStates> robotStates,
     std::shared_ptr<flexiv::Robot> robot,
     std::shared_ptr<flexiv::PlanInfo> planInfo
     )
@@ -184,20 +193,21 @@ void SPIdata_collection()
         if (ret != ERR_SUCCESS){
             printf("Read data error!\n");
             
-        }else{
+        }
+        else{
             if (read_data_num == 16){
-
                 {
-                std::lock_guard<std::mutex> lock(SPImutex);
-                for (int i = 0; i < read_data_num; i++){
-                    SPIout[i]=read_buffer[i];
+                    std::lock_guard<std::mutex> lock(SPImutex);
+                    for (int i = 0; i < read_data_num; i++){
+                        SPIout[i]=read_buffer[i];
+                    }
                 }
-                }
-            }else{
+            }
+            else{
             }
              
-    }   
-}
+        }   
+    }
 }
 
 
@@ -239,6 +249,12 @@ int sendRobotPlan(
     do {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         robot->getSystemStatus(&systemStatus);
+        robot->getPlanInfo(planInfo.get());
+    {
+        g_printData.nodeName = planInfo->m_nodeName;
+
+
+    }
     } while (systemStatus.m_programRunning == true);
 
     
@@ -252,7 +268,7 @@ int sendRobotPlan(
         nodeName_stack.pop();
     }
 
-    printf("go\n");
+    // printf("go\n");
     
     std::time_t file_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::string time_str = std::ctime(&file_time); 
@@ -425,8 +441,5 @@ int main(int argc, char* argv[])
 
     int success_flag = sendRobotPlan(robot, robotStates, planInfo, planName, fileName ,filePath);
     std::cout << success_flag << std::endl;
- 
-
-    
     return 0;
 }
