@@ -118,7 +118,7 @@ void highPriorityPeriodicTask(
         g_printData.flangePose = robotStates->m_flangePose;
     }
     
-
+    std::cout<<SPI_stack.size()<<g_printData.nodeName<<std::endl;  
     if (stackFlag != true ){
         
         if (g_printData.nodeName == "Start"){
@@ -128,7 +128,6 @@ void highPriorityPeriodicTask(
     }
     if (g_printData.nodeName == "Stop"){
         stackFlag = false;
-        
     }
     if (stackFlag == true){
         std::cout<<SPI_stack.size()<<g_printData.nodeName<<std::endl;  
@@ -247,7 +246,7 @@ int sendRobotPlan(
     } while (systemStatus.m_programRunning != true);
 
     do {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
         robot->getSystemStatus(&systemStatus);
         robot->getPlanInfo(planInfo.get());
     {

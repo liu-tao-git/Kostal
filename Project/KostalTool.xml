@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<fvr>
+    <tool_name>KostalTool</tool_name>
+    <tool_type>TOOL_RIGIDBODY</tool_type>
+    <tcp>
+        <tcp_position>0 0 0.067 </tcp_position>
+        <tcp_orientation>1 0 0 0 </tcp_orientation>
+    </tcp>
+    <tcp>
+        <tcp_position>0.004881 -0.010456 0.159903 </tcp_position>
+        <tcp_orientation>0.245998 0.616463 0.687292 -0.295108 </tcp_orientation>
+    </tcp>
+    <tcp>
+        <tcp_position>0.00286 0.011838 0.162749 </tcp_position>
+        <tcp_orientation>-0.238274 0.619308 0.684301 0.30235 </tcp_orientation>
+    </tcp>
+    <mass>0.7</mass>
+    <center_of_mass>0 0 0 </center_of_mass>
+    <inertia>0 0 0 0 0 0 </inertia>
+    <graphics>
+        <obj_file>
+            <path>graphics/toolCube.obj</path>
+            <position_in_parent>0 0 0</position_in_parent>
+            <orientation_in_parent>1 0 0 0</orientation_in_parent>
+            <scaling>4.65303e-310 6.95307e-310 4.65303e-310</scaling>
+        </obj_file>
+    </graphics>
+</fvr>
