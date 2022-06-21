@@ -262,7 +262,7 @@ int sendRobotPlan(
     } while (systemStatus.m_programRunning != true);
 
     do {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
         robot->getSystemStatus(&systemStatus);
         robot->getPlanInfo(planInfo);
     {
