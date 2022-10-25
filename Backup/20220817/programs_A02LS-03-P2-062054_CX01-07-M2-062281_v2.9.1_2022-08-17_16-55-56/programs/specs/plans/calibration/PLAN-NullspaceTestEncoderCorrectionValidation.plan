@@ -1,0 +1,805 @@
+plan_name: "PLAN-NullspaceTestEncoderCorrectionValidation"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "nullspacePos1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos1"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "nullspacePos2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos2"
+  end_node_name: "hold2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold2"
+  end_node_name: "nullspacePos3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos3"
+  end_node_name: "hold3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold3"
+  end_node_name: "nullspacePos4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold3"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos4"
+  end_node_name: "hold4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold4"
+  end_node_name: "nullspacePos5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold4"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos5"
+  end_node_name: "hold5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos5"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold5"
+  end_node_name: "nullspacePos6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold5"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos6"
+  end_node_name: "hold6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos6"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold6"
+  end_node_name: "nullspacePos7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold6"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos7"
+  end_node_name: "end1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos7"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold2"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold3"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold4"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold5"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold6"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "nullspacePos1"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "37"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos2"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "74"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos3"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "111"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos3"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos4"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-37"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos4"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos5"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-74"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos5"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos6"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-111"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos6"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos7"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos7"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "end1"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG   -pthread
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/include -I/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/thirdparty/Eigen -I/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/thirdparty/Ginko 
+CXX_INCLUDES = -I/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/include -I/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/thirdparty/Eigen -I/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/thirdparty/Ginko 
 

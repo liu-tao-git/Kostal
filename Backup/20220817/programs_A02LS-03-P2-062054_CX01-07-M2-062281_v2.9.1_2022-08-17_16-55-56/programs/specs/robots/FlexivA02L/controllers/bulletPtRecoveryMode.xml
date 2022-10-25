@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> MACRO-RecoveryMode </primitive_name>
+        <primitive_type> RECOVERY_MODE </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtRecoveryMode.xml</param_configs>
+        <sub_primitives>
+            <primitive_file> controllers/bulletPtHold.xml </primitive_file>
+            <primitive_file> controllers/bulletPtFloating.xml </primitive_file>
+            <primitive_file> controllers/bulletPtJointJogging.xml </primitive_file>
+            <primitive_file> controllers/bulletPtJntPosRecovery.xml </primitive_file>
+        </sub_primitives>
+    </primitive>
+</fvr>

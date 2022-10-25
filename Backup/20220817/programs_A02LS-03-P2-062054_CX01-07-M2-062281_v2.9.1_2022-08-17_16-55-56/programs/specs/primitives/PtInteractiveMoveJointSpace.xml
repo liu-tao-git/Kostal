@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

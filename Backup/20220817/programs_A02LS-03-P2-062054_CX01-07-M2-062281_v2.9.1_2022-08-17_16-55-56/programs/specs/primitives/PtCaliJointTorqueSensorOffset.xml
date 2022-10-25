@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> caliFilePrefix </par_name>
+            <par_desc> "cali file prefix" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> Static_ </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waitTime </par_name>
+            <par_desc> "time to wait before logging data at each configuration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> dataSize </par_name>
+            <par_desc> "data size for calculating torque offset mean and std" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5000 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

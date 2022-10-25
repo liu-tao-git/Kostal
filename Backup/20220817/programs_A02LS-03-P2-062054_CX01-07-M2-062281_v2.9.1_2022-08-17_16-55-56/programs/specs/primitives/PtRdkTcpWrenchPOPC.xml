@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT" 
+         ====================================================================-->
+        <input_par_config>
+            <par_name>renderScale</par_name>
+            <par_desc>"Force rendering scale, wrench rendered = scale * input wrench"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_min>0</par_min>
+            <par_max>1.0</par_max>
+            <par_required>0</par_required>
+            <par_default>0.8</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>maxRenderedWrench</par_name>
+            <par_desc>"Maximum cartesian wrench to be rendered"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>20 20 20 0.5 0.5 0.5</par_default>
+            <par_max>30 30 30 1 1 1</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <!-- parameters used by POPCBase derived classes -->
+        <input_par_config>
+            <par_name>popcType</par_name>
+            <par_desc>"popc type"</par_desc>
+            <par_type>STRING</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>DIRECT</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>directEnableFilter</par_name>
+            <par_desc>"direct enable filter"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>directFilterBandwidth</par_name>
+            <par_desc>"low pass filter bandwidth for direct type POPC"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Hz</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaEnableDriftComp</par_name>
+            <par_desc>"tpda enable drift compensation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaDriftCompGain</par_name>
+            <par_desc>"tdpa drift compensation gain"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaMaxDamping</par_name>
+            <par_desc>"tdpa maximum damping parameter value"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.02</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaEnableForceFilter</par_name>
+            <par_desc>"tdpa enable force filter for impedance device"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaForceFilterBandwidth</par_name>
+            <par_desc>"tdpa force low pass filter bandwidth for impedance device"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Hz</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamB</par_name>
+            <par_desc>"position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamBMax</par_name>
+            <par_desc>"maximum position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamBMin</par_name>
+            <par_desc>"minimum position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamB</par_name>
+            <par_desc>"force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamBMax</par_name>
+            <par_desc>"maximum force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>50</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamBMin</par_name>
+            <par_desc>"minimum force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveIntegralLambdaPos</par_name>
+            <par_desc>"position wave wave integral lambda"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveIntegralLambdaForce</par_name>
+            <par_desc>"force wave wave integral lambda"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceEnableFilter</par_name>
+            <par_desc>"enable wave filtering for force wave"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceFilterBandwidth</par_name>
+            <par_desc>"force wave low pass filter bandwidth"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Hz</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBForceThreshold</par_name>
+            <par_desc>"force wave adaptive parameter b force threshold"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBTimeThreshold</par_name>
+            <par_desc>"force wave adaptive parameter b time threshold"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>s</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBStepChange</par_name>
+            <par_desc>"force wave adaptive parameter b step change"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>5</par_default>
+        </input_par_config>
+        <!-- parameters used by ModelBase derived classes -->
+        <input_par_config>
+            <par_name>modelMaxForce</par_name>
+            <par_desc>"Maximum force after going through model step"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>20</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>modelMaxTorque</par_name>
+            <par_desc>"Maximum torque after going through model step"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>2</par_default>
+        </input_par_config>
+        <!-- parameters used by virtual coupling -->
+        <input_par_config>
+            <par_name>enableVirtualCoupling</par_name>
+            <par_desc>"enable virtual coupling"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingMass</par_name>
+            <par_desc>"Virtual rendered mass used in virtual coupling"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingInertia</par_name>
+            <par_desc>"Virtual rendered mass used in virtual coupling"</par_desc>
+            <par_type>ARRAY_DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1 1 1 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingLinearStiffness</par_name>
+            <par_desc>"Linear stiffness used in virtual coupling"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>400</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingLinearDamping</par_name>
+            <par_desc>"Linear damping used in virtual coupling"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>40</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingAngularStiffness</par_name>
+            <par_desc>"Angular stiffness used in virtual coupling"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>400</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>virtualCouplingAngularDamping</par_name>
+            <par_desc>"Angular damping used in virtual coupling"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>40</par_default>
+        </input_par_config>
+        <!-- parameters used by workspace offset -->
+        <input_par_config>
+            <par_name>enableWorkspaceOffset</par_name>
+            <par_desc>"enable workspace offset"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetMaxBound</par_name>
+            <par_desc>"Maximum bound for workspace offset"</par_desc>
+            <par_type>VEC_3d</par_type>
+            <par_unit>m</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2 0.2 0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetMinBound</par_name>
+            <par_desc>"Minimum bound for workspace offset"</par_desc>
+            <par_type>VEC_3d</par_type>
+            <par_unit>m</par_unit>
+            <par_required>0</par_required>
+            <par_default>-0.2 -0.2 -0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetWalloffset</par_name>
+            <par_desc>"Wall offset from maximum / minimum bound"</par_desc>
+            <par_type>VEC_3d</par_type>
+            <par_unit>m</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.03 0.03 0.03</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetVirtualMass</par_name>
+            <par_desc>"Virtual mass for workspace offset"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>kg</par_unit>
+            <par_required>0</par_required>
+            <par_default>30</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetVirtualStiffness</par_name>
+            <par_desc>"Virtual stiffness for workspace offset"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>800</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceOffsetVirtualDamping</par_name>
+            <par_desc>"Virtual damping for workspace offset"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <!-- parameters used by workspace drift -->
+        <input_par_config>
+            <par_name>enableWorkspaceDrift</par_name>
+            <par_desc>"enable workspace drift"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceDriftBoundingSphereRadius</par_name>
+            <par_desc>"Workspace drift bounding sphere radius"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>m</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceDriftKd</par_name>
+            <par_desc>"Workspace drift drift factor"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.03</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>workspaceDriftKs</par_name>
+            <par_desc>"Workspace drift scaling factor"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1.0</par_default>
+        </input_par_config>
+        <!-- parameters used by passivity layer -->
+        <input_par_config>
+            <par_name>enablePassivityLayer</par_name>
+            <par_desc>"enable passivity layer calculation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>isMasterDevice</par_name>
+            <par_desc>"Specify whether current device is a master device in teleoperation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>maxOutputWrench</par_name>
+            <par_desc>"Maximum cartesian impedance output render wrench"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>20 20 20 0.5 0.5 0.5</par_default>
+            <par_max>30 30 30 1 1 1</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tlcInitialEnergy</par_name>
+            <par_desc>"Initial energy for the energy tank"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0 0 0 0 0 0</par_default>
+            <par_max>0.01 0.01 0.01 0.01 0.01 0.01</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tlcReferenceEnergy</par_name>
+            <par_desc>"Tank level controller reference energy"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.002 0.002 0.002 0.002 0.002 0.002</par_default>
+            <par_max>0.01 0.01 0.01 0.01 0.01 0.01</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tlcAlpha</par_name>
+            <par_desc>"Tank level controller damping parameter"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>200000 200000 200000 200000 200000 200000</par_default>
+            <par_max>300000 300000 300000 300000 300000 300000</par_max>
+            <par_min>10000 10000 10000 10000 10000 10000</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>energyTransferRatio</par_name>
+            <par_desc>"Fraction of energy to sent to the master every control loop"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.5 0.5 0.5 0.5 0.5 0.5</par_default>
+            <par_max>1.0 1.0 1.0 1.0 1.0 1.0</par_max>
+            <par_min>0.0 0.0 0.0 0.0 0.0 0.0</par_min>
+        </input_par_config>
+        <!-- parameters used by parent class -->
+        <input_par_config>
+            <par_name>maxVel</par_name>
+            <par_desc>"max magnitude of cartesian linear velocity"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>m/s</par_unit>
+            <par_min>0</par_min>
+            <par_max>2.5</par_max>
+            <par_required>0</par_required>
+            <par_default>2.5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>maxRotVel</par_name>
+            <par_desc>"max magnitude of cartesian angular velocity used in trajectory filter"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>deg/s</par_unit>
+            <par_min>0</par_min>
+            <par_max>573.0</par_max>
+            <par_required>0</par_required>
+            <par_default>573.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>forceDeadband</par_name>
+            <par_desc>"cartesian force deadband, robot tcp position would keep still when external force is within this value"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>N</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>momentDeadband</par_name>
+            <par_desc>" cartesian moment deadband, robot tcp orientation would keep still when external moment is within this value"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Nm</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>forceDeadbandTimeThreshold</par_name>
+            <par_desc>"if the external force stays in deadband for longer than this time, it is condisered no external force"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>s</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>momentDeadbandTimeThreshold</par_name>
+            <par_desc>"if the external moment stays in deadband for longer than this time, it is condisered no external moment"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>s</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>cartFloatingAxis</par_name>
+            <par_desc>"Cartesian floating axes, 1: floating. 0: fixed"</par_desc>
+            <par_type>VEC_6i</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1 1 1 1 1 1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>enableJointFloating</par_name>
+            <par_desc>"flag to enable joint space floating"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>jointTorqueDeadBand</par_name>
+            <par_desc>"joint torque deadband, robot' null space keep still when each external joint torque is within its deadband"</par_desc>
+            <par_type>VEC_7d</par_type>
+            <par_unit>Nm</par_unit>
+            <par_min>0 0 0 0 0 0 0</par_min>
+            <par_required>0</par_required>
+            <par_default>1.0 1.0 0.8 0.8 0.5 0.5 0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>cartFloatingFrame</par_name>
+            <par_desc>"the Cartesian floating frame, "work" or "tcp": axis are locked in floating frame"</par_desc>
+            <par_type>STRING</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>tcp</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>kpFloatingScale</par_name>
+            <par_desc>"scaling factors for kp when floating"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.008 0.008 0.008 0.003 0.003 0.003</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>kvFloatingScale</par_name>
+            <par_desc>"scaling factors for kv when floating"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.4 0.4 0.4 0.4 0.4 0.4</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>posSingularThresh</par_name>
+            <par_desc>"threshold of position singular values for singularity avoidance"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>0.05</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>oriSingularThresh</par_name>
+            <par_desc>"threshold of orientation singular values for singularity avoidance"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_min>0</par_min>
+            <par_required>0</par_required>
+            <par_default>0.12</par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

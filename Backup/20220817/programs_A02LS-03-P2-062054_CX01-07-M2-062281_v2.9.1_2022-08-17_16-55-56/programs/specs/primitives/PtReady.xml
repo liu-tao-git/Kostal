@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is used for testing the Cartesian motion control.
+        Developer can use keybord to control tcp target pose. 'Q', 'E', 'W'. 'S'
+        ,'A','D' are for translation. 'U', 'O', 'I', 'K', 'J', 'L' are for 
+        orientation.
+        </pt_desc>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         par_unit : "unknown", "none", "m", "rad", "m/s", "rad/s", "m/s^2",
+                    "rad/s^2", "s", "ms", "kg", "N", "Nm"                     
+         ====================================================================-->
+        <input_par_config>
+            <par_name> enableWS </par_name>
+            <par_desc> flag to enable/disable the workspace </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minX </par_name>
+            <par_desc> minimum x of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.75 </par_default>
+            <par_max>-0.3</par_max>
+            <par_min>-0.8</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxX </par_name>
+            <par_desc> maximum x of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.7 </par_default>
+            <par_max>0.8</par_max>
+            <par_min>0.3</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minY </par_name>
+            <par_desc> minimum y of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.6 </par_default>
+            <par_max>-0.3</par_max>
+            <par_min>-0.8</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxY </par_name>
+            <par_desc> maximum y of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.6 </par_default>
+            <par_max>0.8</par_max>
+            <par_min>0.3</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minZ </par_name>
+            <par_desc> minimum z of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.2 </par_default>
+            <par_max>0.0</par_max>
+            <par_min>-0.3</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxZ </par_name>
+            <par_desc> maximum z of workspace in world coordinate </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit>m</par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.7 </par_default>
+            <par_max>0.8</par_max>
+            <par_min>0.3</par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

@@ -1,0 +1,55 @@
+(define (domain flexiv)
+  (:requirements :strips :equality)
+  (:predicates (on ?obja ?objb)
+            (onBase ?obj)
+	       (top ?obj)
+            (onTop ?obj)
+            (movable ?obj)
+	       (isGripper ?g)
+	       (isGripperOpen ?g)
+            (pih ?obja ?objb)
+  )
+
+; Pick and PIH primitive
+(:action pickpeginhole
+     :parameters(?g ?b1 ?b2 ?b3)
+     :precondition (and (isGripper ?g) (not(isGripper ?b1)) (not(isGripper ?b2)) (not(isGripper ?b3)) (onTop ?b1) (not(movable ?b2)) (not(movable ?b3)) (movable ?b1) )
+     :effect (and (pih ?b1 ?b2) (pih ?b1 ?b3) (not (onTop ?b2)) (not (onTop ?b3)) (not(movable ?b1)) (not(movable ?b2)) (not(movable ?b3)) )		
+)
+
+; Pick and PIH primitive
+(:action pickpeginhole
+     :parameters(?g ?b1 ?b2)
+     :precondition (and (isGripper ?g) (not(isGripper ?b1)) (not(isGripper ?b2)) (onTop ?b1) (onTop ?b2) (movable ?b1) )
+     :effect (and (pih ?b1 ?b2) (not (onTop ?b2)) (not(movable ?b2)) (not(movable ?b1)) )		
+)
+
+; Pick and PIH primitive
+(:action pickpeginhole
+     :parameters(?g ?b1 ?b2)
+     :precondition (and (isGripper ?g) (not(isGripper ?b1)) (not(isGripper ?b2)) (onTop ?b1) (not(onTop ?b2)) (movable ?b1) (not(movable ?b2)))
+     :effect (and (pih ?b1 ?b2) (not (onTop ?b2)) (not(movable ?b2)) (not(movable ?b1)))		
+)
+
+; PIH primitive
+(:action peginhole
+     :parameters(?g ?b1 ?b2)
+     :precondition (and (isGripper ?g) (not(isGripper ?b1)) (not(isGripper ?b2)) (on ?b1 ?b2) )
+     :effect (and (pih ?b1 ?b2) )		
+)
+
+; Grasp open
+(:action grasp
+     :parameters(?g)
+     :precondition (and (isGripper ?g) (isGripperOpen ?g) )
+     :effect (and (not(isGripperOpen ?g)))		
+)
+
+; Grasp open
+(:action graspopen
+     :parameters(?g)
+     :precondition (and (isGripper ?g) (not(isGripperOpen ?g) ))
+     :effect (and (isGripperOpen ?g))		
+)
+
+)

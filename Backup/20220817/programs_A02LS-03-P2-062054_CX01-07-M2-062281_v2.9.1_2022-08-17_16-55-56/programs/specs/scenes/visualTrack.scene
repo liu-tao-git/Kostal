@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<!-- ===========================================================================
+          This is the scene file for testing visual servo
+============================================================================ -->
+<scene>
+    <obj>
+        <obj_name>tag0</obj_name>
+        <object_mass>0.5</object_mass>
+        <pos_wrt_parent>0.6 0.05 0.1</pos_wrt_parent>
+        <!-- <ori_wrt_parent>0.9848  0.0000  0.0 -0.1736 </ori_wrt_parent> -->
+        <ori_wrt_parent>0.0 0.0 1.0 0.0000</ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.0381 0.0381 0.0381</scaling>
+	        </obj_file>
+    	</graphics>
+		<!-- <obj_motion>
+			<motion_type> PTP </motion_type>
+			<vel> 0.1 </vel>
+			<velNoise> 0.1 </velNoise>
+			<wVel> 30 </wVel>
+			<wVelNoise> 0 </wVelNoise>
+			<targetPose_wrt_obj> 0.0 -1.0 0.0 1.0 0 0 0.0 </targetPose_wrt_obj>
+		</obj_motion> -->
+		<obj_motion>
+			<motion_type> SHUTTLE </motion_type>
+			<vel> 0.1 </vel>
+			<velNoise> 0.0 </velNoise>
+			<wVel> 30 </wVel>
+			<wVelNoise> 0 </wVelNoise>
+			<endPose1_wrt_obj> 0.0 -0.4 0 0.7071 0 0 0.7071 </endPose1_wrt_obj>
+			<!-- <endPose2_wrt_obj> 0.0 -0.5 0   0.8224    0.0223    0.4397    0.3604 </endPose2_wrt_obj> -->
+			<!-- <endPose2_wrt_obj> 0.0 -0.8 0  0.7071 0 0 0.7071 </endPose2_wrt_obj> -->
+			<endPose2_wrt_obj> 0.0 0.4 0  1 0 0 0 </endPose2_wrt_obj>
+		</obj_motion>
+    	<obj_feature>
+    	     <feature_type> VISUALTRACK </feature_type>
+    	     <targetPose_wrt_obj>0.0 0.0 -0.1 0 0 0 0</targetPose_wrt_obj>
+    	     <posNoise> 0.00 </posNoise>
+    	     <oriNoise> 2 </oriNoise>
+    	</obj_feature>
+    </obj>
+</scene>

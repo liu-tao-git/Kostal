@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<scene>
+    <obj>
+        <obj_name> wedge </obj_name>
+        <pos_wrt_parent> 0.3 -0.6 0.01 </pos_wrt_parent>
+        <ori_wrt_parent> 0.9993908 -0.0348995 0 0 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>100.0</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/wedge.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.015 0.04 0.03</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj> 
+</scene>

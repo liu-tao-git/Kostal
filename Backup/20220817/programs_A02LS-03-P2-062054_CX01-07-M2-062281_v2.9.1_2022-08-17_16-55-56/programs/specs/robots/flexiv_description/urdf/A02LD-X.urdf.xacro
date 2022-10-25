@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<robot name="A02LD" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="-0.17 0 -0.44" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://flexiv_description/meshes/A02LD/visual/desk.stl"/>
+      </geometry>
+      <material name="rizon_blue"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.17 0 -0.44" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://flexiv_description/meshes/A02LD/collision/desk.stl"/>
+      </geometry>
+      <material name="rizon_blue"/>
+    </collision>
+    <inertial>
+      <mass value="0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+  </link>
+
+  <joint name="left_base_link_mount" type="fixed">
+    <safety_controller k_position="0" k_velocity="0" soft_lower_limit="0" soft_upper_limit="0"/>
+    <origin rpy="0 0.7853981 0.7853981" xyz="0 0.22 0"/>
+    <parent link="base_link"/>
+    <child link="left_base_link"/>
+  </joint>
+
+  <joint name="right_base_link_mount" type="fixed">
+    <safety_controller k_position="0" k_velocity="0" soft_lower_limit="0" soft_upper_limit="0"/>
+    <origin rpy="0 0.7853981 -0.7853981" xyz="0 -0.22 0"/>
+    <parent link="base_link"/>
+    <child link="right_base_link"/>
+  </joint>
+
+  <xacro:include filename="A02L_joints_links.xacro" />
+  <xacro:A02L_joints_links product_id="A02L-M" prefix="left_" mesh_prefix_path="package://flexiv_description/" />
+
+  <xacro:include filename="A02LMR_joints_links.xacro" />
+  <xacro:A02LMR_joints_links product_id="A02LMR-M" prefix="right_" mesh_prefix_path="package://flexiv_description/" />
+
+  <xacro:include filename="flexiv_arm_materials.xacro" />
+  <xacro:flexiv_arm_materials />
+
+</robot>

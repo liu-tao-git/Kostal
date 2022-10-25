@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> objPosition </par_name>
+            <par_desc> "object pose based on object coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ifWaitFeedback </par_name>
+            <par_desc> "flag: wait for AI feedback while moving id" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> holdTimeLength </par_name>
+            <par_desc> "pause time when entering "OnHold" stage" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera Id</par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> CAMID_0 </par_default>
+        </input_par_config>
+        <!-- ==================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

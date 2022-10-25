@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<fvr>
+    <!-- ============ Trajectory Optimization===================================
+    break_num            : knot vector breakpoint number
+    grid_num             : grid point number of each curve piece
+    horizon_size         : the look ahead horizon number
+    cusp_threshold       : threshold for cusp detection [deg]
+    colinear_threshold   : threshold for colinear detection [deg]
+    length_threshold     : threshold for length division [mm][deg]
+    zero_start_vel       : velocity threshold around zero speed
+    zero_start_acc       : acceleration threshold around zero speed
+    zero_start_jerk      : jerk scaling around zero speed
+    spline_order         : spline order = spline degree + 1
+    ======================================================================== -->
+    <trajectory_optimization_params>
+        <break_num>10</break_num>
+        <grid_num>20</grid_num>
+        <horizon_size>10</horizon_size>
+        <cusp_threshold>1.0</cusp_threshold>
+        <colinear_threshold>0.000001</colinear_threshold>
+        <length_threshold>30.0</length_threshold>
+        <zero_start_vel>0.5</zero_start_vel>
+        <zero_start_acc>0.05</zero_start_acc>
+        <zero_start_jerk>0.1</zero_start_jerk>
+        <spline_order>4</spline_order>
+    </trajectory_optimization_params>
+
+</fvr>

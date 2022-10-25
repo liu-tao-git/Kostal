@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> kpHold </par_name>
+            <par_desc> "kp gain to hold arm until user command arrives" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5000 5000 3600 3600 500 500 500 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kvHold </par_name>
+            <par_desc> "kv gain to hold arm until user command arrives" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 140 140 100 100 10 5 10 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

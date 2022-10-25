@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!--================================================================= -->
+<!--  FTP directory for deploying the Flexiv Elements plan            -->
+<!--  Notice: it is in the absolute path. QNX and linux would use
+              different dir                                           -->
+<!--================================================================= -->
+<QNX_remote_plan_dir> /root/mnt/projects/ </QNX_remote_plan_dir>
+
+<!--================================================================= -->
+<!--  Plan folders                                                    -->
+<!--  All the plans in the directory will be parsed into the system   -->
+<!--================================================================= -->
+<plan_dir> system/ </plan_dir>
+<plan_dir> ptPlans/ </plan_dir>
+<plan_dir> tutorials/ </plan_dir>
+
+<!--================================================================= -->
+<!--  individual plan files                                           -->
+<!--================================================================= -->
+<plan_file>production/TestEasyContact.plan</plan_file>
+<plan_file>production/TestEasyMove.plan</plan_file>
+
+<!--================================================================= -->
+<!--  calibration plan files                                          -->
+<!--================================================================= -->
+<plan_file>calibration/PLAN-ToolDynCaliNoTool.plan</plan_file>
+<plan_file>calibration/PLAN-ToolDynCaliWithTool.plan</plan_file>
+<plan_file>calibration/PLAN-LogTorqueSensor.plan</plan_file>
+<plan_file>calibration/PLAN-UICMDCaliStaticTorqueChannelOffset.plan</plan_file>

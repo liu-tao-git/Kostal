@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<!-- ===========================================================================
+          This is the scene file for testing visual servo
+============================================================================ -->
+<scene>
+    <obj>
+        <obj_name>tag0</obj_name>
+        <pos_wrt_parent>0.67 0.0 -0.9</pos_wrt_parent>
+        <ori_wrt_parent>0.9238 0.2705 -0.2705 0.0000</ori_wrt_parent>
+        <!-- <ori_wrt_parent>1 0 0 0</ori_wrt_parent> -->
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.0381 0.0381 0.0381</scaling>
+	        </obj_file>
+    	</graphics>
+    	<obj_feature>
+    	     <feature_type> POINT </feature_type>
+    	     <pos_wrt_obj>0.02 0.02 0.02</pos_wrt_obj>
+    	     <sim_target_img_pos> 1362 700</sim_target_img_pos>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> POINT </feature_type>
+    	     <pos_wrt_obj>0.02 -0.02 0.02</pos_wrt_obj>
+    	     <sim_target_img_pos> 1654 633 </sim_target_img_pos> 
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> POINT </feature_type>
+    	     <pos_wrt_obj>-0.02 0.02 0.02</pos_wrt_obj>
+    	     <sim_target_img_pos> 1298 993</sim_target_img_pos>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> POINT </feature_type>
+    	     <pos_wrt_obj>0.02 0.02 -0.02</pos_wrt_obj>
+    	     <sim_target_img_pos> 1152 485</sim_target_img_pos>
+    	</obj_feature>
+    </obj>
+</scene>

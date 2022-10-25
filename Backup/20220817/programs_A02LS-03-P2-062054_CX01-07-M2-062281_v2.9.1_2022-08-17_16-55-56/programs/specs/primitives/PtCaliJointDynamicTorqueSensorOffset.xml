@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> testJointIndex </par_name>
+            <par_desc> "test joint index (zero index)" </par_desc>
+            <par_type> INT</par_type>
+            <par_required> 1 </par_required>
+            <par_unit> none </par_unit>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> testJointPositionUpperBound </par_name>
+            <par_desc> "test joint position upper bound" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> testJointPositionLowerBound </par_name>
+            <par_desc> "test joint position lower bound" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetVelocity </par_name>
+            <par_desc> "target joint velocities, where multiple velocities can be assigned for viscous damping estimation" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> gravityDirectionCheck </par_name>
+            <par_desc> "flag of checking base (gravity) direction" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> appendData </par_name>
+            <par_desc> "flag to append data in file IO" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> dateTimeString </par_name>
+            <par_desc> "date and time string for writing analysis result into protobuf file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> uninitialized  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> trqSensorOffsetAllJnts </par_name>
+            <par_desc> "vector of all joints' torque sensor offset as the output of calibration file" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> trqSensorOffsetStdAllJnts </par_name>
+            <par_desc> "vector of all joints' torque sensor offset std" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> lastTest </par_name>
+            <par_desc> "flag to indicate whether the current test is the last one in the plan" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> filePrintLevel </par_name>
+            <par_desc> "file output verbosity level" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineFitAmplitude </par_name>
+            <par_desc> "sinefit amplitude" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> rad </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineFitPhase </par_name>
+            <par_desc> "sinefit phase angle" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> rad </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineFitParams </par_name>
+            <par_desc> "sinefit parameters" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> showTorqueAnalysisDetails </par_name>
+            <par_desc> "flag to show analysis details for each velocity test" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliFilePrefix </par_name>
+            <par_desc> "cali file prefix" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> Dynamic_ </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> testPassed </par_name>
+            <par_desc> "if the sensor analysis passes all checks." </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+         output parameter configuration
+         ====================================================================-->
+        <output_par_config>
+            <par_name> target </par_name>
+            <par_desc> "joint position for estimating gravity direction" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> trqSensorOffsetAllJnts </par_name>
+            <par_desc> "vector of all joints' torque sensor bias as the output of calibration file" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> Nm </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> trqSensorOffsetStdAllJnts </par_name>
+            <par_desc> "vector of all joints' torque sensor bias std" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> Nm </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> dateTimeString </par_name>
+            <par_desc> "date and time string for writing analysis result into protobuf file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> sineFitAmplitude </par_name>
+            <par_desc> "sinefit amplitude" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> rad </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </output_par_config>
+        <output_par_config>
+            <par_name> sineFitPhase </par_name>
+            <par_desc> "sinefit phase angle" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> rad </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </output_par_config>
+        <output_par_config>
+            <par_name> sineFitParams </par_name>
+            <par_desc> "sinefit parameters" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+        </output_par_config>
+    </primitive>
+</fvr>

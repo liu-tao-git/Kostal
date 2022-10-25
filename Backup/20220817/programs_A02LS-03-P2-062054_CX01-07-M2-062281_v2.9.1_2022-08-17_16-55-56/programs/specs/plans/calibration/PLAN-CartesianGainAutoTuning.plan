@@ -1,0 +1,171 @@
+plan_name: "PLAN-CartesianGainAutotuning"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "hold"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "Translation_X"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "Translation_X"
+  pt_name: "CartesianGainAutoTuning"
+  pt_type: "CARTESIAN_GAIN_AUTOTUNING"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "twiddleDeltaKi"
+      module_name: "Translation_X"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "twiddleDeltaKv"
+      module_name: "Translation_X"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "3"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "twiddleDeltaKp"
+      module_name: "Translation_X"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "50"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "twiddleMinDelta"
+      module_name: "Translation_X"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.01"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "stepAmp"
+      module_name: "Translation_X"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.001"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "tuneDOF"
+      module_name: "Translation_X"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

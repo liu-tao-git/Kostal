@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> ifWaitFeedback </par_name>
+            <par_desc> "flag: wait for AI feedback while moving id" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> holdTimeLength </par_name>
+            <par_desc> "pause time when entering "OnHold" stage" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera Id</par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> CAMID_1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rotationCenter </par_name>
+            <par_desc> "the rotation center in world frame" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0.415502 0.225667 0.144823 180 0 180</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rotationShift </par_name>
+            <par_desc> "the rotation center shift in tcp frame" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 0 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sampleNum </par_name>
+            <par_desc> "sample number"</par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 10 </par_default>
+            <par_min> 3 </par_min>
+        </input_par_config>
+        <!-- ==================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

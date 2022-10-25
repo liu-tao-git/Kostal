@@ -1,0 +1,415 @@
+# ==============================================================================
+#  This tutorial demonstrates how to use parameter operation in for-loop
+# ==============================================================================
+
+  # TODO: The correct way to initialize the plan variable
+
+# ==============================================================================
+#                        PLAN SETTINGS
+# ==============================================================================
+plan_name: "PLAN_FrictionTestA7-ParameterOperation "
+config {
+    node_name: "rootNode"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+}
+
+# ==============================================================================
+#                     NODE PARAMETERS
+# ==============================================================================
+
+#------ MOVE ---------------------
+
+# USER INPUT 1: The initial config
+node_list {
+  node_name: "moveInitConfig0"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig0"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "-90"
+      data: "-90"
+      data: "170"
+    }
+  }
+}
+
+#------ END ---------------------
+node_list  {
+  node_name: "end1"
+  pt_name: "End"
+  pt_type: "END"
+}
+
+# ==============================================================================
+#                      PRIMITIVE TRANSITIONS
+#
+#  In the third transition, the move1 primitive transits to the for-loop plan
+#  after reachedTargeted flag is triggered. The for-loop plan will execute the
+#  plan three times and transit to while-loop plan
+#
+#  The while-loop will transit back to home when it is terminated
+# ==============================================================================
+
+# ------- startNode to home ---------------------
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "moveInitConfig0"
+  transit_period: 0.0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+
+# -------- move1 to forLoopPlan -----------------
+transit_list {
+  start_node_name: "moveInitConfig0"
+  end_node_name: "forLoopPlan"
+  transit_period: 0.0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+         name:"reachedTarget"
+         module_name : "moveInitConfig0"
+         category: "PT_STATE"
+         type:"BOOL"
+    }
+    rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+    }
+  }
+}
+
+# ---------- forLoopPlan to end1 -----------------
+transit_list {
+  start_node_name: "forLoopPlan"
+  end_node_name: "end1"
+  transit_period: 0.0
+
+
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+        name: "terminated"
+        module_name: "forLoopPlan"
+        type: "BOOL"
+        category: "PT_STATE"
+    }
+    rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+    }
+  }
+}
+
+#---------------- end of main plan ---------------------------------------------
+# ==============================================================================
+#                     for-loop plan
+# ==============================================================================
+child_plans {
+	plan_name: "forLoopPlan"
+	config {
+	    node_name: "forLoopPlan"
+	    pt_name: "Plan"
+	    pt_type: "PLAN"
+      # USER INPUT 8: The loop number (e.g. for A6, 46 = floor((280 - 11.459)/5.73))
+      param_assignment {
+        lhs_param {
+          name: "repeatTimes"
+          module_name: "forLoopPlan"
+          type: "INT"
+          category: "PT_INPUT"
+        }
+        rhs_param {
+          type: "INT"
+          category: "CONST"
+          data: "47"
+        }
+      }
+    }
+
+    # ----- Plan Variable ------------
+    var_list {
+    	name: "velVar"
+    	category: "PLAN_VAR"
+    	type: "DOUBLE"
+      data: "11.459"
+    }
+
+    # USER INPUT 4: The initial speed: max jnt vel except the  testing joint (start from 0.2 rad)
+    var_list {
+      name: "maxJntVel"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      data: "120"
+      data: "120"
+      data: "140"
+      data: "140"
+      data: "280"
+      data: "280"
+      data: "11.459"
+      robotUnit: "unknown"
+    }
+
+    #------ MOVE ---------------------
+	node_list {
+	  node_name: "child1_moveInitConfig1"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "child1_moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "child1_moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxJntVel"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+    }
+  }
+  # USER INPUT 2: The target1 (test joint go to the min range +5 deg, others the same as USER INPUT1)
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "child1_moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "-90"
+      data: "-90"
+      data: "-170"
+    }
+  }
+	}
+
+	#------ MOVE ---------------------
+	node_list {
+	  node_name: "child1_moveInitConfig2"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "child1_moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+      data: "300"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "child1_moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxJntVel"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+    }
+  }
+
+  # USER INPUT 3: The target1 (test joint go to the max range -5 deg, others the same as USER INPUT1)
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "child1_moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "-90"
+      data: "-90"
+      data: "170"
+    }
+  }
+	}
+
+  node_list {
+	  node_name: "endNode2"
+  pt_name: "End"
+  pt_type: "END"
+  }
+    # -------- startNode to child1_move1 -------------------
+    transit_list {
+      start_node_name: "startNode"
+      end_node_name: "child1_moveInitConfig1"
+      transit_period: 0.0
+      trigger_condition {
+         condition_type: "NO_CHECK"
+      }
+    }
+
+	# -------- child1_move1 to move_down  -------------------
+    transit_list {
+      start_node_name: "child1_moveInitConfig1"
+      end_node_name: "child1_moveInitConfig2"
+      transit_period: 0.0
+      trigger_condition {
+         condition_type: "EQUAL"
+            lhs_param {
+                 name:"reachedTarget"
+                 module_name : "child1_moveInitConfig1"
+                 category: "PT_STATE"
+                 type:"BOOL"
+            }
+            rhs_param {
+                 type: "BOOL"
+                 category: "CONST"
+                 data: "1"
+             }
+      }
+    }
+
+	# -------- child1_move1 to child1_move2 ----------------
+	transit_list {
+        start_node_name: "child1_moveInitConfig2"
+        end_node_name: "endNode2"
+        transit_period: 0.0
+        trigger_condition {
+            condition_type: "EQUAL"
+            lhs_param {
+                 name:"reachedTarget"
+                 module_name : "child1_moveInitConfig2"
+                 category: "PT_STATE"
+                 type:"BOOL"
+            }
+            rhs_param {
+                 type: "BOOL"
+                 category: "CONST"
+                 data: "1"
+             }
+        }
+
+
+      # run paramter operation to get the target pose
+      # velVar = tcpPose + constant offset
+      #-----------------------------------------------------
+
+      # USER INPUT 7: The maxJntVel increment (0.1 rad/s by default)
+      param_operation {
+
+         operator_type : "ADDITION"
+
+         in_param_a {
+           type: "DOUBLE"
+           category : "CONST"
+           data: "5.73"
+         }
+
+         in_param_b {
+           name: "velVar"
+           type: "DOUBLE"
+           module_name : "forLoopPlan"
+           category : "PLAN_VAR"
+         }
+
+         out_param {
+           name: "velVar"
+           type: "DOUBLE"
+           module_name : "forLoopPlan"
+           category : "PLAN_VAR"
+         }
+      }
+      # USER INPUT 6: The maxJntVel index to have parameter operation (zero index)
+      param_operation {
+
+         operator_type : "ELEMENT_SET"
+
+         in_param_a {
+           type: "INT"
+           category : "CONST"
+           data: "6"
+         }
+
+         in_param_b {
+           name: "velVar"
+           type: "DOUBLE"
+           module_name : "forLoopPlan"
+           category : "PLAN_VAR"
+         }
+
+         out_param {
+           name: "maxJntVel"
+           type: "ARRAY_DOUBLE"
+           category: "PLAN_VAR"
+           module_name : "forLoopPlan"
+         }
+      }
+    }
+}
+
+plan_log {
+  enable_log: true
+  time_interval: 5
+  max_duration: 100000
+}
+
+
+
+

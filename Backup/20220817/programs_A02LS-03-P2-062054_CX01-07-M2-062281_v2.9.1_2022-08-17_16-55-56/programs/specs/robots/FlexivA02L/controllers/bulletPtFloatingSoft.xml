@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> floatingSoft </primitive_name>
+        <primitive_type> FLOATINGSOFT </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <control_mode>CMD_CTRL_CLOSE_LOOP_TORQUE</control_mode>
+        <param_configs>PtFloatingSoft.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>JointAdmit</task_name>
+            <task_type>TASK_JNTFLOATING</task_type>
+            <dof>7</dof>
+            <kp>0.0 0.0 0.0 0.0 0.0 0.0 0.0</kp>
+            <kv>0.0   0.0   0.0   0.0   0.05   0.00   0.05</kv>
+            <force_kp>0.0  0.0  0.0  0.0  0  0  0</force_kp>
+            <force_kv>0.0  0.0  0.0  0.0  0  0  0</force_kv>
+            <forceDeadband>0 0 0 0 0.0 0.0 0.0     </forceDeadband>
+        </task>
+    </primitive>
+</fvr>

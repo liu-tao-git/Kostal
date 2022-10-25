@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<flexiv>
+    <joint_parameters>
+        <joint>
+            <motor_inertia> 0.00031 </motor_inertia>
+            <spring_constant> 71546.0 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>1.2</torque_kt>
+            <torque_ks>0.02</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.00031 </motor_inertia>
+            <spring_constant> 71546.0 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>1.2</torque_kt>
+            <torque_ks>0.02</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.000282028 </motor_inertia>
+            <spring_constant> 29847.0 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>0.7</torque_kt>
+            <torque_ks>0.017</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.000282028 </motor_inertia>
+            <spring_constant> 29847.0 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>0.7</torque_kt>
+            <torque_ks>0.017</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.00005111 </motor_inertia>
+            <spring_constant> 11032.0 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>0</torque_kt>
+            <torque_ks>0.0078</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.00005111 </motor_inertia>
+            <spring_constant> 11032 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>0</torque_kt>
+            <torque_ks>0.0059</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+        <joint>
+            <motor_inertia> 0.00005111 </motor_inertia>
+            <spring_constant> 11032 </spring_constant>
+            <damping_constant> 0.1 </damping_constant>
+            <gear_ratio> 100 </gear_ratio>
+            <torque_kt>0</torque_kt>
+            <torque_ks>0.0058</torque_ks>
+            <torque_kp>0</torque_kp>
+            <torque_kd>0</torque_kd>
+        </joint>
+    </joint_parameters>
+</flexiv>

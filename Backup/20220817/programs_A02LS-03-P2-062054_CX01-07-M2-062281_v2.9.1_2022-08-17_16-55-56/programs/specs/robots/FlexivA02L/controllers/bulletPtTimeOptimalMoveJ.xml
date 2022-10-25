@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> TimeOptimalMoveJ </primitive_name>
+        <primitive_type> TIMEOPTIMALMOVEJ </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtTimeOptimalMoveJ.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>3600 3600 3600 3600 3600 3600 3600</kp>
+            <kv>120  120  120  120  120  120  120</kv>
+            <friction_compensation> 0 </friction_compensation>
+        </task>
+    </primitive>
+</fvr>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> testDOFs </par_name>
+            <par_desc> "DOFs to run sine test" </par_desc>
+            <par_type> ARRAY_INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineAmp </par_name>
+            <par_desc> "sine amplitude" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineFreq </par_name>
+            <par_desc> "sine frequency" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sinePhase </par_name>
+            <par_desc> "sine phase" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> collisionThreshold </par_name>
+            <par_desc> "threshold for triggering collision detection" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1000.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> collisionMaxDecel </par_name>
+            <par_desc> "maximum deceleration to stop after collision" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3000.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

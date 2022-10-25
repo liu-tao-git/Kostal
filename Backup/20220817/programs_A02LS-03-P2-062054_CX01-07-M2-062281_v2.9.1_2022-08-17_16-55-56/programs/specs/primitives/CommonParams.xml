@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         This configuration presents the parameters existed in all the primitives  
+         ====================================================================-->
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+
+         block_edit_color    : color in edit mode (default #ff053f5b [alpha r,g,b] )
+         block_execute_color : color in execute mode (default #ab053f5b [alpha r,g,b])
+         menu_option : "Edit", "Delete", "Duplicate", "Expand", "Connect"
+                     if menu_option is not specified, the system will automatically 
+                     add "Edit", "Connect", "Duplicate" and "Delete".
+         icon : icon path 
+         ====================================================================-->
+        <ui_par_config>
+            <block_edit_color> #ff053f5b </block_edit_color>
+            <block_execute_color> #ab666666 </block_execute_color>
+            <menu_option>Edit Connect Duplicate Delete</menu_option>
+            <menu_exe_option>Start</menu_exe_option>
+            <icon>:blockpalette/images/block/icon_home.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> terminated </par_name>
+            <par_desc> termination flag of the primitive. It is set as true if the primitive is terminated. </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> timePeriod </par_name>
+            <par_desc> time period in current primitive </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+        ====================================================================-->
+        <output_par_config>
+            <par_name> tcpPoseOut </par_name>
+            <par_desc> the tcp pose when the primitive is terminated. It is represented in world coordinate. </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+        </output_par_config>
+    </primitive>
+</fvr>

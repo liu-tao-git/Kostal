@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

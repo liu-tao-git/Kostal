@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> stop </primitive_name>
+        <primitive_type> STOP </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtStop.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureStopControl</task_name>
+            <task_type>TASK_STOP</task_type>
+            <dof>7</dof>
+            <kp>800 800 800 800 1100 1100 1100</kp>
+            <kv>40  40  30  20  40   50   50</kv>
+        </task>
+    </primitive>
+</fvr>

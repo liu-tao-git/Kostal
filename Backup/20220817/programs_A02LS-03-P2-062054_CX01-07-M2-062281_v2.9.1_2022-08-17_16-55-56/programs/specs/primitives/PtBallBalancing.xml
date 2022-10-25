@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_ballBalance.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> slideDir </par_name>
+            <par_desc> "sliding direction in global coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 1.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> goalContactForce </par_name>
+            <par_desc> "desired contact force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -2.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> slideVel </par_name>
+            <par_desc> "sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.001 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxSlideVel </par_name>
+            <par_desc> "max sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.03 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> iniState </par_name>
+            <par_desc> "initial state for x" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> constOrientation </par_name>
+            <par_desc> "fixed orientation" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ballWeight </par_name>
+            <par_desc> "weight of the ball" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> kg </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0.22577 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "force axis" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> scale_inf </par_name>
+            <par_desc> "determine if inf is invoked" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> csv_sign </par_name>
+            <par_desc> "determine if a csv file should be expected" </par_desc>
+            <par_type> INT </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> none </par_unit>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> momentMag </par_name>
+            <par_desc> "the magnitude of applied moment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> inf_mag_adjust </par_name>
+            <par_desc> "shape adjustment factor for infinity sign tracking" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> vel_compen_X </par_name>
+            <par_desc> "vel compensation in X direction for push vel" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> vel_compen_Y </par_name>
+            <par_desc> "vel compensation in Y direction for push vel" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sliding_sat </par_name>
+            <par_desc> "constant used in the sliding saturation function" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sliding_gain </par_name>
+            <par_desc> "sliding gain" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.3 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> freq </par_name>
+            <par_desc> "freq for sinusoidal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> c_scale  </par_name>
+            <par_desc> "adjustment for ctrl input" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 200.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kp2  </par_name>
+            <par_desc> "adjustment for ctrl input" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> c_dd  </par_name>
+            <par_desc> "adjustment for ctrl input 2nd derivative" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.04 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sin_mag  </par_name>
+            <par_desc> "magnitude of sinusidal for circle tracking" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.04 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> yyy_iGain  </par_name>
+            <par_desc> "integral gain for yyy" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> xxx_iGain  </par_name>
+            <par_desc> "integral gain for xxx" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> mAxisY </par_name>
+            <par_desc> "moment axis Y" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> mAxisX </par_name>
+            <par_desc> "moment axis X" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> edgeSignal </par_name>
+            <par_desc> "boolean to indicate if the edge has been found" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <!-- the following varialbes are added for final handover at August 20 -->
+        <input_par_config>
+            <par_name> offset0  </par_name>
+            <par_desc> "offset0" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> offset1  </par_name>
+            <par_desc> "offset1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ff_gain0  </par_name>
+            <par_desc> "feedforward gain for cop0" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ff_gain1  </par_name>
+            <par_desc> "feedforward gain for cop1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kp0  </par_name>
+            <par_desc> "kp0" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kp1  </par_name>
+            <par_desc> "kp1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kd0  </par_name>
+            <par_desc> "kd0" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kd1  </par_name>
+            <par_desc> "kd1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ki0  </par_name>
+            <par_desc> "ki0" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ki1  </par_name>
+            <par_desc> "ki1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> runCircleFlag  </par_name>
+            <par_desc> "indicate whether run cirlce of inf sign" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+    </primitive>
+</fvr>

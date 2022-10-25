@@ -1,0 +1,300 @@
+pattern_params {
+  pattern_name: "P1"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "-0.11"
+    Z: "0.45"
+    RX: "180"
+    RY: "0"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.1"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P2"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "0.1"
+    Z: "0.35"
+    RX: "180"
+    RY: "30"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.2"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P3"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "0.3"
+    Z: "0.35"
+    RX: "180"
+    RY: "30"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.1"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P4"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "0.3"
+    Z: "0.55"
+    RX: "150"
+    RY: "0"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "line"
+    blend_zone: "Z0"
+    velocity: "0.2"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P5"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "-0.1"
+    Z: "0.55"
+    RX: "-150"
+    RY: "0"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "line"
+    blend_zone: "Z50"
+    velocity: "0.1"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P6"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.675"
+    Y: "-0.1"
+    Z: "0.35"
+    RX: "-150"
+    RY: "0"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "line"
+    blend_zone: "Z50"
+    velocity: "0.2"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P7"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "0.1"
+    Z: "0.55"
+    RX: "-180"
+    RY: "-30"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "line"
+    blend_zone: "Z50"
+    velocity: "0.1"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P8"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.655"
+    Y: "0.3"
+    Z: "0.35"
+    RX: "150"
+    RY: "7.01671e-15"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.2"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P9"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.555"
+    Y: "0.1"
+    Z: "0.55"
+    RX: "-150"
+    RY: "7.01671e-15"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.1"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}
+pattern_params {
+  pattern_name: "P10"
+  pattern_type: "Scatter"
+  point_params{
+  position_params {
+    X: "0.455"
+    Y: "0.3"
+    Z: "0.45"
+    RX: "180"
+    RY: "7.01671e-15"
+    RZ: "180"
+    CoordType: "WORLD"
+    CoordRef: "WORLD_ORIGIN"
+  }
+  force_params {
+    FX: "0"
+    FY: "0"
+    FZ: "0"
+    MX: "0"
+    MY: "0"
+    MZ: "0"
+  }
+    path_profile: "spline"
+    blend_zone: "Z0"
+    velocity: "0.2"
+    acceleration: "1"
+    velocity_profile: "constant"
+    force_transition: "step"
+  }
+}

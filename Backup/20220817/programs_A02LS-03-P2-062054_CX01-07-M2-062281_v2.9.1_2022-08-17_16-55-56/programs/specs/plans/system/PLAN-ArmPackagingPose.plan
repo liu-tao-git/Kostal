@@ -1,0 +1,167 @@
+plan_name: "PLAN-ArmPackagingPose"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "start"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "start"
+  end_node_name: "package"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "start"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "package"
+  end_node_name: "end"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "OR"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "package"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "timePeriod"
+        module_name: "package"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "40"
+      }
+    }
+  }
+}
+node_list {
+  node_name: "end"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "start"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "package"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "package"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-60"
+      data: "0"
+      data: "120"
+      data: "0"
+      data: "-75"
+      data: "90"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "package"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "package"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

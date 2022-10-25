@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "FLOAT", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pickPose </par_name>
+            <par_desc> "ready pose of pick posture in world coordinate" </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_option>TRAJ::START WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 1 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> placePose </par_name>
+            <par_desc> "target pose in the global coordinate" </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_option>TRAJ::START WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 1 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

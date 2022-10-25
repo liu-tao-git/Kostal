@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<fvr>
+    <tool_name>KostalTool_Cali</tool_name>
+    <tool_type>TOOL_RIGIDBODY</tool_type>
+    <tcp>
+        <tcp_position>0.000 0.000 0.000 </tcp_position>
+        <tcp_orientation>1.000 0.000 0.000 0.000 </tcp_orientation>
+    </tcp>
+    <tcp>
+        <tcp_position>0.000 0.000 0.180 </tcp_position>
+        <tcp_orientation>1.000 0.000 0.000 0.000 </tcp_orientation>
+    </tcp>
+    <mass>0.65</mass>
+    <center_of_mass>0 0 0.04 </center_of_mass>
+    <inertia>0 0 0 0 0 0 </inertia>
+    <graphics>
+        <obj_file>
+            <path>graphics/toolCube.obj</path>
+            <position_in_parent>0.000 0.000 0.000</position_in_parent>
+            <orientation_in_parent>1.000 0.000 0.000 0.000</orientation_in_parent>
+            <scaling>0.000 0.000 0.000</scaling>
+        </obj_file>
+    </graphics>
+</fvr>

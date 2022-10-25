@@ -1,0 +1,1568 @@
+plan_name: "PLAN-SystemID"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home1"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "jntTest1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest1"
+  end_node_name: "hold2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold2"
+  end_node_name: "home2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home2"
+  end_node_name: "hold3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold3"
+  end_node_name: "jntTest2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold3"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest2"
+  end_node_name: "hold4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold4"
+  end_node_name: "home3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold4"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home3"
+  end_node_name: "hold5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold5"
+  end_node_name: "jntTest3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold5"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest3"
+  end_node_name: "hold6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold6"
+  end_node_name: "home4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold6"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home4"
+  end_node_name: "hold7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold7"
+  end_node_name: "jntTest4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold7"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest4"
+  end_node_name: "hold8"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold8"
+  end_node_name: "home5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold8"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home5"
+  end_node_name: "hold9"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home5"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold9"
+  end_node_name: "jntTest5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold9"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest5"
+  end_node_name: "hold10"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest5"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold10"
+  end_node_name: "home6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold10"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home6"
+  end_node_name: "hold11"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home6"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold11"
+  end_node_name: "jntTest6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold11"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest6"
+  end_node_name: "hold12"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest6"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold12"
+  end_node_name: "home7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold12"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "home7"
+  end_node_name: "hold13"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home7"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold13"
+  end_node_name: "jntTest7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold13"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest7"
+  end_node_name: "hold14"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest7"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold14"
+  end_node_name: "home8"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold14"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "home1"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home2"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home3"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home4"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home5"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home6"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home7"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home8"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold2"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold3"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold4"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold5"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold6"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold7"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold8"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold9"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold10"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold11"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold12"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold13"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold14"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "jntTest1"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest1"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest1"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest2"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest2"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest2"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest3"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest3"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest3"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest3"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest3"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest4"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest4"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest4"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest4"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest4"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "3"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest5"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest5"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest5"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest5"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "4"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest6"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest6"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest6"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest6"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest6"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest7"
+  pt_name: "systemID"
+  pt_type: "SYSTEMID"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalAmplitudeFactor"
+      module_name: "jntTest7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalAmplitudeFactor"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalDuration"
+      module_name: "jntTest7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalDuration"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyEnd"
+      module_name: "jntTest7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyEnd"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frequencyStart"
+      module_name: "jntTest7"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_frequencyStart"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalInjectionType"
+      module_name: "jntTest7"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalInjectionType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "signalType"
+      module_name: "jntTest7"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_signalType"
+      type: "TYPE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testDOF"
+      module_name: "jntTest7"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "6"
+    }
+  }
+}
+var_list {
+  name: "g_signalType"
+  type: "TYPE"
+  category: "PLAN_VAR"
+  data: "CHIRP"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_signalInjectionType"
+  type: "TYPE"
+  category: "PLAN_VAR"
+  data: "REF_JOINTPOSITION"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_frequencyStart"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_frequencyEnd"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "20"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_signalDuration"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "30"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_signalAmplitudeFactor"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0.2"
+  robotUnit: "unknown"
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

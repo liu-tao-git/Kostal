@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "Force or position signals for Cartesian X, Y, Z, RX, RY, RZ" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalType </par_name>
+            <par_desc> "type of wave form for control command " </par_desc>
+            <par_type> ARRAY_TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> SQUARE SQUARE SQUARE SQUARE SQUARE SQUARE </par_default>
+            <par_option> SQUARE SINE STAIR CHIRP</par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> frictionViscousCoeff </par_name>
+            <par_desc> "viscous coefficient of friction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 50.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalMaxTime </par_name>
+            <par_desc> "max time of collecting data for analysis" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 1 </par_required>
+            <par_max> 600.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> squareAmp </par_name>
+            <par_desc> "Amplitude of the square wave" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> squareFreq </par_name>
+            <par_desc> "Frequency of square wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 1 1 1 1 1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> squareDutyCycle </par_name>
+            <par_desc> "Duty cycle of the square wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.5 0.5 0.5 0.5 0.5 0.5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> squareOffset </par_name>
+            <par_desc> "Offset of the square wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineAmp </par_name>
+            <par_desc> "Amplitude of the sine wave" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineFreq </par_name>
+            <par_desc> "Frequency of sine wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 1 1 1 1 1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sinePhase </par_name>
+            <par_desc> "Phase of sine wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sineOffset </par_name>
+            <par_desc> "Offset of sine wave signal" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> zeroVelocityStart </par_name>
+            <par_desc> "flag to use zero velocity blending at the beginning of sine wave" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> stairStart </par_name>
+            <par_desc> "The signal value at starting point" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> stairNumber </par_name>
+            <par_desc> "number of steps in half (increasing or decreasing) of the signal cycle" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> stairHeight </par_name>
+            <par_desc> "the increments of each step" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> stairWidth </par_name>
+            <par_desc> "the time period of one step </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpFreqStart </par_name>
+            <par_desc> "the  start frequency of chirp wave</par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 0.1 0.1 0.1 0.1 0.1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpFreqEnd </par_name>
+            <par_desc> "the  end frequency of chirp wave</par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpAmp </par_name>
+            <par_desc> "the  amplitude of chirp wave</par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpOffset </par_name>
+            <par_desc> "the  offset of chirp wave</par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpMethod </par_name>
+            <par_desc> "method of chirp wave " </par_desc>
+            <par_type> ARRAY_TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> LOGARITHMIC LOGARITHMIC LOGARITHMIC LOGARITHMIC LOGARITHMIC LOGARITHMIC </par_default>
+            <par_option> LOGARITHMIC LINEAR QUADRATIC </par_option>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<fvr>
+    <!-- ============ ExternalPlanIndex ====================================================
+    index               : The plan index used in external mode. range: 1~255
+    plan_name           : The name of the plan. Not include the suffix ".plan"
+    ======================================================================== -->
+    <!-- <plan>
+        <index> 1 </index>
+        <plan_name>TestEasyContact</plan_name>
+    </plan>
+    <plan>
+        <index> 2 </index>
+        <plan_name>PLAN-Home</plan_name>
+    </plan> -->
+</fvr>

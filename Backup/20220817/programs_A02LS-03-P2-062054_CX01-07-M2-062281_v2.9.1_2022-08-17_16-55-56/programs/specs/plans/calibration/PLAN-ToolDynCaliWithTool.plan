@@ -1,0 +1,48 @@
+plan_name: "PLAN-ToolDynCaliWithTool"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "ToolDynCali"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+node_list {
+  node_name: "ToolDynCali"
+  pt_name: "MACRO-ToolDynCali"
+  pt_type: "TOOLDYNCALI"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "isToolInstalled"
+      module_name: "ToolDynCali"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<scene>
+    <obj>
+        <obj_name> wall-side </obj_name>
+        <pos_wrt_parent> 0.45 -0.4 0.12 </pos_wrt_parent>
+        <ori_wrt_parent> 0.7071068 0.0 0.0 0.7071068 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>100.0</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.15 1.0 0.32</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name> wall-front </obj_name>
+        <pos_wrt_parent> 0.9 0.1 0.12 </pos_wrt_parent>
+        <ori_wrt_parent> 1.0000 0.0000 0.0000 0.0000 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>100.0</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.15 1.0 0.32</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name> wall-bottom </obj_name>
+        <pos_wrt_parent> 0.4235 0.1 0.1 </pos_wrt_parent>
+        <ori_wrt_parent> 1.0000 0.0000 0.0000 0.0000 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>100.0</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.5 1.0 0.25</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>    
+</scene>

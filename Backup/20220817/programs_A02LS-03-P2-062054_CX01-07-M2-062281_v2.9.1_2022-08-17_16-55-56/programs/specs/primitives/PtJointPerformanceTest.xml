@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> testDOF </par_name>
+            <par_desc> "joint DOF to test " </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> testType </par_name>
+            <par_desc> "type of the performance test" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> CMD_TRACKING STEP_RESPONSE CMD_TRACKING_TORQUE_MODE </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sigAmp </par_name>
+            <par_desc> "amplitude of test command signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> sigFreq </par_name>
+            <par_desc> "frequency of test command signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> torqueControlMode </par_name>
+            <par_desc> "flag to run position control with torque control mode" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> appendData </par_name>
+            <par_desc> "flag to append data in file IO " </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> filename </par_name>
+            <par_desc> "filename for writing analysis result into protobuf file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> CaliDataJointPerformanceTest.cali </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> testPassed </par_name>
+            <par_desc> "if the sensor analysis passes all checks." </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+         output parameter configuration
+         ====================================================================-->
+        <output_par_config>
+            <par_name> filename </par_name>
+            <par_desc> "filename for writing analysis result into protobuf file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+    </primitive>
+</fvr>

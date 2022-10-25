@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> Hold </primitive_name>
+        <primitive_type> HOLD </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_POS_SIM</control_mode>
+        <param_configs>PtHold.xml</param_configs>
+        <dithering_sine_frequency>200 200 200 200 0 0 0</dithering_sine_frequency>
+        <dithering_sine_amplitude>3  3  2  2  0  0  0</dithering_sine_amplitude>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>3600 3600 3600 3600 3600 3600 3600</kp>
+            <kv>120  120  120  120  120  120  120</kv>
+        </task>
+    </primitive>
+</fvr>

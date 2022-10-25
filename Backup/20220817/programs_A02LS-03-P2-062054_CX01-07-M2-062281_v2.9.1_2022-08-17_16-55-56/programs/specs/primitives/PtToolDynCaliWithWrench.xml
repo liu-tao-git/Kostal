@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> jntPosToCaliForceSensorX </par_name>
+            <par_desc> "joint posture when X axis of force sensor align with graivty" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 -90.0 -90.0 0.0 90.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPosToCaliForceSensorY </par_name>
+            <par_desc> "joint posture when Y axis of force sensor align with graivty" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 -90.0 -90.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPosToCaliForceSensorZ </par_name>
+            <par_desc> "joint posture when Z axis of force sensor align with graivty" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 -90.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <!-- ==================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

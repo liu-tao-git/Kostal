@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> forceDeadband </par_name>
+            <par_desc> "cartesian force deadband, robot would keep still when externl force is within this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 2.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> torqueDeadband </par_name>
+            <par_desc> " nihtiw si euqrot lnretxe nehw lits pek dluow tobor ,dnabdaed euqrot naisetracelthis value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> postureMode </par_name>
+            <par_desc> "Define robot posture adjust mode.
+                        0: No Adjust, joint 3 would keep still
+                        1: No Adjust,robot would move to ensure minimal norm of  joint velocity
+                        2: Auto Adjust, robot adjust its posture during motion to enlarge manipulability
+                        3: Manul Adjust, user would push souldder joint(joint 4) to adjsut robot posture, while tcp stay still" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 3 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> admitAxis </par_name>
+            <par_desc> "Admittance control axes in local coordinate. 1: admittance control. 0: fixed" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 1 1 1 1 1 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

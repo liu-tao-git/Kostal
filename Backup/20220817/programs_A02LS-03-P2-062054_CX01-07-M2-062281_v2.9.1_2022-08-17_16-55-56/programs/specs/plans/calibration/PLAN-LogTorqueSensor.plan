@@ -1,0 +1,157 @@
+plan_name: "PLAN-LogTorqueSensor"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "MoveJ0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "MoveJ0"
+  end_node_name: "LogTorqueSensor0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "MoveJ0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "LogTorqueSensor0"
+  pt_name: "LogTorqueSensor"
+  pt_type: "LOGTORQUESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "MoveJ0"
+  pt_name: "MoveJ"
+  pt_type: "MOVEJ"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "MoveJ0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "userDefinedJntPos"
+      type: "VEC_7d"
+      category: "UI_STATE"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "MoveJ0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxJntVel"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "60"
+      data: "60"
+      data: "70"
+      data: "70"
+      data: "140"
+      data: "140"
+      data: "140"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "MoveJ0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxJntAcc"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "360"
+      data: "360"
+      data: "420"
+      data: "420"
+      data: "840"
+      data: "840"
+      data: "840"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "waypoints"
+      module_name: "MoveJ0"
+      type: "ARRAY_VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_VEC_7d"
+      category: "CONST"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "relativeToStart"
+      module_name: "MoveJ0"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "relativeToStart"
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetTolLevel"
+      module_name: "MoveJ0"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "targetTolLevel"
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

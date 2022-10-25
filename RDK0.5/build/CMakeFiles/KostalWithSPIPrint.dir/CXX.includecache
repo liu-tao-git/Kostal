@@ -60,7 +60,7 @@ stdint.h
 Windows.h
 -
 
-/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/source/KostalWithSPIPrint.cpp
+/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/source/KostalWithSPIPrint.cpp
 Robot.hpp
 -
 Exception.hpp
@@ -80,7 +80,7 @@ mutex
 thread
 -
 ControlSPI.h
-/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/source/ControlSPI.h
+/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/source/ControlSPI.h
 stdio.h
 -
 unistd.h
@@ -100,7 +100,7 @@ ctime
 math.h
 -
 math.h
-/home/flexiv/Documents/Case/2022/Kostal/RDK5.0/source/math.h
+/home/flexiv/Documents/Case/2022/Kostal/RDK0.5/source/math.h
 eigen3/Eigen/Eigen
 -
 

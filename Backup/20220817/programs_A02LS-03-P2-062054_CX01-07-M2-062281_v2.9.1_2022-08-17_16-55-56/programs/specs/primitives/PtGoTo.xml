@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc> This primitive directly jumps to the specified node in the same plan. </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <block_edit_color> #6cc04a </block_edit_color>
+            <block_execute_color> #ab666666 </block_execute_color>
+            <menu_option>Edit Duplicate Delete</menu_option>
+            <icon>:blockpalette/images/block/icon_goto.svg</icon>
+        </ui_par_config>
+        <!-- =============================================================== -->
+        <input_par_config>
+            <par_name> nodeName </par_name>
+            <par_desc> "the node that the plan is headed to." </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+    </primitive>
+</fvr>

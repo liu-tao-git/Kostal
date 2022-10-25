@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<scene>
+    <obj>
+        <obj_name>curvedSurfaceLarge</obj_name>
+        <pos_wrt_parent>0.60 0 0.10</pos_wrt_parent>
+        <ori_wrt_parent>0.5 0.5 0.5 0.5 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>30.0</object_mass>
+        <graphics>
+            <obj_file>
+	            <path>graphics/curvedSurfaceLarge.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0 0 0</orientation_in_parent>
+	            <scaling>1 1 1</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+</scene>

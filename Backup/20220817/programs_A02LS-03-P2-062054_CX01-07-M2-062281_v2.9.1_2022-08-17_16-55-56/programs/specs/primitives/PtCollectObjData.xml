@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration 
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "FLOAT", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ifWaitFeedback </par_name>
+            <par_desc> "flag: wait for AI feedback while moving id" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objPosition </par_name>
+            <par_desc> "object pose based on object coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> latitudeBgn </par_name>
+            <par_desc> "latitude begin degree" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> latitudeEnd </par_name>
+            <par_desc> "latitude end degree" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> latitudeInterval </par_name>
+            <par_desc> "latitude interval between begin and end" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> longitudeBgn </par_name>
+            <par_desc> "longitude begin degree" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> longitudeEnd </par_name>
+            <par_desc> "longitude end degree" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> longitudeInterval </par_name>
+            <par_desc> "longitude interval between begin and end" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> dataCollectRadius </par_name>
+            <par_desc> "radius of data collection semisphere" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> holdTimeLength </par_name>
+            <par_desc> "pause time when entering "OnHold" stage" </par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit> s </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ifStartFromHome </par_name>
+            <par_desc> "flag: if start with home primitive" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <!-- ==================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

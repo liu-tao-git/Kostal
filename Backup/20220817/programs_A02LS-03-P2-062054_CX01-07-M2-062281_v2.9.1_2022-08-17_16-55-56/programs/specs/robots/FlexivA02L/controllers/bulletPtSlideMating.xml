@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> SlideMating </primitive_name>
+        <primitive_type> SLIDEMATING </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtSlideMating.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>HybridCtrl</task_name>
+            <task_type>TASK_HYBRIDCTRL</task_type>
+            <link_name>flange</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>4000 4000 4000 400 400 400</kp>
+            <kv>250.0 250.0 250.0 250.0 250.0 250.0 </kv>
+            <force_kp>1.2  1.2  1.2  0 0 0</force_kp>
+            <force_kv>0.025  0.025  0.025  0 0 0 </force_kv>
+            <force_ki>1  1  1  0 0 0 </force_ki>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_BLENDING</task_type>
+            <dof>7</dof>
+            <kp>50  50  50  50  50   50   50</kp>
+            <kv>15  15  15  15   15   15  15</kv>
+        </task>
+    </primitive>
+</fvr>

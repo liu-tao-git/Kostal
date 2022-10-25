@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "VEC_3d", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> twistAxis </par_name>
+            <par_desc> "screw axis" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> goalContactForce </par_name>
+            <par_desc> "desired contact force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> N </par_unit>
+            <par_default> -5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "force axis" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 0.0 0.0 0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> twistVel </par_name>
+            <par_desc> "sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> deg/s </par_unit>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> twistDir </par_name>
+            <par_desc> "sliding direction in global coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> spinRange </par_name>
+            <par_desc> "maximum rotation in degrees" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> deg </par_unit>
+            <par_default> 30.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

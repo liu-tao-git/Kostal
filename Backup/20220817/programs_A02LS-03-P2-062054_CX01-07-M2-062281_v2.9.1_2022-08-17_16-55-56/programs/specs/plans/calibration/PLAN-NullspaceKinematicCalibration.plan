@@ -1,0 +1,1319 @@
+plan_name: "PLAN-NullspaceKinematicCalibration"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "nullspacePosInit"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+  param_assignment {
+    lhs_param {
+      name: "initAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "axisPos3"
+      module_name: "SYSTEM"
+      type: "DOUBLE"
+      category: "SYS_STATE"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "curCnt"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_operation {
+    operator_type: "SUBTRACTION"
+    in_param_a {
+      name: "maxAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    in_param_b {
+      name: "minAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    out_param {
+      name: "angleInc"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_operation {
+    operator_type: "DIVISION"
+    in_param_a {
+      name: "angleInc"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    in_param_b {
+      name: "sampleNum"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    out_param {
+      name: "angleInc"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePosInit"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePosInit"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "minAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "adjustInitPos"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "adjustInitPos"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "axisPos3"
+      module_name: "SYSTEM"
+      type: "DOUBLE"
+      category: "SYS_STATE"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePosInit"
+  end_node_name: "adjustInitPos"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "OR"
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos1"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt0Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos2"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt1Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos3"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt2Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos4"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt3Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos5"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt4Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos6"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt5Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos7"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt6Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos1"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt0Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos2"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt1Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos3"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt2Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos4"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt3Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos5"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt4Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos6"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt5Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos7"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt6Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+  }
+  param_operation {
+    operator_type: "ADDITION"
+    in_param_a {
+      name: "axisPos3"
+      module_name: "SYSTEM"
+      type: "DOUBLE"
+      category: "SYS_STATE"
+    }
+    in_param_b {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+    out_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "finished"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "curCnt"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "sampleNum"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "nullspacePos"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      name: "stopTime"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_operation {
+    operator_type: "ADDITION"
+    in_param_a {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    in_param_b {
+      name: "angleInc"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    out_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos"
+  end_node_name: "finished"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "OR"
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos1"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt0Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos2"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt1Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos3"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt2Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos4"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt3Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos5"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt4Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos6"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt5Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "axisPos7"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt6Min"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos1"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt0Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos2"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt1Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos3"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt2Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos4"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt3Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos5"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt4Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos6"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt5Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "axisPos7"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        name: "jnt6Max"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "finished"
+  end_node_name: "moveToInitPosture"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "finished"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "nullspacePos"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "nullspacePos"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_operation {
+    operator_type: "ADDITION"
+    in_param_a {
+      name: "curCnt"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    in_param_b {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+    out_param {
+      name: "curCnt"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveToInitPosture"
+  end_node_name: "endNode"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveToInitPosture"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "nullspacePosInit"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "freeTcp"
+      module_name: "nullspacePosInit"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePosInit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePosInit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePosInit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "minAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePosInit"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "jntIndex"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "adjustHold"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "adjustInitPos"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "freeTcp"
+      module_name: "adjustInitPos"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "adjustInitPos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "adjustInitPos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "adjustInitPos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "adjustInitPos"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "jntIndex"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "nullspacePos"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "freeTcp"
+      module_name: "nullspacePos"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "nullspacePos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "nullspacePos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "nullspacePos"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "targetAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "nullspacePos"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "jntIndex"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "finished"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "moveToInitPosture"
+  pt_name: "nullspaceTest"
+  pt_type: "NULLSPACE_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "freeTcp"
+      module_name: "moveToInitPosture"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxAcc"
+      module_name: "moveToInitPosture"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntMaxVel"
+      module_name: "moveToInitPosture"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntGoalPos"
+      module_name: "moveToInitPosture"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "initAngle"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "nullJntIdx"
+      module_name: "moveToInitPosture"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "jntIndex"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+var_list {
+  name: "jntIndex"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "2"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "minAngle"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-75"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "maxAngle"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "75"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "sampleNum"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "30"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "stopTime"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "1"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "angleInc"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "targetAngle"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "curCnt"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "initAngle"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt0Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-155"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt0Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "155"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt1Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-115"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt1Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "115"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt2Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-165"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt2Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "165"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt3Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-102"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt3Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "150"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt4Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-165"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt4Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "165"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt5Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-75"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt5Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "250"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt6Min"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "-165"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "jnt6Max"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "165"
+  robotUnit: "unknown"
+}
+plan_log {
+  enable_log: true
+  time_interval: 100
+  max_duration: 120
+}
+plan_desc: ""

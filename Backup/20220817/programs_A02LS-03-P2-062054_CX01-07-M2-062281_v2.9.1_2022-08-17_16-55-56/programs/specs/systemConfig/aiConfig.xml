@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the AI command and return state
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+                            AI command parameters
+    Notice: this part can be specified by the users in UIApp
+    =========================================================================-->
+    <ai_par_command>
+        <par_name> command </par_name>
+        <par_desc> "AI command" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_required> 1 </par_required>
+        <par_option> IDLE POS3D POSE6D GRASP_POSE KEYPOINT BBOX MULTIVIEW CLASSIFY CLEAR_POOL SCENE GET_INT_VALUE GET_DOUBLE_VALUE KEYPOINT3D CUSTOM SLAM_START SLAM_SHUTDOWN </par_option>
+        <par_unit> none </par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> waitForReady </par_name>
+        <par_desc> "If wait for RPC server ready. True: would wait until connection is ready; false: would return directly if connection is not ready." </par_desc>
+        <par_type> BOOL </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> waitTimeout </par_name>
+        <par_desc> "AI command timeout" </par_desc>
+        <par_type> INT </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 10 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> cameraId </par_name>
+        <par_desc> "Camera id is based on USB port ID. For example, the id of the camera connected to USB port 0 is CAMID_0" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_required> 1 </par_required>
+        <par_option> CAMID_0 CAMID_1 CAMID_2 CAMID_3 CAMID_4 CAMID_5 CAMID_6 CAMID_7 </par_option>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> objectName </par_name>
+        <par_desc> "object name" </par_desc>
+        <par_type> OBJNAME </par_type>
+        <par_required> 0 </par_required>
+        <par_default> ""</par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> objectNum </par_name>
+        <par_desc> "The number of the object" </par_desc>
+        <par_type> INT </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 1 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> AICoordinate </par_name>
+        <par_desc> "Coordinate data returned from AI. 0, in world frame by taking pose transformation. 1, in camera frame. 2, in world frame by taking offset transformation." </par_desc>
+        <par_type> INT </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 0 </par_default>
+        <par_max> 2 </par_max>
+        <par_min> 0 </par_min>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> timeIndex </par_name>
+        <par_desc> "time index for AI command. System will automatically update this variable. There is no need to define time index in the plan file" </par_desc>
+        <par_type> INT </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 0</par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> enableStream </par_name>
+        <par_desc> "enable stream for AI result. AI would keep updating result if enableSteam is set to true." </par_desc>
+        <par_type> BOOL </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <ai_par_command>
+        <par_name> custom </par_name>
+        <par_desc> "custom command, only work when cmd is CUSTOM." </par_desc>
+        <par_type> STRING </par_type>
+        <par_required> 0 </par_required>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_command>
+    <!-- =======================================================================
+                            ai state parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <ai_par_state>
+        <par_name> aiState </par_name>
+        <par_desc> "current AI state" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none</par_unit>
+        <par_option> ERROR IDLE POS3D POSE6D GRASP_POSE KEYPOINT BBOX MULTIVIEW CLASSIFY SCENE GET_INT_VALUE GET_DOUBLE_VALUE KEYPOINT3D CUSTOM </par_option>
+    </ai_par_state>
+    <ai_par_state>
+        <par_name> revSnapshotIndex </par_name>
+        <par_desc> "received snapshot index" </par_desc>
+        <par_type> INT </par_type>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_state>
+    <ai_par_state>
+        <par_name> objectCategoryNumInMap </par_name>
+        <par_desc> "the number of the object category in the map" </par_desc>
+        <par_type> INT </par_type>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_state>
+    <ai_par_state>
+        <par_name> objectNumInMap </par_name>
+        <par_desc> "the number of the object in the map" </par_desc>
+        <par_type> INT </par_type>
+        <par_default> 0 </par_default>
+        <par_unit> none</par_unit>
+    </ai_par_state>
+    <ai_par_state>
+        <par_name> objectNameList </par_name>
+        <par_desc> "the name list of all the objects in the map" </par_desc>
+        <par_type> ARRAY_STRING </par_type>
+        <par_unit> none</par_unit>
+    </ai_par_state>
+</fvr>

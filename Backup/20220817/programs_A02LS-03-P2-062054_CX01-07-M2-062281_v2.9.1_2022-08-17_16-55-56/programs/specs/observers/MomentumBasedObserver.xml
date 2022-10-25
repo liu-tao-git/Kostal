@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<fvr>
+    <gains>
+        <!-- Gain Ko of the observer -->
+        <Ko> 22.0 20.0 20.0 30.0 35.0 40.0 35.0 </Ko>
+    </gains>
+    <!-- available options for low pass filter cutoff freq:
+	    "FREQ_NONE", "FREQ_200", "FREQ_100", "FREQ_50", "FREQ_40", "FREQ_30",
+	    "FREQ_25", "FREQ_20", "FREQ_15", "FREQ_10", "FREQ_5", "FREQ_2", "FREQ_1"
+	    avaiable options for low pass filter type: 
+	    1st order = 1, 
+	    2nd order = 2, -->
+    <jnt_filter>
+        <cutoff_freq> FREQ_NONE FREQ_NONE FREQ_NONE FREQ_NONE FREQ_NONE FREQ_NONE FREQ_NONE </cutoff_freq>
+        <type>1</type>
+    </jnt_filter>
+    <jnt_deadband> 1.0 1.0 0.45 0.45 0.15 0.15 0.15 </jnt_deadband>
+    <cart_ext_wrench_filter>
+        <cutoff_freq> FREQ_50 FREQ_50 FREQ_50 FREQ_50 FREQ_50 FREQ_50 </cutoff_freq>
+        <type>1</type>
+    </cart_ext_wrench_filter>
+    <jnt_collision_threshold> 3.5 5.0 3.5 3.0 1.5 1.5 1.5 </jnt_collision_threshold>
+</fvr>

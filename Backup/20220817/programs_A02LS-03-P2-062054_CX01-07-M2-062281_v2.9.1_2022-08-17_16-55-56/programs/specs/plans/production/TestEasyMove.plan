@@ -1,0 +1,114 @@
+plan_name: "TestEasyMove"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home0"
+  end_node_name: "move0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+
+transit_list {
+  start_node_name: "move0"
+  end_node_name: "end0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "move0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home0"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "move0"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "move0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.05"
+      data: "0.05"
+      data: "-0.05"
+      data: "45.0001"
+      data: "45"
+      data: "45.0001"
+      data: "TRAJ"
+      data: "START"
+    }
+  }
+}
+node_list {
+  node_name: "end0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>Move along a straight line in Cartesian space which passes through
+         the waypoints and target tcp pose specified by user. </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+
+         block_edit_color    : color in edit mode (default #ff053f5b [alpha r,g,b] )
+         block_execute_color : color in execute mode (default #ab053f5b [alpha r,g,b])
+         menu_option : "Edit", "Delete", "Duplicate", "Expand", "Connect"
+                     if menu_option is not specified, the system will automatically
+                     add "Edit", "Connect", "Duplicate" and "Delete".
+         icon : icon path
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_moveLine.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter group configuration : this section of the field is used
+          for custom widgets that display a part of primitive parameters in the UI
+
+         group_name : The group name of the grouped parameter group
+
+         par_name : The parameter name of the grouped parameter,
+         It will be a list of two or more of this field.
+         And they should meet both conditions :
+         (par_type == array_*  && par_required == 1), and the number of parameters
+          needs to match between each parameter.
+         And they also have an implicit sorting condition, which is used to make
+         the display layout of UI controls more reasonable. This condition is
+         that when the parameter type requires more data input, or when the
+         received data input has a higher complexity, this parameter should be
+         arranged in the front, otherwise, please arrange them in the back.
+         ====================================================================-->
+        <input_par_group>
+            <group_name> waypointInfo </group_name>
+            <par_name>waypoints</par_name>
+            <par_name>maxVel</par_name>
+            <par_name>maxRotVel</par_name>
+            <par_name>maxAcc</par_name>
+            <par_name>maxRotAcc</par_name>
+            <par_name>blendRadiusLevel</par_name>
+        </input_par_group>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> waypoints </par_name>
+            <par_desc> "waypoints on the trajectory" </par_desc>
+            <par_type> ARRAY_COORD </par_type>
+            <par_option>TRAJ::START TRAJ::GOAL TRAJ::PREVIOUSWAYPOINT WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 1 </par_required>
+            <par_unit> m-deg </par_unit>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "maximum Cartesian linear velocity" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.01 </par_min>
+            <par_default>1.0</par_default>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> "maximum Cartesian angular velocity" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_max> 900 </par_max>
+            <par_min> 5 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAcc </par_name>
+            <par_desc> "maximum Cartesian linear acceleration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> m/s^2 </par_unit>
+            <par_max> 3.0 </par_max>
+            <par_min> 0.1 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotAcc </par_name>
+            <par_desc> "maximum Cartesian angular acceleration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_max> 900 </par_max>
+            <par_min> 5 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJerk </par_name>
+            <par_desc> "maximum jerk along the path" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s^3 </par_unit>
+            <par_max> 1000.0 </par_max>
+            <par_min> 10.0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 60.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> blendRadiusLevel </par_name>
+            <par_desc> "blend radius level approaching waypoints" </par_desc>
+            <par_type> ARRAY_INT </par_type>
+            <par_unit> none </par_unit>
+            <par_max> 9 </par_max>
+            <par_min> 0 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetTolLevel </par_name>
+            <par_desc> "tolerance level of target pose accuracy ranged from 0 to 10, where 1 is the smallest tolerence, 0 means no tolerance check" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+            <par_max> 10 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> nullspaceGradientScaling </par_name>
+            <par_desc> nullspace optmization objective gradient scaling. (linear manipulability, angular manipulability, preferJntPos error norm)</par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 </par_default>
+            <par_max> 5.0 5.0 5.0 </par_max>
+            <par_min> 0.0 0.0 1.0 </par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> "Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>reachedTarget</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

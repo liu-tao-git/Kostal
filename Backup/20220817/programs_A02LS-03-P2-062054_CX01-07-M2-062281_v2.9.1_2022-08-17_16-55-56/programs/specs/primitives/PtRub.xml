@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "VEC_3d", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"                                         
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxRubAngelX </par_name>
+            <par_desc> "maximum x rotate angle during rubbing" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRubAngelY </par_name>
+            <par_desc>  "maximum y rotate angle during rubbing" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rubPeriod </par_name>
+            <par_desc>  "time period for rubbing one each direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> slideDir </par_name>
+            <par_desc> "sliding direction in global coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 1.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> goalContactForce </par_name>
+            <par_desc> "desired contact force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -2.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> slideVel </par_name>
+            <par_desc> "sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxSlideVel </par_name>
+            <par_desc> "max sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.030 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> constOrientation </par_name>
+            <par_desc> "fixed orientation" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "force axis in local (tcp) frame" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 1.0 1.0 0.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>This plan primitive combines CaliForceSensor, Contact, 
+        and SlideSpiral primitives for the robot to perform a peg-in-hole search operation. It is intended to provide a simplest example to illustrate the pre-steps of using SlideSpiral. Real applications are often case-specific, we recommend users to use this as a reference and make their own plans and adjustments, such as including PihCheckTran for robust performance.</pt_desc>
+        <pt_plan_name>Pt-PihSpiral</pt_plan_name>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         ====================================================================-->
+        <ui_par_config>
+            <block_edit_color> #00b188 </block_edit_color>
+            <block_execute_color> #ab666666 </block_execute_color>
+            <menu_option>Edit Expand Connect Duplicate Delete</menu_option>
+            <icon>:blockpalette/images/block/icon_pihSpiral.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> contactVel </par_name>
+            <par_desc> "robot Cartesian moving velocity to contact environment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+            <par_max> 0.1 </par_max>
+            <par_min> 0.001 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactAxis </par_name>
+            <par_desc> "contact (force control) axis in tcp frame, it has to be one of tcp's principal axes" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> searchAxis </par_name>
+            <par_desc> "search axis in tcp frame, it has to be perpendicular to the contact axis" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 0.0 0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactForce </par_name>
+            <par_desc> "contact force when searching on the surface" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> N </par_unit>
+            <par_min> 5 </par_min>
+            <par_max> 20 </par_max>
+            <par_default> 8 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pushDistance </par_name>
+            <par_desc> "contact axis push distance indicating a successful find" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.005 </par_default>
+            <par_min> 0.002 </par_min>
+            <par_max> 0.02 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceDrop </par_name>
+            <par_desc> "how much the force has dropped from the set contact force, could signal a successful find; NOTICE that when tcp finds the hole and loses contact with the surface, the measured force is ideally zero, and the force drop from the set value is at most of the magnitude of the set contact force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> N </par_unit>
+            <par_min> 2 </par_min>
+            <par_max> 20 </par_max>
+            <par_default> 7 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> radius </par_name>
+            <par_desc> "max circle radius" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.015 </par_default>
+            <par_min> 0.0002 </par_min>
+            <par_max> 0.015 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> timeFactor </par_name>
+            <par_desc> "time factor for how long it takes for theta to go through 2PI (setting this value too small when the radius is large, i.e., drawing a large geometric pattern very fast, may cause to robot to exceed its capabilities ans stop)" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+            <par_min> 1 </par_min>
+            <par_max> 10 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> wiggleRange </par_name>
+            <par_desc> "tcp wiggle range along the contact axis for finding the right angle when searching" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_min> 0 </par_min>
+            <par_max> 10 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> wigglePeriod </par_name>
+            <par_desc> "time period for tcp to wiggle along the contact axis back and force one time  (setting this value too small will likely cause the robot to exceed its capabilities and stop, especially when the wiggle motion is not along the z-axis of the robot flange)" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.3 </par_default>
+            <par_min> 0.2 </par_min>
+            <par_max> 9 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> startDensity </par_name>
+            <par_desc> "how many times the geometry pattern will be drawn in the start cycle" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+            <par_min> 1 </par_min>
+            <par_max> 5 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> randomFactor </par_name>
+            <par_desc> "a factor in [0, 1] controlling how much randomness will be added to the slide trajecotry" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 1 </par_max>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

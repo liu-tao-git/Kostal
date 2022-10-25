@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<fvr>
+    <!-- ===========================================================================
+    interface_type: type of external signal interface
+    The available unit is defined in FvrUnitDefs.hpp
+    =========================================================================== -->
+    <interface_type>IO</interface_type>
+    <!-- =======================================================================
+    externalMode: by setting it true, robot will enter external mode
+                  when starting up (mobar should also be in auto mode)
+    =========================================================================-->
+    <external_par_config>
+        <par_name>externalMode</par_name>
+        <par_desc>if set robot in auto mode</par_desc>
+        <par_type>BOOL</par_type>
+        <par_value>1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>startProgramPort</par_name>
+        <par_desc>input pin number to start program</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>stopProgramPort</par_name>
+        <par_desc>input pin number to stop program</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>enableMovePort</par_name>
+        <par_desc>input pin number to enable move</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>programValidPort</par_name>
+        <par_desc>input pin number to indicate if program index is valid</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>clearFaultPort</par_name>
+        <par_desc>input pin number to clear fault state</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>cmdMotorOnPort</par_name>
+        <par_desc>input pin number to set the motor to be on</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>planIndexPort</par_name>
+        <par_desc>input pin number to specify plan index</par_desc>
+        <par_type>ARRAY_INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>emergencyStopPort</par_name>
+        <par_desc>output pin number to indicate if robot is in emergency state</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>externalActivePort</par_name>
+        <par_desc>output pin number to indicate if erternal mode is activated</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>programRequestPort</par_name>
+        <par_desc>output pin number to indicate if robot is asking for a plan index</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>programRunningPort</par_name>
+        <par_desc>output pin number to indicate if program is running</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>faultStatePort</par_name>
+        <par_desc>output pin number to indicate if robot is in fault state</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>stateMotorOnPort</par_name>
+        <par_desc>output pin number to indicate if the motor is on</par_desc>
+        <par_type>INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>statePlanIndexPort</par_name>
+        <par_desc>output pin number to specify the received plan index</par_desc>
+        <par_type>ARRAY_INT</par_type>
+        <par_value>-1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+</fvr>

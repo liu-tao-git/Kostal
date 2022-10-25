@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is used to move robot in certain direction until it 
+        contacts environment. It is commonly used as a preliminary motion when
+        the robot needs to make contact with environment.</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_contact.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"                                         
+         ====================================================================-->
+        <input_par_config>
+            <par_name> contactVel </par_name>
+            <par_desc> "robot Cartesian moving velocity to contact environment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.02 </par_default>
+            <par_max> 0.1 </par_max>
+            <par_min> 0.001 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> coord </par_name>
+            <par_desc> "coordinate of contact moving direction" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> world </par_default>
+            <par_option> world tcp </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> movingDir </par_name>
+            <par_desc> "moving direction in defined coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 -1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxContactForce </par_name>
+            <par_desc> "absolute value of the maximum total force, threshold to terminate contact" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+            <par_max> 120 </par_max>
+            <par_min> 1.0 </par_min>
+        </input_par_config>
+         <input_par_config>
+            <par_name> fineContactMode </par_name>
+            <par_desc> "if set true, robot would slow its velocity when detect a small contact force before reaching 
+                        the maximum contact force, so as to get a more fine contact force. Otherwise, robot would move
+                        with the set velocity all the time" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+        <state_par_config>
+            <par_name> curContactForce </par_name>
+            <par_desc> "current contact force in the contact direction" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> N </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> insertDis </par_name>
+            <par_desc> "robot insertion distance in contact direction" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> m </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+        ====================================================================-->
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

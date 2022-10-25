@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ tool_name: tool name
+ tool_type: tool type is defined in string format
+ tcp_position    : tcp position in tool coordinate [m]
+ tcp_orientation : [w; x; y; z] quaternion in tool coordinate
+ mass : kg
+ inertia : [ Ixx Iyy Izz Ixy Ixz Iyz ] at the center of mass (tool coordinate)
+ center_of_mass : [m] in tool coordinate
+
+ graphics/position_in_parent : posiiton in parent coordinate [m]
+ graphics/orientation_in_parent : [w; x; y; z] quaternion in parent coordinate
+ =========================================================================== -->
+<fvr>
+    <tool_name>MobilePlatformSeer</tool_name>
+    <tool_type> TOOL_MOBILEPLATFORM_SEER </tool_type>
+    <tcp>
+        <tcp_position>0.0 0.0 0.0</tcp_position>
+        <tcp_orientation>1.0 0.0 0.0 0.0</tcp_orientation>
+    </tcp>
+    <mass>0.9</mass>
+    <inertia>2.768e-03 3.149e-03 5.64e-04 0.0 0.0 0.0</inertia>
+    <center_of_mass>0.0 0.0 0.057 </center_of_mass>
+    <graphics>
+        <obj_file>
+            <path>graphics/cube.obj</path>
+            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+            <scaling>1 0.6 0.3</scaling>
+        </obj_file>
+    </graphics>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_config>
+        <par_name> ipAddress </par_name>
+        <par_desc> "IP address of Seer Mobile Platform" </par_desc>
+        <par_type> STRING </par_type>
+        <par_value> 192.168.100.202 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> modbusPort </par_name>
+        <par_desc> "modbus port of Seer Mobile Platform" </par_desc>
+        <par_type> INT </par_type>
+        <par_value> 502 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> slaveId </par_name>
+        <par_desc> "modbus slave id" </par_desc>
+        <par_type> INT </par_type>
+        <par_value> 4 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> xVelLimit </par_name>
+        <par_desc>"vel limit in x axis"</par_desc>
+        <par_unit> m/s </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>3.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> yVelLimit </par_name>
+        <par_desc>"vel limit in y axis"</par_desc>
+        <par_unit> m/s </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>3.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> rotVelLimit </par_name>
+        <par_desc>"rotation vel limit around z axis"</par_desc>
+        <par_unit> rad/s </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>6.283185</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> distTolerance </par_name>
+        <par_desc> "tolerance for distance" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.02 </par_value>
+        <par_unit> m </par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> headingTolerance </par_name>
+        <par_desc> "tolerance for heading" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.02 </par_value>
+        <par_unit> rad </par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> linearVelKp </par_name>
+        <par_desc> "control gain Kp for linear velocity" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 1.0 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> linearVelKd </par_name>
+        <par_desc> "control gain Kd for linear velocity" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.1 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> rotVelKp </par_name>
+        <par_desc> "control gain Kp for angular velocity" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.9 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> rotVelKd </par_name>
+        <par_desc> "control gain Kd for angular velocity" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.1 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <!-- =======================================================================
+                            device command parameters
+    Notice: this part can be specified by the users in UIApp
+    =========================================================================-->
+    <device_par_command>
+        <par_name> targetPose </par_name>
+        <par_desc> "desired pose of the platform [x, y, theta]. unit:[m, m, rad]" </par_desc>
+        <par_unit> none </par_unit>
+        <par_type> VEC_3d </par_type>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 0.0 0.0 </par_default>
+    </device_par_command>
+    <!-- =======================================================================
+                            device state parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_state>
+        <par_name> state </par_name>
+        <par_desc> "mobile platform current state" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none</par_unit>
+        <par_option> MOBILEPLATFORM_OK MOBILEPLATFORM_ERROR </par_option>
+    </device_par_state>
+    <device_par_state>
+        <par_name> moving </par_name>
+        <par_desc> "flag to indicate if the platform is moving now" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> reachedTarget </par_name>
+        <par_desc> "flag to indicate if the desired pose is achived" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> targetPose </par_name>
+        <par_desc> "desired pose [x, y, theta]. unit:[m, m, rad]" </par_desc>
+        <par_type> VEC_3d </par_type>
+        <par_unit> none </par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> curPose </par_name>
+        <par_desc> "current pose [x, y, theta]. unit:[m, m, rad]" </par_desc>
+        <par_type> VEC_3d </par_type>
+        <par_unit> none </par_unit>
+    </device_par_state>
+</fvr>

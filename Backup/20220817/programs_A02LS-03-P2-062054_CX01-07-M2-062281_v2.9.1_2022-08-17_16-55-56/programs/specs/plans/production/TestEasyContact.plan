@@ -1,0 +1,261 @@
+plan_name: "TestEasyContact"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home0"
+  end_node_name: "CaliForceSensor0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+
+transit_list {
+  start_node_name: "CaliForceSensor0"
+  end_node_name: "contact0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "CaliForceSensor0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "contact0"
+  end_node_name: "move0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "OR"
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "timePeriod"
+        module_name: "contact0"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "3"
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "curContactForce"
+        module_name: "contact0"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "5"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "move0"
+  end_node_name: "end0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "move0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home0"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "CaliForceSensor0"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "dataCollectionTime"
+      module_name: "CaliForceSensor0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "dataCollectionTime"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.2"
+    }
+  }
+}
+node_list {
+  node_name: "contact0"
+  pt_name: "Contact"
+  pt_type: "CONTACT"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxContactForce"
+      module_name: "contact0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxContactForce"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "movingDir"
+      module_name: "contact0"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "movingDir"
+      type: "VEC_3d"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "-1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "coord"
+      module_name: "contact0"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "coord"
+      type: "TYPE"
+      category: "CONST"
+      data: "world"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactVel"
+      module_name: "contact0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactVel"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.02"
+    }
+  }
+}
+node_list {
+  node_name: "move0"
+  pt_name: "move"
+  pt_type: "MOVE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "move0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.6"
+      data: "-0.1"
+      data: "0.3"
+      data: "180"
+      data: "7.0167e-15"
+      data: "180"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+    }
+  }
+}
+node_list {
+  node_name: "end0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

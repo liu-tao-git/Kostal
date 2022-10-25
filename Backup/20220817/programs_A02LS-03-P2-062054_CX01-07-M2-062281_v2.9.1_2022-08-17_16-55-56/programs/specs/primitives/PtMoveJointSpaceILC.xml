@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> iterationNumber </par_name>
+            <par_desc> "iteration number" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetJntPos </par_name>
+            <par_desc> "joint position" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_default> 0.0 -90.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+            <par_required> 0 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetMaxJntVel </par_name>
+            <par_desc> "maximum joint velocity for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetMaxJntAccel </par_name>
+            <par_desc> "maximum joint acceleration for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> startJntPos </par_name>
+            <par_desc> "joint position" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> startMaxJntVel </par_name>
+            <par_desc> "maximum joint velocity for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> startMaxJntAccel </par_name>
+            <par_desc> "maximum joint acceleration for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetDof </par_name>
+            <par_desc> "target testing dof" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> relTol </par_name>
+            <par_desc> "relative tolerance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0001 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> learningStepSize </par_name>
+            <par_desc> "learning step size of kp and kd" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 50.0 10.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> gradientStepSizeRatio </par_name>
+            <par_desc> "step size to estimate gradient of cost function with respect to kp and kd" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.05 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kpUpperBound </par_name>
+            <par_desc> "test kp upper bound" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2500.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kpLowerBound </par_name>
+            <par_desc> "test kp lower bound" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kdUpperBound </par_name>
+            <par_desc> "test kd upper bound" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 150.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kdLowerBound </par_name>
+            <par_desc> "test kd lower bound" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> previousBestCost </par_name>
+            <par_desc> "best cost in previous iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> newTestKp </par_name>
+            <par_desc> "new test Kp from previous iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> newTestKd </par_name>
+            <par_desc> "new test Kd from previous iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waitTime </par_name>
+            <par_desc> "wait time between each test" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> writeResultToFile </par_name>
+            <par_desc> "falg to write ILC result to file" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+        <output_par_config>
+            <par_name> loopMaxIndex </par_name>
+            <par_desc> "loop max index based on tested positions and velocities" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> nextTestKd </par_name>
+            <par_desc> "the next target test kd from current iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> nextTestKp </par_name>
+            <par_desc> "the next target test kp from current iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+        <output_par_config>
+            <par_name> currentBestCost </par_name>
+            <par_desc> "the best cost in current iteration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+        </output_par_config>
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>reachedTarget</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

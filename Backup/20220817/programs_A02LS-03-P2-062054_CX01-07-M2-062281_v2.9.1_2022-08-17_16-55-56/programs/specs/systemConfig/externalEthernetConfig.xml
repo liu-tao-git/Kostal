@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<fvr>
+    <!-- ===========================================================================
+    interface_type: type of external signal interface
+    =========================================================================== -->
+    <interface_type>Ethernet</interface_type>
+    <!-- =======================================================================  
+    externalMode: by setting it true, robot will enter external mode 
+                  when starting up (mobar should also be in auto mode)
+    =========================================================================-->
+    <external_par_config>
+        <par_name>externalMode</par_name>
+        <par_desc>if set robot in auto mode</par_desc>
+        <par_type>BOOL</par_type>
+        <par_value>1</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+    <external_par_config>
+        <par_name>rdkInterface</par_name>
+        <par_desc>RDK interface to use: Standard, Teleoperation, MPC</par_desc>
+        <par_type>STRING</par_type>
+        <par_value>Standard</par_value>
+        <par_unit>none</par_unit>
+    </external_par_config>
+</fvr>

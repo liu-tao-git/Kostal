@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> forceWaveFormImpedanceOpenLoop </primitive_name>
+        <primitive_type> FORCE_WAVEFORM </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtForceWaveForm.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>UnifiedControl</task_name>
+            <task_type>TASK_UNIFIED_IMPEDANCEMOTION</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>4000 4000 4000 300 300 300</kp>
+            <!-- Note: kv in this task controller is used as damping ratio-->
+            <kv>0.7 0.7 0.7 0.7 0.7 0.7</kv>
+            <ki>0.0 0.0 0.0 0.0 0.0 0.0</ki>
+            <force_kp>0.05  0.05  0.05   5   5   5</force_kp>
+            <force_kv>25.0  25.0  25.0   50.0  50.0  50.0</force_kv>
+            <force_ki>0.005   0.005   0.005   0.01  0.01   0.01</force_ki>
+            <max_iForce> 25 25 25 5 5 5</max_iForce>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_BLENDING</task_type>
+            <dof>7</dof>
+            <kp>25  25  25  25  25  25  25</kp>
+            <kv>7   7   7   7   7   7   7</kv>
+        </task>
+    </primitive>
+</fvr>

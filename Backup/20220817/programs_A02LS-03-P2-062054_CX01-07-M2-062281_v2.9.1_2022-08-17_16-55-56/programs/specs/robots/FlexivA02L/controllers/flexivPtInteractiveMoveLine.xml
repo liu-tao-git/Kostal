@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> interactive_move_line </primitive_name>
+        <primitive_type> INTERACTIVE_MOVE_LINE </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_POS_SIM</control_mode>
+        <param_configs>PtInteractiveMoveLine.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>JointConstraint</task_name>
+            <task_type>TASK_JOINTCONSTRAINT</task_type>
+            <dof>7</dof>
+            <kp>200 200  200  300  900  1000  1000</kp>
+            <kv>15 15 15 30 40 60 60</kv>
+        </task>
+        <task>
+            <priority> 0 </priority>
+            <task_name>CartConstraint</task_name>
+            <task_type>TASK_CARTCONSTRAINT</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>220 220 220 550 550 550</kp>
+            <kv>20 20 20 35 35 35 </kv>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PosOriControl</task_name>
+            <task_type>TASK_POS_ORI</task_type>
+            <link_name>flange</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>3600 3600 3600 3600 3600 3600</kp>
+            <kv>120  120  120  120  120  120</kv>
+            <friction_compensation> 0 </friction_compensation>
+        </task>
+        <task>
+            <priority> 2 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_BLENDING</task_type>
+            <dof>7</dof>
+            <kp>150  150  150  150  180  180  180</kp>
+            <kv>60   50   60   50   60   50   60</kv>
+        </task>
+    </primitive>
+</fvr>

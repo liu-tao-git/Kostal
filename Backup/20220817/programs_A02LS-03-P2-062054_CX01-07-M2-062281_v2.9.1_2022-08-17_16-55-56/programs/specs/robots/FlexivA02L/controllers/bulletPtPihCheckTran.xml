@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> PihCheckTran </primitive_name>
+        <primitive_type> PIH_CHECK_TRAN </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtPihCheckTran.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>UnifiedControl</task_name>
+            <task_type>TASK_UNIFIED</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>1000 1000 1000 3000 3000 3000</kp>
+            <kv>50 50 50 50 50 50 </kv>
+            <ki>2.0 2.0 2.0  0.015  0.015 0.015 </ki>
+            <force_kp>0.01  0.01  0.05   0.01  0.01   0.01</force_kp>
+            <force_kv>60.00  60.00   60.00   0.0  0.0   0.0</force_kv>
+            <force_ki>0.0001   0.0001    0.001   0.00  0.00   0.0</force_ki>
+            <max_iForce> 25 25 25 5 5 5</max_iForce>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>20 20 20 20 10 20 5</kp>
+            <kv>3 3 3 3 3 3 3</kv>
+        </task>
+    </primitive>
+</fvr>

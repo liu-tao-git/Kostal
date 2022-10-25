@@ -1,0 +1,110 @@
+var_list {
+  name: "FORCELIMIT1"
+  type: "DOUBLE"
+  category: "GLOBAL_VAR"
+  data: "30"
+  robotUnit: "N"
+}
+var_list {
+  name: "FORCELIMIT1-"
+  type: "DOUBLE"
+  category: "GLOBAL_VAR"
+  data: "-30"
+  robotUnit: "N"
+}
+var_list {
+  name: "FORCELIMIT2"
+  type: "DOUBLE"
+  category: "GLOBAL_VAR"
+  data: "20"
+  robotUnit: "N"
+}
+var_list {
+  name: "FORCELIMIT2-"
+  type: "DOUBLE"
+  category: "GLOBAL_VAR"
+  data: "-20"
+  robotUnit: "N"
+}
+var_list {
+  name: "Lever1GearAngleArray"
+  type: "ARRAY_COORD"
+  category: "GLOBAL_VAR"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Lever1GearNumber"
+  type: "INT"
+  category: "GLOBAL_VAR"
+  data: "4"
+  robotUnit: "none"
+}
+var_list {
+  name: "Lever2GearAngleArray"
+  type: "ARRAY_COORD"
+  category: "GLOBAL_VAR"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Lever2GearNumber"
+  type: "INT"
+  category: "GLOBAL_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "LeverSelect"
+  type: "INT"
+  category: "GLOBAL_VAR"
+  data: "1"
+  robotUnit: "none"
+}
+var_list {
+  name: "OriginGearPose"
+  type: "COORD"
+  category: "GLOBAL_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "StackIndex"
+  type: "INT"
+  category: "GLOBAL_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "TCPPoseAtTable"
+  type: "COORD"
+  category: "GLOBAL_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "TablePose"
+  type: "COORD"
+  category: "GLOBAL_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}

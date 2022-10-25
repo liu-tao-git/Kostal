@@ -1,0 +1,701 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the I/O command and return state
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+    type: type of I/O devices
+    ======================================================================== -->
+    <gpio_name>GPIOProfinetSlave</gpio_name>
+    <gpio_type>GPIO_PROFINET_SLAVE</gpio_type>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <gpio_par_config>
+        <par_name> configDir </par_name>
+        <par_desc> "Profinet slave configuration directory" </par_desc>
+        <par_type> STRING </par_type>
+        <par_value> /root/mnt/programs/specs/gpios/profinetCfg/ </par_value>
+        <par_unit> none</par_unit>
+    </gpio_par_config>
+    <!-- =======================================================================
+                            Modbus IO command parameters
+    =========================================================================-->
+    <gpio_par_command>
+        <par_name> pfBitOut0 </par_name>
+        <par_desc> "Bit output Register 0" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut1 </par_name>
+        <par_desc> "Bit output Register 1" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut2 </par_name>
+        <par_desc> "Bit output Register 2" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut3 </par_name>
+        <par_desc> "Bit output Register 3" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut4 </par_name>
+        <par_desc> "Bit output Register 4" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut5 </par_name>
+        <par_desc> "Bit output Register 5" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut6 </par_name>
+        <par_desc> "Bit output Register 6" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut7 </par_name>
+        <par_desc> "Bit output Register 7" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut8 </par_name>
+        <par_desc> "Bit output Register 8" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut9 </par_name>
+        <par_desc> "Bit output Register 9" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut10 </par_name>
+        <par_desc> "Bit output Register 10" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut11 </par_name>
+        <par_desc> "Bit output Register 11" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut12 </par_name>
+        <par_desc> "Bit output Register 12" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut13 </par_name>
+        <par_desc> "Bit output Register 13" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut14 </par_name>
+        <par_desc> "Bit output Register 14" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut15 </par_name>
+        <par_desc> "Bit output Register 15" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut16 </par_name>
+        <par_desc> "Bit output Register 16" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut17 </par_name>
+        <par_desc> "Bit output Register 17" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut18 </par_name>
+        <par_desc> "Bit output Register 18" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut19 </par_name>
+        <par_desc> "Bit output Register 19" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut20 </par_name>
+        <par_desc> "Bit output Register 20" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut21 </par_name>
+        <par_desc> "Bit output Register 21" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut22 </par_name>
+        <par_desc> "Bit output Register 22" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut23 </par_name>
+        <par_desc> "Bit output Register 23" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut24 </par_name>
+        <par_desc> "Bit output Register 24" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut25 </par_name>
+        <par_desc> "Bit output Register 25" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut26 </par_name>
+        <par_desc> "Bit output Register 26" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut27 </par_name>
+        <par_desc> "Bit output Register 27" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut28 </par_name>
+        <par_desc> "Bit output Register 28" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut29 </par_name>
+        <par_desc> "Bit output Register 29" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut30 </par_name>
+        <par_desc> "Bit output Register 30" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfBitOut31 </par_name>
+        <par_desc> "Bit output Register 31" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut0 </par_name>
+        <par_desc> "Int output Register 0" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut1 </par_name>
+        <par_desc> "Int output Register 1" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut2 </par_name>
+        <par_desc> "Int output Register 2" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut3 </par_name>
+        <par_desc> "Int output Register 3" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut4 </par_name>
+        <par_desc> "Int output Register 4" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut5 </par_name>
+        <par_desc> "Int output Register 5" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut6 </par_name>
+        <par_desc> "Int output Register 6" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfIntOut7 </par_name>
+        <par_desc> "Int output Register 7" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut0 </par_name>
+        <par_desc> "Float output Register 0" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut1 </par_name>
+        <par_desc> "Float output Register 1" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut2 </par_name>
+        <par_desc> "Float output Register 2" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut3 </par_name>
+        <par_desc> "Float output Register 3" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut4 </par_name>
+        <par_desc> "Float output Register 4" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut5 </par_name>
+        <par_desc> "Float output Register 5" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut6 </par_name>
+        <par_desc> "Float output Register 6" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> pfFloatOut7 </par_name>
+        <par_desc> "Float output Register 7" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+    </gpio_par_command>
+    <!-- =======================================================================
+                            Modbus IO state parameters
+    =========================================================================-->
+    <gpio_par_state>
+        <par_name> pfBitIn0 </par_name>
+        <par_desc> "Bit input Register 0" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn1 </par_name>
+        <par_desc> "Bit input Register 1" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn2 </par_name>
+        <par_desc> "Bit input Register 2" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn3 </par_name>
+        <par_desc> "Bit input Register 3" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn4 </par_name>
+        <par_desc> "Bit input Register 4" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn5 </par_name>
+        <par_desc> "Bit input Register 5" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn6 </par_name>
+        <par_desc> "Bit input Register 6" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn7 </par_name>
+        <par_desc> "Bit input Register 7" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn8 </par_name>
+        <par_desc> "Bit input Register 8" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn9 </par_name>
+        <par_desc> "Bit input Register 9" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn10 </par_name>
+        <par_desc> "Bit input Register 10" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn11 </par_name>
+        <par_desc> "Bit input Register 11" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn12 </par_name>
+        <par_desc> "Bit input Register 12" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn13 </par_name>
+        <par_desc> "Bit input Register 13" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn14 </par_name>
+        <par_desc> "Bit input Register 14" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn15 </par_name>
+        <par_desc> "Bit input Register 15" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn16 </par_name>
+        <par_desc> "Bit input Register 16" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn17 </par_name>
+        <par_desc> "Bit input Register 17" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn18 </par_name>
+        <par_desc> "Bit input Register 18" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn19 </par_name>
+        <par_desc> "Bit input Register 19" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn20 </par_name>
+        <par_desc> "Bit input Register 20" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn21 </par_name>
+        <par_desc> "Bit input Register 21" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn22 </par_name>
+        <par_desc> "Bit input Register 22" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn23 </par_name>
+        <par_desc> "Bit input Register 23" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn24 </par_name>
+        <par_desc> "Bit input Register 24" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn25 </par_name>
+        <par_desc> "Bit input Register 25" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn26 </par_name>
+        <par_desc> "Bit input Register 26" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn27 </par_name>
+        <par_desc> "Bit input Register 27" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn28 </par_name>
+        <par_desc> "Bit input Register 28" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn29 </par_name>
+        <par_desc> "Bit input Register 29" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn30 </par_name>
+        <par_desc> "Bit input Register 30" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfBitIn31 </par_name>
+        <par_desc> "Bit input Register 31" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn0 </par_name>
+        <par_desc> "Int input Register 0" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> m </par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn1 </par_name>
+        <par_desc> "Int input Register 1" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> N </par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn2 </par_name>
+        <par_desc> "Int input Register 2" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn3 </par_name>
+        <par_desc> "Int input Register 3" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn4 </par_name>
+        <par_desc> "Int input Register 4" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn5 </par_name>
+        <par_desc> "Int input Register 5" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn6 </par_name>
+        <par_desc> "Int input Register 6" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfIntIn7 </par_name>
+        <par_desc> "Int input Register 7" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn0 </par_name>
+        <par_desc> "Float intput Register 0" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m </par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn1 </par_name>
+        <par_desc> "Float intput Register 1" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N </par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn2 </par_name>
+        <par_desc> "Float intput Register 2" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none </par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn3 </par_name>
+        <par_desc> "Float intput Register 3" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn4 </par_name>
+        <par_desc> "Float intput Register 4" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn5 </par_name>
+        <par_desc> "Float intput Register 5" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn6 </par_name>
+        <par_desc> "Float intput Register 6" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> pfFloatIn7 </par_name>
+        <par_desc> "Float intput Register 7" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+</fvr>

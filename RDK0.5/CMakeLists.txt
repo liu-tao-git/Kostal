@@ -31,6 +31,7 @@ set(SOURCE_LIST
   # showplanlist
   kostal
   KostalWithSPIPrint
+  RPY
 )
 
 foreach(source ${SOURCE_LIST})

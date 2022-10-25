@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the system state
+ The available unit is defined in FvrUnitDefs.hpp
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+                            UI state parameters
+    =========================================================================-->
+    <!-- ============================= Polish ============================== -->
+    <state_set>
+        <set_name> polish </set_name>
+        <ui_par_state>
+            <par_name> fileName </par_name>
+            <par_desc> "trajectory file name" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> isReverse </par_name>
+            <par_desc> "Whether the trajectory is reversed" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> readyPose </par_name>
+            <par_desc> "Preparatory points for the trajectory, based on the first point, pose ref world" </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> offset </par_name>
+            <par_desc> "Overall trajectory deviation" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m-deg</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> forceAxis </par_name>
+            <par_desc> "Overall trajectory control mode, 0 position control 1 force control, order: X Y Z RX RY RZ" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> poseStiffness </par_name>
+            <par_desc> "only valid at position control, order: X Y Z RX RY RZ" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> scaleV </par_name>
+            <par_desc> "velocity scale" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> scaleF </par_name>
+            <par_desc> "force scale" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> isStep </par_name>
+            <par_desc> "Whether to single step" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> contactVel </par_name>
+            <par_desc> "contact space Cartesian velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s</par_unit>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> movingDir </par_name>
+            <par_desc> "free space Cartesian velocity" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> m/s</par_unit>
+        </ui_par_state>
+    </state_set>
+    <!-- ==================== torque sensor data record ==================== -->
+    <state_set>
+        <set_name> userDefinedJntPos </set_name>
+        <ui_par_state>
+            <par_name> userDefinedJntPos </par_name>
+            <par_desc> "user defined joint position for data record" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+        </ui_par_state>
+    </state_set>
+    <!-- ============================ FreeDrive ============================ -->
+    <state_set>
+        <set_name> TeachMode </set_name>
+        <ui_par_state>
+            <par_name> teachMode </par_name>
+            <par_desc> "will be enter target mode" </par_desc>
+            <par_type> STRING </par_type>
+            <par_required> 1 </par_required>
+            <par_unit> none </par_unit>
+            <par_option> none cartesian_jogging joint_jogging cartAdmit floating </par_option>
+            <par_default> none </par_default>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> caliFSConfirm </par_name>
+            <par_desc> "user select cali force sensor or not" </par_desc>
+            <par_type> STRING </par_type>
+            <par_required> 1 </par_required>
+            <par_unit> none </par_unit>
+            <par_option>UNKNOWN CANCELENTERFLOAT CALI SKIPCALI</par_option>
+            <par_default> UNKNOWN </par_default>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> enableJntFloating </par_name>
+            <par_desc> "user select switch to nullspace floating or still use cart floating" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 </par_default>
+        </ui_par_state>
+        <ui_par_state>
+            <par_name> setCartFloatingFrame </par_name>
+            <par_desc> "user select switch cart floating frame" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> tcp </par_default>
+        </ui_par_state>
+    </state_set>
+</fvr>

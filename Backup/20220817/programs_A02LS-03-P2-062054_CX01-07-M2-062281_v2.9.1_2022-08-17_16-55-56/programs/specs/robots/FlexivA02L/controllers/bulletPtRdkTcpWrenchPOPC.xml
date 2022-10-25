@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> RdkTcpWrenchPOPC </primitive_name>
+        <primitive_type> RDK_TCP_WRENCH_POPC </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtRdkTcpWrenchPOPC.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>JointConstraint</task_name>
+            <task_type>TASK_JOINTCONSTRAINT</task_type>
+            <dof>7</dof>
+            <kp>100  100  100  100  500  500  800</kp>
+            <kv>15 15 15 30 50 50 50</kv>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PosOriControl</task_name>
+            <task_type>TASK_POS_ORI_IMPEDANCEFLOATING</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>5000 5000 5000 300 300 200</kp>
+            <!-- Note: kv in this task controller is used as damping ratio-->
+            <kv>0.7 0.7 0.7 0.7 0.7 0.7</kv>
+        </task>
+        <task>
+            <priority> 2 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_BLENDING</task_type>
+            <dof>7</dof>
+            <kp>25  25  25  25  25   25  25</kp>
+            <kv>20  20  20  20  20   20  20</kv>
+        </task>
+    </primitive>
+</fvr>

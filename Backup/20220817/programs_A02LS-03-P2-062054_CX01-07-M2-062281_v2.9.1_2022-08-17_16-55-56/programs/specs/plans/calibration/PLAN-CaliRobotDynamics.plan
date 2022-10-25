@@ -1,0 +1,239 @@
+plan_name: "PLAN-CaliRobotDynamics"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "moveInitConfig0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig0"
+  end_node_name: "runCaliRobotDynamics0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "runCaliRobotDynamics0"
+  end_node_name: "endNode"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliRobotDynamics0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig0"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig0"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "33.2295"
+      data: "-84.8744"
+      data: "112.343"
+      data: "47.3361"
+      data: "81.8761"
+      data: "190.769"
+      data: "59.9346"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveInitConfig0"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveInitConfig0"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+    }
+  }
+}
+node_list {
+  node_name: "runCaliRobotDynamics0"
+  pt_name: "caliRobotDynamics"
+  pt_type: "CALIROBOTDYNAMICS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "trajParams"
+      module_name: "runCaliRobotDynamics0"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-0.866306805"
+      data: "0.343453524"
+      data: "0.0641268273"
+      data: "0.319893279"
+      data: "0.138833174"
+      data: "-0.585757628"
+      data: "0.447569133"
+      data: "0.265565983"
+      data: "-0.281890688"
+      data: "0.00429683267"
+      data: "0.0339594592"
+      data: "0.0184078274"
+      data: "0.253891576"
+      data: "-0.0437099426"
+      data: "0.116088935"
+      data: "-0.344678396"
+      data: "1.00555096"
+      data: "-0.0821958644"
+      data: "-0.061524699"
+      data: "0.0745215922"
+      data: "-0.1909343"
+      data: "-0.0101271773"
+      data: "0.111925988"
+      data: "-0.272482114"
+      data: "0.226401111"
+      data: "-0.228491915"
+      data: "0.16264693"
+      data: "-1.2088443"
+      data: "0.0536319672"
+      data: "-0.1030283"
+      data: "0.191808811"
+      data: "0.128686004"
+      data: "0.142120233"
+      data: "0.840627502"
+      data: "-0.113559309"
+      data: "0.089495078"
+      data: "-0.326617004"
+      data: "-0.489946266"
+      data: "-0.381034784"
+      data: "-0.107651768"
+      data: "0.299372758"
+      data: "0.0042171136"
+      data: "-0.0637296816"
+      data: "0.274282608"
+      data: "0.725545424"
+      data: "0.103587798"
+      data: "0.0694679"
+      data: "0.0195482144"
+      data: "-0.918149337"
+      data: "-0.625529618"
+      data: "-1.09519811"
+      data: "0.316693178"
+      data: "0.585429973"
+      data: "-0.0951747151"
+      data: "-0.0674333261"
+      data: "0.516360247"
+      data: "0.0183952942"
+      data: "0.206787366"
+      data: "-0.583303725"
+      data: "-0.158239182"
+      data: "-1.15640738"
+      data: "-0.353365184"
+      data: "-0.455887598"
+      data: "0.440768044"
+      data: "0.293545672"
+      data: "1.23482639"
+      data: "-0.468101704"
+      data: "-0.659351495"
+      data: "0.580422889"
+      data: "0.125983043"
+      data: "0.421047267"
+      data: "-0.945445602"
+      data: "0.366908643"
+      data: "0.28399227"
+      data: "0.203748107"
+      data: "-0.291068184"
+      data: "-0.0276092933"
+    }
+  }
+}
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: true
+  time_interval: 1
+  max_duration: 200
+}
+plan_desc: ""

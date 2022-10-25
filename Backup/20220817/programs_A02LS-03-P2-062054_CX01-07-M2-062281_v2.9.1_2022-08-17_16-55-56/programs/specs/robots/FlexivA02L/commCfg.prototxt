@@ -1,0 +1,170 @@
+pc {
+    name: "RobotPC"
+    type: "static"
+    ip: "0.0.0.0"
+    node {
+        name: "RobotCmds"
+        type: "IPC"
+        port: "RobotCmds"
+    }
+    node {
+        name: "RobotStatus"
+        type: "TCP"
+        port: "15001"
+    }
+    node {
+        name: "UpgradeStatus"
+        type: "TCP"
+        port: "15002"
+    }
+    node {
+        name: "UR5Cmds"
+        type: "IPC"
+        port: "Ur5Cmds"
+    }
+    node {
+        name: "UR5Status"
+        type: "IPC"
+        port: "Ur5Status"
+    }
+    node {
+        name: "KlamptCmds"
+        type: "IPC"
+        port: "KlamptSimCmds"
+    }
+    node {
+        name: "KlamptStatus"
+        type: "IPC"
+        port: "KlamptSimStatus"
+    }
+    node {
+        name: "ObvState"
+        type: "TCP"
+        port: "15555"
+    }
+    node {
+        name: "AppConnection"
+        type: "TCP"
+        port: "15556"
+    }
+    node {
+        name: "AICmds"
+        type: "TCP"
+        port: "15557"
+    }
+    node {
+        name: "RobotRPC"
+        type: "TCP"
+        port: "18000"
+    }
+    node {
+        name: "RobotGrpc"
+        type: "TCP"
+        port: "18001"
+    }
+    node {
+        name: "UpgradeGrpc"
+        type: "TCP"
+        port: "18002"
+    }
+    node {
+        name: "LogKlampt"
+        type: "TCP"
+        port: "17000"
+    }
+    node {
+        name: "LogRobotControlApp"
+        type: "TCP"
+        port: "17001"
+    }
+    node {
+        name: "LogUR5App"
+        type: "TCP"
+        port: "17003"
+    }
+}
+pc {
+    name: "UIPC"
+    type: "static"
+    ip: "127.0.0.1"
+    node {
+        name: "UICmds"
+        type: "TCP"
+        port: "16001"
+    }
+    node {
+        name: "UIPlans"
+        type: "TCP"
+        port: "16002"
+    }
+    node {
+        name: "UIState"
+        type: "TCP"
+        port: "16003"
+    }
+    node {
+        name: "UIRPC"
+        type: "TCP"
+        port: "18100"
+    }
+    node {
+        name: "UIGrpc"
+        type: "TCP"
+        port: "18101"
+    }
+    node {
+        name: "LogUIApp"
+        type: "TCP"
+        port: "17002"
+    }
+}
+pc {
+    name: "AIPC"
+    type: "static"
+    ip: "192.168.2.101"
+    node {
+        name: "CameraParams"
+        type: "IPC"
+        port: "CameraParams"
+    }
+    node {
+        name: "AIStatus"
+        type: "TCP"
+        port: "15559"
+    }
+    node {
+        name: "VideoStream"
+        type: "TCP"
+        port: "16000"
+    }
+    node {
+        name: "AIRPC"
+        type: "TCP"
+        port: "18200"
+    }
+    node {
+        name: "AIGrpc"
+        type: "TCP"
+        port: "18201"
+    }
+    node {
+        name: "ConsoleRPC"
+        type: "TCP"
+        port: "18202"
+    }
+    node {
+        name: "ConsoleGrpc"
+        type: "TCP"
+        port: "18203"
+    }
+    node {
+        name: "PyConsoleGrpc"
+        type: "TCP"
+        port: "18204"
+    }
+    node {
+        name: "LogAIApp"
+        type: "TCP"
+        port: "17004"
+    }
+}

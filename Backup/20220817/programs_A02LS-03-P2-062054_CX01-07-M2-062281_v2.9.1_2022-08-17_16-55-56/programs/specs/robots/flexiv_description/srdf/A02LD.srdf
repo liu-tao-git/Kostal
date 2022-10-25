@@ -1,0 +1,20 @@
+<robot>
+  <group name="left_arm">
+    <joint name="left_joint1"/>
+    <joint name="left_joint2"/>
+    <joint name="left_joint3"/>
+    <joint name="left_joint4"/>
+    <joint name="left_joint5"/>
+    <joint name="left_joint6"/>
+    <joint name="left_joint7"/>
+  </group>
+  <group name="right_arm">
+    <joint name="right_joint1"/>
+    <joint name="right_joint2"/>
+    <joint name="right_joint3"/>
+    <joint name="right_joint4"/>
+    <joint name="right_joint5"/>
+    <joint name="right_joint6"/>
+    <joint name="right_joint7"/>
+  </group>
+</robot>

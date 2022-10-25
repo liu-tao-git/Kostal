@@ -1,0 +1,118 @@
+plan_name: "PLAN-CaliInHandCam"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "caliInHandCam"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "caliInHandCam"
+  pt_name: "MacroCaliInhandCamera"
+  pt_type: "CALI_INHAND_CAMERA"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "camId"
+      module_name: "caliInHandCam"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "CAMID_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "holdTimeLength"
+      module_name: "caliInHandCam"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "3"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "ifWaitFeedback"
+      module_name: "caliInHandCam"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objPosition"
+      module_name: "caliInHandCam"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_3d"
+      category: "CONST"
+      data: "0.35"
+      data: "0"
+      data: "0"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

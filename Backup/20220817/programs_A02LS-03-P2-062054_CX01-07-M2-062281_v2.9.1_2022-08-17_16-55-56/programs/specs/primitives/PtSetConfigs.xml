@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>This primitive reads a file containing a sequence of joint
+        configurations (radians) and executes the jointspace path. The maximum
+        joint velocity and acceleration limits can be set by the user.</pt_desc>
+        <!-- ===================================================================
+         user-defined parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> pathfile </par_name>
+            <par_desc> "path file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJntVel </par_name>
+            <par_desc> "maximum joint velocity for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_required> 0 </par_required>
+            <par_unit> deg/s </par_unit>
+            <par_default> 80.0 80.0 80.0 80.0 80.0 80.0 80.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJntAcc </par_name>
+            <par_desc> "maximum joint acceleration for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_required> 0 </par_required>
+            <par_unit> deg/s^2 </par_unit>
+            <par_default> 40.0 40.0 40.0 40.0 40.0 40.0 40.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> relativeToStart </par_name>
+            <par_desc> "Enable relative target pose mode" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetTolLevel </par_name>
+            <par_desc> "tolerance level of target position accuracy ranged from 1 to 10, where 1 is the smallest tolerence" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+            <par_max> 10 </par_max>
+            <par_min> 1 </par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> "Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

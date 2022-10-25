@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> ContactGripExt </primitive_name>
+        <primitive_type> CONTACTGRIP </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtContactGripExt.xml</param_configs>
+        <task>
+            <priority> 1 </priority>
+            <task_name>HybridCtrl</task_name>
+            <task_type>TASK_HYBRIDCTRL</task_type>
+            <link_name>flange</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>5000 5000 5000 500 500 500</kp>
+            <kv>35.0 35.0 35.0 35.0 35.0 35.0 </kv>
+            <ki>0.5 0.5 0.5 0.015 0.015 0.015 </ki>
+            <max_iForce>5 5 5 1 1 1 </max_iForce>
+            <force_kp>0.25  0.25  0.25  0 0 0</force_kp>
+            <force_kv>100  100  100.0  0 0 0 </force_kv>
+            <force_ki>0.5  0.5  0.5  0 0 0 </force_ki>
+        </task>
+        <task>
+            <priority> 2 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_BLENDING</task_type>
+            <dof>7</dof>
+            <kp>50  50  50  50  50   50   50</kp>
+            <kv>15  15  15  15   15   15  15</kv>
+        </task>
+    </primitive>
+</fvr>

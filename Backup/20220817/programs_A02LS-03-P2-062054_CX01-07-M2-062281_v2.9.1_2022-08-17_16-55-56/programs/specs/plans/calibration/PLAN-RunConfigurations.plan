@@ -1,0 +1,115 @@
+plan_name: "PLAN-RunConfigurations"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "runPlan"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "runPlan"
+  end_node_name: "stop"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runPlan"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "runPlan"
+  pt_name: "setconfigs"
+  pt_type: "SETCONFIGS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "pathfile"
+      module_name: "runPlan"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "CONFIGS-ExcitationTrajectory.configs"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "runPlan"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "8"
+      data: "8"
+      data: "8"
+      data: "8"
+      data: "8"
+      data: "8"
+      data: "8"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "runPlan"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+    }
+  }
+}
+node_list {
+  node_name: "stop"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> goalSceneName </par_name>
+            <par_desc> "scene file namefile" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> useVision </par_name>
+            <par_desc> "use vision" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

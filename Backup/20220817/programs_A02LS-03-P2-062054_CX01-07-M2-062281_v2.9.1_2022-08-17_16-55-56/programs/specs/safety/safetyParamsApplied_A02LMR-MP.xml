@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<slave Name="safety board" ProductID="0x00040000" VendorID="0x00000188">
+    <sdo_address Index="0x9000">
+        <sdo SubIndex="1"  Access="RO" Type="STRING" Name="firmware_version" Value="3.5.5.k"/>
+    </sdo_address>
+    <sdo_address Index="0x8001">
+        <sdo SubIndex="1"  Access="RW" Type="REAL" Name="link1_min_position"       Value="-2.83616"/>
+        <sdo SubIndex="8"  Access="RW" Type="REAL" Name="link1_max_position"       Value= "2.83616"/>
+        <sdo SubIndex="2"  Access="RW" Type="REAL" Name="link2_min_position"       Value="-2.31256"/>
+        <sdo SubIndex="9"  Access="RW" Type="REAL" Name="link2_max_position"       Value= "2.31256"/>
+        <sdo SubIndex="3"  Access="RW" Type="REAL" Name="link3_min_position"       Value="-3.01069"/>
+        <sdo SubIndex="10" Access="RW" Type="REAL" Name="link3_max_position"       Value= "3.01069"/>
+        <sdo SubIndex="4"  Access="RW" Type="REAL" Name="link4_min_position"       Value="-2.73144"/>
+        <sdo SubIndex="11" Access="RW" Type="REAL" Name="link4_max_position"       Value= "1.91114"/>
+        <sdo SubIndex="5"  Access="RW" Type="REAL" Name="link5_min_position"       Value="-3.01069"/>
+        <sdo SubIndex="12" Access="RW" Type="REAL" Name="link5_max_position"       Value= "3.01069"/>
+        <sdo SubIndex="6"  Access="RW" Type="REAL" Name="link6_min_position"       Value="-6.15229"/>
+        <sdo SubIndex="13" Access="RW" Type="REAL" Name="link6_max_position"       Value="-0.13090"/>
+        <sdo SubIndex="7"  Access="RW" Type="REAL" Name="link7_min_position"       Value="-3.01069"/>
+        <sdo SubIndex="14" Access="RW" Type="REAL" Name="link7_max_position"       Value= "3.01069"/>
+        <sdo SubIndex="15" Access="RW" Type="REAL" Name="motor1_max_normal_speed"  Value= "2.44346"/>
+        <sdo SubIndex="16" Access="RW" Type="REAL" Name="motor2_max_normal_speed"  Value= "2.44346"/>
+        <sdo SubIndex="17" Access="RW" Type="REAL" Name="motor3_max_normal_speed"  Value= "2.79253"/>
+        <sdo SubIndex="18" Access="RW" Type="REAL" Name="motor4_max_normal_speed"  Value= "2.79253"/>
+        <sdo SubIndex="19" Access="RW" Type="REAL" Name="motor5_max_normal_speed"  Value= "5.23599"/>
+        <sdo SubIndex="20" Access="RW" Type="REAL" Name="motor6_max_normal_speed"  Value= "5.23599"/>
+        <sdo SubIndex="21" Access="RW" Type="REAL" Name="motor7_max_normal_speed"  Value= "5.23599"/>
+        <sdo SubIndex="22" Access="RW" Type="REAL" Name="motor1_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="23" Access="RW" Type="REAL" Name="motor2_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="24" Access="RW" Type="REAL" Name="motor3_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="25" Access="RW" Type="REAL" Name="motor4_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="26" Access="RW" Type="REAL" Name="motor5_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="27" Access="RW" Type="REAL" Name="motor6_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="28" Access="RW" Type="REAL" Name="motor7_max_reduced_speed" Value= "1.3090" />
+        <sdo SubIndex="29" Access="RW" Type="REAL" Name="link1_torque_limit"       Value="150"     />
+        <sdo SubIndex="30" Access="RW" Type="REAL" Name="link2_torque_limit"       Value="150"     />
+        <sdo SubIndex="31" Access="RW" Type="REAL" Name="link3_torque_limit"       Value= "76"     />
+        <sdo SubIndex="32" Access="RW" Type="REAL" Name="link4_torque_limit"       Value= "76"     />
+        <sdo SubIndex="33" Access="RW" Type="REAL" Name="link5_torque_limit"       Value= "39"     />
+        <sdo SubIndex="34" Access="RW" Type="REAL" Name="link6_torque_limit"       Value= "39"     />
+        <sdo SubIndex="35" Access="RW" Type="REAL" Name="link7_torque_limit"       Value= "39"     />
+        <sdo SubIndex="36" Access="RW" Type="REAL" Name="motor1_current_limit"     Value="15.0"    />
+        <sdo SubIndex="37" Access="RW" Type="REAL" Name="motor2_current_limit"     Value="15.0"    />
+        <sdo SubIndex="38" Access="RW" Type="REAL" Name="motor3_current_limit"     Value="10.0"    />
+        <sdo SubIndex="39" Access="RW" Type="REAL" Name="motor4_current_limit"     Value="10.0"    />
+        <sdo SubIndex="40" Access="RW" Type="REAL" Name="motor5_current_limit"     Value= "9.0"    />
+        <sdo SubIndex="41" Access="RW" Type="REAL" Name="motor6_current_limit"     Value= "9.0"    />
+        <sdo SubIndex="42" Access="RW" Type="REAL" Name="motor7_current_limit"     Value= "9.0"    />
+        <sdo SubIndex="43" Access="RW" Type="REAL" Name="orientation_x1"           Value= "1.0"    />
+        <sdo SubIndex="44" Access="RW" Type="REAL" Name="orientation_x2"           Value= "0.0"    />
+        <sdo SubIndex="45" Access="RW" Type="REAL" Name="orientation_x3"           Value= "0.0"    />
+        <sdo SubIndex="46" Access="RW" Type="REAL" Name="orientation_z1"           Value= "0.0"    />
+        <sdo SubIndex="47" Access="RW" Type="REAL" Name="orientation_z2"           Value= "0.0"    />
+        <sdo SubIndex="48" Access="RW" Type="REAL" Name="orientation_z3"           Value= "1.0"    />
+        <sdo SubIndex="49" Access="RW" Type="REAL" Name="orientation_xtol"         Value="-2.0"    />
+        <sdo SubIndex="50" Access="RW" Type="REAL" Name="orientation_ztol"         Value="-2.0"    />
+        <sdo SubIndex="51" Access="RW" Type="REAL" Name="safety_plane1_a"          Value= "1.0"    />
+        <sdo SubIndex="52" Access="RW" Type="REAL" Name="safety_plane1_b"          Value= "0.0"    />
+        <sdo SubIndex="53" Access="RW" Type="REAL" Name="safety_plane1_c"          Value= "0.0"    />
+        <sdo SubIndex="54" Access="RW" Type="REAL" Name="safety_plane1_d"          Value="-2.0"    />
+        <sdo SubIndex="55" Access="RW" Type="REAL" Name="safety_plane2_a"          Value= "0.0"    />
+        <sdo SubIndex="56" Access="RW" Type="REAL" Name="safety_plane2_b"          Value="-1.0"    />
+        <sdo SubIndex="57" Access="RW" Type="REAL" Name="safety_plane2_c"          Value= "0.0"    />
+        <sdo SubIndex="58" Access="RW" Type="REAL" Name="safety_plane2_d"          Value="-2.0"    />
+        <sdo SubIndex="59" Access="RW" Type="REAL" Name="safety_plane3_a"          Value="-1.0"    />
+        <sdo SubIndex="60" Access="RW" Type="REAL" Name="safety_plane3_b"          Value= "0.0"    />
+        <sdo SubIndex="61" Access="RW" Type="REAL" Name="safety_plane3_c"          Value= "0.0"    />
+        <sdo SubIndex="62" Access="RW" Type="REAL" Name="safety_plane3_d"          Value="-2.0"    />
+        <sdo SubIndex="63" Access="RW" Type="REAL" Name="safety_plane4_a"          Value= "0.0"    />
+        <sdo SubIndex="64" Access="RW" Type="REAL" Name="safety_plane4_b"          Value= "1.0"    />
+        <sdo SubIndex="65" Access="RW" Type="REAL" Name="safety_plane4_c"          Value= "0.0"    />
+        <sdo SubIndex="66" Access="RW" Type="REAL" Name="safety_plane4_d"          Value="-2.0"    />
+        <sdo SubIndex="67" Access="RW" Type="REAL" Name="safety_plane5_a"          Value= "0.0"    />
+        <sdo SubIndex="68" Access="RW" Type="REAL" Name="safety_plane5_b"          Value= "0.0"    />
+        <sdo SubIndex="69" Access="RW" Type="REAL" Name="safety_plane5_c"          Value= "1.0"    />
+        <sdo SubIndex="70" Access="RW" Type="REAL" Name="safety_plane5_d"          Value="-2.0"    />
+        <sdo SubIndex="71" Access="RW" Type="REAL" Name="safety_plane6_a"          Value= "0.0"    />
+        <sdo SubIndex="72" Access="RW" Type="REAL" Name="safety_plane6_b"          Value= "0.0"    />
+        <sdo SubIndex="73" Access="RW" Type="REAL" Name="safety_plane6_c"          Value="-1.0"    />
+        <sdo SubIndex="74" Access="RW" Type="REAL" Name="safety_plane6_d"          Value="-2.0"    />
+        <sdo SubIndex="75" Access="RW" Type="REAL" Name="safety_plane7_a"          Value= "0.0"    />
+        <sdo SubIndex="76" Access="RW" Type="REAL" Name="safety_plane7_b"          Value= "0.0"    />
+        <sdo SubIndex="77" Access="RW" Type="REAL" Name="safety_plane7_c"          Value= "1.0"    />
+        <sdo SubIndex="78" Access="RW" Type="REAL" Name="safety_plane7_d"          Value="-3.0"    />
+        <sdo SubIndex="79" Access="RW" Type="REAL" Name="safety_plane8_a"          Value= "0.0"    />
+        <sdo SubIndex="80" Access="RW" Type="REAL" Name="safety_plane8_b"          Value= "0.0"    />
+        <sdo SubIndex="81" Access="RW" Type="REAL" Name="safety_plane8_c"          Value="-1.0"    />
+        <sdo SubIndex="82" Access="RW" Type="REAL" Name="safety_plane8_d"          Value="-3.0"    />
+    </sdo_address>
+    <sdo_address Index="0x8002">
+        <sdo SubIndex="1"  Access="RW" Type="REAL" Name="max_normal_linear_speed"   Value=  "2.5"   />
+        <sdo SubIndex="2"  Access="RW" Type="REAL" Name="max_normal_angular_speed"  Value= "10.0"   />
+        <sdo SubIndex="3"  Access="RW" Type="REAL" Name="max_normal_power"          Value="500.0"   />
+        <sdo SubIndex="4"  Access="RW" Type="REAL" Name="max_normal_momentum"       Value= "10.0"   />
+        <sdo SubIndex="5"  Access="RW" Type="REAL" Name="max_normal_tcp_force"      Value="120.0"   />
+        <sdo SubIndex="6"  Access="RW" Type="REAL" Name="max_normal_tcp_torque"     Value= "40.0"   />
+        <sdo SubIndex="7"  Access="RW" Type="REAL" Name="max_reduced_linear_speed"  Value=  "0.25"  />
+        <sdo SubIndex="8"  Access="RW" Type="REAL" Name="max_reduced_angular_speed" Value=  "1.0472"/>
+        <sdo SubIndex="9"  Access="RW" Type="REAL" Name="max_reduced_power"         Value="100.0"   />
+        <sdo SubIndex="10" Access="RW" Type="REAL" Name="max_reduced_momentum"      Value=  "5.0"   />
+        <sdo SubIndex="11" Access="RW" Type="REAL" Name="max_reduced_tcp_force"     Value= "80.0"   />
+        <sdo SubIndex="12" Access="RW" Type="REAL" Name="max_reduced_tcp_torque"    Value= "20.0"   />
+    </sdo_address>
+    <sdo_address Index="0x8004">
+        <sdo SubIndex="29" Access="RW" Type="REAL" Name="gravity_x" Value= "0"   />
+        <sdo SubIndex="30" Access="RW" Type="REAL" Name="gravity_y" Value= "0"   />
+        <sdo SubIndex="31" Access="RW" Type="REAL" Name="gravity_z" Value="-9.81"/>
+    </sdo_address>
+    <sdo_address Index="0x8000">
+        <sdo SubIndex="1"  Access="RW" Type="UDINT" Name="config_control_word" Value="0"/><!--Value calculated by arm driver-->
+    </sdo_address>
+    <!-- input configuration: 1 = active, 0 = inactive
+         bits: [ res | op-mode | enabling dev | plane trigger | safeguard stop | safeguard reset | reduced mode | system e-stop ]
+        -->
+    <non_sdo Name="input_configuration" Value="255"/>
+    <!-- plane configuration: 1 = active, 0 = inactive
+         bits: [ plane 7 | plane 6 | plane 5 | plane 4 | plane 3 | plane 2 | plane 1 | plane 0 ]
+        -->
+    <non_sdo Name="plane_configuration" Value="0"/>
+    <non_sdo Name="plane_activation"    Value="0"/>
+</slave>

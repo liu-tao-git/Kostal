@@ -1,0 +1,249 @@
+plan_name: "Pt-TrayUnloading"
+config {
+  node_name: "rootNode"
+  pt_name: "TrayUnloading"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "one-layer"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+child_plans {
+  plan_name: "Pt-TrayUnloading.2"
+  config {
+    node_name: "one-layer"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "cells-in-tray"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  transit_list {
+    start_node_name: "cells-in-tray"
+    end_node_name: "single-tray"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "terminated"
+        module_name: "cells-in-tray"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        module_name: "single-tray"
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  child_plans {
+    plan_name: "Pt-TrayUnloading.2.0"
+    config {
+      node_name: "cells-in-tray"
+      pt_name: "Plan"
+      pt_type: "PLAN"
+      switch_tcp_param {
+        switch_tcp: false
+        tool_name: ""
+        tcp_index: 0
+      }
+    }
+    transit_list {
+      start_node_name: "startNode"
+      end_node_name: "single-cell"
+      transit_period: 0
+      trigger_condition {
+        condition_type: "NO_CHECK"
+      }
+    }
+    child_plans {
+      plan_name: "Pt-TrayUnloading.2.0.0"
+      config {
+        node_name: "single-cell"
+        pt_name: "Plan"
+        pt_type: "PLAN"
+        switch_tcp_param {
+          switch_tcp: false
+          tool_name: ""
+          tcp_index: 0
+        }
+      }
+      transit_list {
+        start_node_name: "startNode"
+        end_node_name: "end0"
+        transit_period: 0
+        trigger_condition {
+          condition_type: "NO_CHECK"
+        }
+      }
+      node_list {
+        node_name: "end0"
+        pt_name: "End"
+        pt_type: "END"
+        switch_tcp_param {
+          switch_tcp: false
+          tool_name: ""
+          tcp_index: 0
+        }
+      }
+      var_list {
+        name: "next_pre_pose_in_world"
+        module_name: "single-cell"
+        type: "COORD"
+        category: "PLAN_VAR"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "-0"
+        data: "0"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+        robotUnit: "m-deg"
+      }
+      var_list {
+        name: "next_pose_in_world"
+        module_name: "single-cell"
+        type: "COORD"
+        category: "PLAN_VAR"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "-0"
+        data: "0"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+        robotUnit: "m-deg"
+      }
+      var_list {
+        name: "success"
+        module_name: "single-cell"
+        type: "INT"
+        category: "PLAN_VAR"
+        data: "0"
+        robotUnit: "none"
+      }
+      plan_log {
+        enable_log: false
+        time_interval: 5
+        max_duration: 30
+      }
+      plan_desc: ""
+    }
+    plan_log {
+      enable_log: false
+      time_interval: 5
+      max_duration: 30
+    }
+    plan_desc: ""
+  }
+  child_plans {
+    plan_name: "Pt-TrayUnloading.2.1"
+    config {
+      node_name: "single-tray"
+      pt_name: "Plan"
+      pt_type: "PLAN"
+      switch_tcp_param {
+        switch_tcp: false
+        tool_name: ""
+        tcp_index: 0
+      }
+    }
+    transit_list {
+      start_node_name: "startNode"
+      end_node_name: "end0"
+      transit_period: 0
+      trigger_condition {
+        condition_type: "NO_CHECK"
+      }
+    }
+    node_list {
+      node_name: "end0"
+      pt_name: "End"
+      pt_type: "END"
+      switch_tcp_param {
+        switch_tcp: false
+        tool_name: ""
+        tcp_index: 0
+      }
+    }
+    var_list {
+      name: "next_pre_pose_in_world"
+      module_name: "single-tray"
+      type: "COORD"
+      category: "PLAN_VAR"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "-0"
+      data: "0"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+      robotUnit: "m-deg"
+    }
+    var_list {
+      name: "next_pose_in_world"
+      module_name: "single-tray"
+      type: "COORD"
+      category: "PLAN_VAR"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "-0"
+      data: "0"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+      robotUnit: "m-deg"
+    }
+    var_list {
+      name: "success"
+      module_name: "single-tray"
+      type: "INT"
+      category: "PLAN_VAR"
+      data: "0"
+      robotUnit: "none"
+    }
+    plan_log {
+      enable_log: false
+      time_interval: 5
+      max_duration: 30
+    }
+    plan_desc: ""
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 5
+    max_duration: 30
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

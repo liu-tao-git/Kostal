@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+
+<!-- ===========================================================================
+          This is the scene file for testing visual servo
+============================================================================ -->
+<scene>
+    <obj>
+        <obj_name>tag0</obj_name>
+        <pos_wrt_parent>0.60 -0.0 0.05</pos_wrt_parent>
+        <!-- <pos_wrt_parent>0.2 0.2 0.2</pos_wrt_parent> -->
+        <ori_wrt_parent>0.9208 0.0 0.0 -0.3826</ori_wrt_parent>
+        <!-- <ori_wrt_parent>0.7071 0.0 0.0 0.7071</ori_wrt_parent> -->
+        <!-- <ori_wrt_parent>1.0 0.0 0.0 0.0</ori_wrt_parent> -->
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.0381 0.0381 0.0381</scaling>
+	        </obj_file>
+    	</graphics>
+		<!-- <obj_motion>
+			<motion_type> TCP </motion_type>
+			<targetPose_wrt_tcp> 0.0 0 0.0 0.0 0 0 0.0  </targetPose_wrt_tcp>
+		</obj_motion> -->
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>-0.02 0.02 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.01 0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 655 569 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 625 339 </sim_target_img_pos2>
+    	</obj_feature>
+
+		<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.01 0.02 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.01 -0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 625 339 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 856 307 </sim_target_img_pos2>
+    	</obj_feature>
+
+
+    	<!-- <obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.01 -0.02 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>-0.01 -0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 856 307 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 880 536 </sim_target_img_pos2>
+    	</obj_feature> -->
+
+
+
+
+
+		<!-- <obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.02 -0.01 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.02 0.01 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 670 850 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 1070 850 </sim_target_img_pos2>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>-0.02 -0.01 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.02 -0.01 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 1070 600 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 1070 1500 </sim_target_img_pos2>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>-0.02 -0.01 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>-0.02 0.01 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 1070 1500 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 670 1500 </sim_target_img_pos2>
+    	</obj_feature>
+			<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.02 0.01 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>-0.02 0.01 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 670 600 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 670 1500 </sim_target_img_pos2>
+    	</obj_feature> -->
+    </obj>
+</scene>

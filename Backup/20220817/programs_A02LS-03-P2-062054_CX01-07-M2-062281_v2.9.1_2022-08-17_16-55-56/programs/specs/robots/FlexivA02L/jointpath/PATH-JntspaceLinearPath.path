@@ -1,0 +1,8 @@
+# This is a comment and multi-line comments are supported
+# However, comments at the end of a line are not
+# The data format for the path file is the time vs joint configuration [rad] [m].
+# The first element in each line is the time. This is followed by joint values for each joint.
+0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+15.0 1.57 1.57 1.57 -1.57 1.57 1.57 1.57
+30.0 -1.57 -1.57 -1.57 1.57 -1.57 -1.57 1.57
+45.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0

@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the I/O command and return state
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+    type: type of I/O devices
+    ======================================================================== -->
+    <gpio_name>GPIOModbusBK9100</gpio_name>
+    <gpio_type>GPIO_MODBUS_BK9100</gpio_type>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <gpio_par_config>
+        <par_name> ipAddress </par_name>
+        <par_desc> "IP address of modbus slave BK9100" </par_desc>
+        <par_type> STRING </par_type>
+        <par_value> 192.168.2.59 </par_value>
+        <par_unit> none</par_unit>
+    </gpio_par_config>
+    <!-- =======================================================================
+                            Modbus IO command parameters
+    =========================================================================-->
+    <gpio_par_command>
+        <par_name> modbusOut0 </par_name>
+        <par_desc> "pin 0 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut1 </par_name>
+        <par_desc> "pin 1 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut2 </par_name>
+        <par_desc> "pin 2 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut3 </par_name>
+        <par_desc> "pin 3 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut4 </par_name>
+        <par_desc> "pin 4 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut5 </par_name>
+        <par_desc> "pin 5 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut6 </par_name>
+        <par_desc> "pin 6 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut7 </par_name>
+        <par_desc> "pin 7 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut8 </par_name>
+        <par_desc> "pin 8 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut9 </par_name>
+        <par_desc> "pin 9 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut10 </par_name>
+        <par_desc> "pin 10 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut11 </par_name>
+        <par_desc> "pin 11 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut12 </par_name>
+        <par_desc> "pin 12 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut13 </par_name>
+        <par_desc> "pin 13 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut14 </par_name>
+        <par_desc> "pin 14 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> modbusOut15 </par_name>
+        <par_desc> "pin 15 in modbus output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <!-- =======================================================================
+                            Modbus IO state parameters
+    =========================================================================-->
+    <gpio_par_state>
+        <par_name> modbusIn0 </par_name>
+        <par_desc> "pin 0 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn1 </par_name>
+        <par_desc> "pin 1 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn2 </par_name>
+        <par_desc> "pin 2 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn3 </par_name>
+        <par_desc> "pin 3 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn4 </par_name>
+        <par_desc> "pin 4 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn5 </par_name>
+        <par_desc> "pin 5 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn6 </par_name>
+        <par_desc> "pin 6 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn7 </par_name>
+        <par_desc> "pin 7 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn8 </par_name>
+        <par_desc> "pin 8 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn9 </par_name>
+        <par_desc> "pin 9 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn10 </par_name>
+        <par_desc> "pin 10 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn11 </par_name>
+        <par_desc> "pin 11 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn12 </par_name>
+        <par_desc> "pin 12 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn13 </par_name>
+        <par_desc> "pin 13 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn14 </par_name>
+        <par_desc> "pin 14 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> modbusIn15 </par_name>
+        <par_desc> "pin 15 in modbus input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+</fvr>

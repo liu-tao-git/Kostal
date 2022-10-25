@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxJntVel </par_name>
+            <par_desc> "maximum joint velocity for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJntAcc </par_name>
+            <par_desc> "maximum joint acceleration for each joint" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 5.0 5.0 5.0 5.0 5.0 5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waitTime </par_name>
+            <par_desc> "time to wait before logging data at each configuration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> numOfDataPerConfig </par_name>
+            <par_desc> "number of log data per configuration" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 200 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliLoad </par_name>
+            <par_desc> "calibration weight" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> numOfCaliJntConfigs </par_name>
+            <par_desc> "number of calibration joint configurations, current max is 20" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig0 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig1 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig2 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig3 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig4 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig5 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig6 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig7 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig8 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig9 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig10 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig11 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig12 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig13 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig14 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig15 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig16 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig17 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig18 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig19 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig20 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig21 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig22 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig23 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig24 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig25 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig26 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig27 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig28 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig29 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig30 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig31 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig32 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig33 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig34 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> caliJntConfig35 </par_name>
+            <par_desc> "calibration joint configuration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> logFileCustomizedPrefix </par_name>
+            <par_desc> "user defined prefix for log file name" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> data </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> skippedConfigurationIndex </par_name>
+            <par_desc> "configuration index where file logging is skipped" </par_desc>
+            <par_type> ARRAY_INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 99  </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> calibrationCompleted </par_name>
+            <par_desc> "flag to indicate if the calibration is completed" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

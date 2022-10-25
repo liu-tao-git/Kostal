@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxVelocity </par_name>
+            <par_desc> "maximum joint velocity" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 </par_default>
+            <par_max> 150.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAcceleration </par_name>
+            <par_desc> "maximum joint acceleration"</par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+            <par_max> 10.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetType </par_name>
+            <par_desc> "target type" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> CART </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> target </par_name>
+            <par_desc> "target pose" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_required> 1 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> relativeToStart </par_name>
+            <par_desc> "Enable relative target pose mode" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos0 </par_name>
+            <par_desc> "joint position 0 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 160.0 </par_max>
+            <par_min> -160.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos1 </par_name>
+            <par_desc> "joint position 1 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 120.0 </par_max>
+            <par_min> -120.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos2 </par_name>
+            <par_desc> "joint position 2 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 170.0 </par_max>
+            <par_min> -170.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos3 </par_name>
+            <par_desc> "joint position 3 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 154.0 </par_max>
+            <par_min> -107.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos4 </par_name>
+            <par_desc> "joint position 4 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 170.0 </par_max>
+            <par_min> -170.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos5 </par_name>
+            <par_desc> "joint position 5 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 260.0 </par_max>
+            <par_min> -80.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jntPos6 </par_name>
+            <par_desc> "joint position 6 " </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+            <par_max> 170.0 </par_max>
+            <par_min> -170.0 </par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

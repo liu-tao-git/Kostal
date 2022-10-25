@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name>maxVel</par_name>
+            <par_desc>"max linear velocity for slave robot motion"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>m/s</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2</par_default>
+            <par_max>0.4</par_max>
+            <par_min>0.001</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>maxW</par_name>
+            <par_desc>"max angular velocity for slave robot motion"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>deg/s</par_unit>
+            <par_required>0</par_required>
+            <par_default>60</par_default>
+            <par_max>120</par_max>
+            <par_min>1</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>safetyWrench</par_name>
+            <par_desc>"Cartesian safety wrench threshold"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>100 100 100 30 30 30</par_default>
+            <par_max>100 100 100 30 30 30</par_max>
+            <par_min>30 30 30 8 8 8</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>popcType</par_name>
+            <par_desc>"popc type"</par_desc>
+            <par_type>STRING</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>DIRECT</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>directEnableFilter</par_name>
+            <par_desc>"direct enable filter"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>directFilterBandwidth</par_name>
+            <par_desc>"low pass filter bandwidth for direct type POPC"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Hz</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaEnableDriftComp</par_name>
+            <par_desc>"tpda enable drift compensation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaDriftCompGain</par_name>
+            <par_desc>"tdpa drift compensation gain"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaMaxDamping</par_name>
+            <par_desc>"tdpa maximum damping parameter value"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.02</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaEnableForceFilter</par_name>
+            <par_desc>"tdpa enable force filter for impedance device"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tdpaForceFilterBandwidth</par_name>
+            <par_desc>"tdpa force low pass filter bandwidth for impedance device"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>Hz</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamB</par_name>
+            <par_desc>"position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamBMax</par_name>
+            <par_desc>"maximum position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosParamBMin</par_name>
+            <par_desc>"minimum position wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>3000</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamB</par_name>
+            <par_desc>"force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamBMax</par_name>
+            <par_desc>"maximum force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>50</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceParamBMin</par_name>
+            <par_desc>"minimum force wave parameter b"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveIntegralLambdaPos</par_name>
+            <par_desc>"position wave wave integral lambda"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveIntegralLambdaForce</par_name>
+            <par_desc>"force wave wave integral lambda"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>10</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>wavePosEnableFilter</par_name>
+            <par_desc>"enable wave filtering for position wave"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBForceThreshold</par_name>
+            <par_desc>"force wave adaptive parameter b force threshold"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBTimeThreshold</par_name>
+            <par_desc>"force wave adaptive parameter b time threshold"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>s</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.2</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>waveForceAdaptiveBStepChange</par_name>
+            <par_desc>"force wave adaptive parameter b step change"</par_desc>
+            <par_type>DOUBLE</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>enablePassivityLayer</par_name>
+            <par_desc>"enable passivity layer calculation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>isMasterDevice</par_name>
+            <par_desc>"Specify whether current device is a master device in teleoperation"</par_desc>
+            <par_type>BOOL</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name>maxOutputWrench</par_name>
+            <par_desc>"Maximum cartesian impedance output control wrench"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>50 50 50 20 20 20</par_default>
+            <par_max>100 100 100 30 30 30</par_max>
+            <par_min>30 30 30 8 8 8</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>tlcInitialEnergy</par_name>
+            <par_desc>"Initial energy for the energy tank"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0 0 0 0 0 0</par_default>
+            <par_max>0.01 0.01 0.01 0.01 0.01 0.01</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name>energyTransferRatio</par_name>
+            <par_desc>"Fraction of energy to sent to the master every control loop"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>none</par_unit>
+            <par_required>0</par_required>
+            <par_default>0.5 0.5 0.5 0.5 0.5 0.5</par_default>
+            <par_max>1.0 1.0 1.0 1.0 1.0 1.0</par_max>
+            <par_min>0 0 0 0 0 0</par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

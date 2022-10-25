@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ tool_name: tool name
+ tool_type: tool type is defined in string format
+ tcp_position    : tcp position in tool coordinate [m]
+ tcp_orientation : [w; x; y; z] quaternion in tool coordinate
+ mass : kg
+ inertia : [ Ixx Iyy Izz Ixy Ixz Iyz ] at the center of mass (tool coordinate)
+ center_of_mass : [m] in tool coordinate
+
+ graphics/position_in_parent : posiiton in parent coordinate [m]
+ graphics/orientation_in_parent : [w; x; y; z] quaternion in parent coordinate
+ =========================================================================== -->
+<fvr>
+    <tool_name>LinearRail</tool_name>
+    <tool_type> TOOL_LINEARRAIL </tool_type>
+    <tcp>
+        <tcp_position>0.0 0.0 0.0</tcp_position>
+        <tcp_orientation>1.0 0.0 0.0 0.0</tcp_orientation>
+    </tcp>
+    <mass>0.0</mass>
+    <inertia>0.0 0.0 0.0 0.0 0.0 0.0</inertia>
+    <center_of_mass>0.0 0.0 0.0 </center_of_mass>
+    <graphics>
+        <obj_file>
+            <path>graphics/cube.obj</path>
+            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+            <scaling>1 0.6 0.3</scaling>
+        </obj_file>
+    </graphics>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_config>
+        <par_name> commPortNameQnx </par_name>
+        <par_desc> "comm port name of servo in QNX" </par_desc>
+        <par_type> STRING </par_type>
+        <par_value> /dev/serusb2 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> commPortNameLinux </par_name>
+        <par_desc> "comm port name of servo in Linux" </par_desc>
+        <par_type> STRING </par_type>
+        <par_value> /dev/ttyUSB0 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> servoBaudrate </par_name>
+        <par_desc> "comm baudrate" </par_desc>
+        <par_type> INT </par_type>
+        <par_value> 38400 </par_value>
+        <par_unit> none</par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> wheelRadius </par_name>
+        <par_desc>"radius of transmission wheel"</par_desc>
+        <par_unit> m </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>0.025465</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> reductionRatio </par_name>
+        <par_desc>"transmission reduction ratio"</par_desc>
+        <par_unit>  </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>10.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxVel </par_name>
+        <par_desc>"max velocity"</par_desc>
+        <par_unit> m/s </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>0.8</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxAcc </par_name>
+        <par_desc>"max acceleration"</par_desc>
+        <par_unit> m/s^2 </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>3.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> distTolerance </par_name>
+        <par_desc> "tolerance for distance" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.0001 </par_value>
+        <par_unit> m </par_unit>
+    </device_par_config>
+    <!-- =======================================================================
+                            device command parameters
+    Notice: this part can be specified by the users in UIApp
+    =========================================================================-->
+    <device_par_command>
+        <par_name> targetPos </par_name>
+        <par_desc> "desired pos of the linear rail" </par_desc>
+        <par_unit> m </par_unit>
+        <par_type> DOUBLE </par_type>
+        <par_required> 1 </par_required>
+        <par_default> 0.0 </par_default>
+        <par_input_type> KEYIN PT </par_input_type>
+    </device_par_command>
+    <!-- =======================================================================
+                            device state parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_state>
+        <par_name> state </par_name>
+        <par_desc> "linear rail current state" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none</par_unit>
+        <par_option> LINEARRAIL_OK LINEARRAIL_ERROR </par_option>
+    </device_par_state>
+    <device_par_state>
+        <par_name> moving </par_name>
+        <par_desc> "flag to indicate if the linear rail is moving now" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> reachedTargetPos </par_name>
+        <par_desc> "flag to indicate if the desired pose is achived" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> target </par_name>
+        <par_desc> "desired pos" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none </par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> pos </par_name>
+        <par_desc> "current pos the linear rail" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> none </par_unit>
+    </device_par_state>
+</fvr>

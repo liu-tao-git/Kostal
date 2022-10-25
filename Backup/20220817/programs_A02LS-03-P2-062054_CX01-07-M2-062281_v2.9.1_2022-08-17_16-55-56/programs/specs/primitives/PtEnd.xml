@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>When the robot reached this primitive, it immediately terminates
+         the active plan and returns to its parent plan. If there is no parent plan available,
+         the assigned plan will be terminated. </pt_desc>
+        <!-- no need to specify any parameter for END primitive -->
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <block_edit_color> #666666 </block_edit_color>
+            <block_execute_color> #ab666666 </block_execute_color>
+            <menu_option>Edit Duplicate Delete</menu_option>
+            <icon>:blockpalette/images/block/icon_end.svg</icon>
+        </ui_par_config>
+    </primitive>
+</fvr>

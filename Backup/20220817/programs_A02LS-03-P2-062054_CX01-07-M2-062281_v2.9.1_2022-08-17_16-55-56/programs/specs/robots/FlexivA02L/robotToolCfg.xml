@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<fvr>
+    <!-- ============ Tool ====================================================
+    enable              : Enable: 1, Disable: 0
+    link_name           : the link that the tool is attached.
+                          Ex: regular link : link 1~7,
+                              special link : base, flange, tcp, camera, world
+    position_in_link    : the position in link coordinate [m]
+    orientation_in_link : quaternion [w x y z]
+    tool_config_file    : the tool configuration file
+    ======================================================================== -->
+    <tool>
+        <enable>1</enable>
+        <tool_config_file>KostalTool_Cali.xml</tool_config_file>
+        <link_name>flange</link_name>
+        <position_in_link>0.0 0.0 0.0</position_in_link>
+        <orientation_in_link>1.0 0.0 0.0 0.0</orientation_in_link>
+    </tool>
+    <tool>
+        <enable>1</enable>
+        <tool_config_file>KostalTool_Lever2.xml</tool_config_file>
+        <link_name>flange</link_name>
+        <position_in_link>0.0 0.0 0.0</position_in_link>
+        <orientation_in_link>1.0 0.0 0.0 0.0</orientation_in_link>
+    </tool>
+    <tool>
+        <enable>1</enable>
+        <tool_config_file>KostalTool_Lever1.xml</tool_config_file>
+        <link_name>flange</link_name>
+        <position_in_link>0.0 0.0 0.0</position_in_link>
+        <orientation_in_link>1.0 0.0 0.0 0.0</orientation_in_link>
+    </tool>
+
+</fvr>

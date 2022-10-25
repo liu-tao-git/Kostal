@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> HomeTorqueModeCloseLoop </primitive_name>
+        <primitive_type> HOME_TORQUEMODE </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_CLOSE_LOOP_TORQUE</control_mode>
+        <param_configs>PtHomeTorqueMode.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_TORQUEMODE</task_type>
+            <dof>7</dof>
+            <kp>1997.1 1997.1 1664.6 1664.6 623.8 623.8 623.8</kp>
+            <kv>80 80 64.7 64.7 8.3 8.3 8.3</kv>
+            <ki>2 2  1.4 1.4 0.8 0.8 0.8</ki>
+            <max_iForce> 2 2 1 1 0.5 0.5 0.5</max_iForce>
+            <friction_compensation> 0 </friction_compensation>
+        </task>
+    </primitive>
+</fvr>

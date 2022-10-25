@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> intJntCtrl </primitive_name>
+        <primitive_type> INTERACTIVE_JNTCTRL </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtIntJntCtrl.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>JointConstraint</task_name>
+            <task_type>TASK_JOINTCONSTRAINT</task_type>
+            <dof>7</dof>
+            <kp>100  100  100  100  500  500  800</kp>
+            <kv>15 15 15 30 50 50 50</kv>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>JointTorqueControl</task_name>
+            <task_type>TASK_JOINTTORQUE</task_type>
+            <dof>7</dof>
+            <kp>30  60 50  70  150  300  400</kp>
+            <kv>3   3  4   10   12   20   0</kv>
+        </task>
+        <task>
+            <priority> 2 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>5 5 10 5 10 30 10</kp>
+            <kv>5 5 5 5 5 5 5</kv>
+        </task>
+    </primitive>
+</fvr>

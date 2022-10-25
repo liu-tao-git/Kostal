@@ -1,0 +1,873 @@
+plan_name: "p-cells-in-tray"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "get-trays"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+  param_assignment {
+    lhs_param {
+      name: "loop_counter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      name: "loopCounter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_STATE"
+    }
+  }
+  param_operation {
+    operator_type: "ELEMENT_GET"
+    in_param_a {
+      name: "trays_in_world"
+      module_name: "rootNode"
+      type: "ARRAY_COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "current_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    out_param {
+      name: "this_tray_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+}
+transit_list {
+  start_node_name: "get-trays"
+  end_node_name: "done-adjusting"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "start_cell_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "-1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "get-trays"
+  end_node_name: "adjust-cell"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "start_cell_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "-1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "adjust-cell"
+  end_node_name: "done-adjusting"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "adjust-cell"
+      type: "DOUBLE"
+      category: "PT_STATE"
+      robotUnit: "s"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "start_cell_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "done-adjusting"
+  end_node_name: "fault"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "LESS"
+    lhs_param {
+      name: "current_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      name: "start_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "done-adjusting"
+  end_node_name: "start-tray"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "current_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      name: "start_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "done-adjusting"
+  end_node_name: "reg-tray"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "current_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      name: "start_tray_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "reg-tray"
+  end_node_name: "gt-set-poses"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "reg-tray"
+      type: "DOUBLE"
+      category: "PT_STATE"
+      robotUnit: "s"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "start-tray"
+  end_node_name: "End1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "LESS"
+    lhs_param {
+      name: "loopCounter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_STATE"
+    }
+    rhs_param {
+      name: "start_cell_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "start-tray"
+  end_node_name: "set-poses"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "loopCounter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_STATE"
+    }
+    rhs_param {
+      name: "start_cell_index"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "set-poses"
+  end_node_name: "single-cell"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "set-poses"
+      type: "DOUBLE"
+      category: "PT_STATE"
+      robotUnit: "s"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_operation {
+    operator_type: "ELEMENT_GET"
+    in_param_a {
+      name: "cells_in_tray"
+      module_name: "rootNode"
+      type: "ARRAY_COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "loopCounter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_STATE"
+    }
+    out_param {
+      name: "next_pose_in_ref"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_operation {
+    operator_type: "ELEMENT_GET"
+    in_param_a {
+      name: "pre_cells_in_tray"
+      module_name: "rootNode"
+      type: "ARRAY_COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "loopCounter"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_STATE"
+    }
+    out_param {
+      name: "next_pre_pose_in_ref"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_operation {
+    operator_type: "MULTIPLICATION"
+    in_param_a {
+      name: "this_tray_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "next_pose_in_ref"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    out_param {
+      name: "next_pose_in_world"
+      module_name: "single-cell"
+      type: "COORD"
+      category: "PT_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_operation {
+    operator_type: "MULTIPLICATION"
+    in_param_a {
+      name: "this_tray_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "next_pre_pose_in_ref"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    out_param {
+      name: "next_pre_pose_in_world"
+      module_name: "single-cell"
+      type: "COORD"
+      category: "PT_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+}
+transit_list {
+  start_node_name: "single-cell"
+  end_node_name: "check-pos"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "single-cell"
+      type: "BOOL"
+      category: "PT_STATE"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_operation {
+    operator_type: "MULTIPLICATION"
+    in_param_a {
+      name: "this_tray_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "next_pose_in_ref"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    out_param {
+      name: "next_pose_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_operation {
+    operator_type: "POS_DISTANCE"
+    in_param_a {
+      name: "next_pose_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    in_param_b {
+      name: "tcpPoseOut"
+      module_name: "single-cell"
+      type: "COORD"
+      category: "PT_OUTPUT"
+    }
+    out_param {
+      name: "single_cell_out_pos_difference"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+  }
+  param_operation {
+    operator_type: "ADDITION"
+    in_param_a {
+      name: "success_count"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    in_param_b {
+      name: "success"
+      module_name: "single-cell"
+      type: "INT"
+      category: "PT_VAR"
+      robotUnit: "none"
+    }
+    out_param {
+      name: "success_count"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "check-pos"
+  end_node_name: "End0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "LESS"
+    lhs_param {
+      name: "single_cell_out_pos_difference"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+    rhs_param {
+      name: "pos_tolerance"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+transit_list {
+  start_node_name: "check-pos"
+  end_node_name: "x"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "single_cell_out_pos_difference"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+    rhs_param {
+      name: "pos_tolerance"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+}
+node_list {
+  node_name: "End0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "End1"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "get-trays"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "done-adjusting"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "adjust-cell"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "start-tray"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "reg-tray"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "fault"
+  pt_name: "Fault"
+  pt_type: "FAULT"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "errorMessage"
+      module_name: "fault"
+      type: "MSG"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "MSG"
+      category: "CONST"
+      data: "current tray index should not be less than start tray index"
+    }
+  }
+}
+node_list {
+  node_name: "set-poses"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "x"
+  pt_name: "Fault"
+  pt_type: "FAULT"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "check-pos"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "gt-set-poses"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "gt-set-poses"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "set-poses"
+    }
+  }
+}
+var_list {
+  name: "this_tray_in_world"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "trays_in_world"
+  module_name: "rootNode"
+  type: "ARRAY_COORD"
+  category: "PLAN_VAR"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "loop_counter"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "current_tray_index"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "start_cell_index"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "start_tray_index"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "next_pose_in_ref"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "next_pre_pose_in_ref"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "single_cell_out_pos_difference"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "pos_tolerance"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "success_count"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "cells_in_tray"
+  module_name: "rootNode"
+  type: "ARRAY_COORD"
+  category: "PLAN_VAR"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "pre_cells_in_tray"
+  module_name: "rootNode"
+  type: "ARRAY_COORD"
+  category: "PLAN_VAR"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "next_pose_in_world"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+child_plans {
+  plan_name: "single-cell"
+  config {
+    node_name: "single-cell"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "End0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  node_list {
+    node_name: "End0"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  var_list {
+    name: "next_pose_in_world"
+    module_name: "single-cell"
+    type: "COORD"
+    category: "PLAN_VAR"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "WORLD"
+    data: "WORLD_ORIGIN"
+    robotUnit: "m-deg"
+  }
+  var_list {
+    name: "next_pre_pose_in_world"
+    module_name: "single-cell"
+    type: "COORD"
+    category: "PLAN_VAR"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "0"
+    data: "WORLD"
+    data: "WORLD_ORIGIN"
+    robotUnit: "m-deg"
+  }
+  var_list {
+    name: "success"
+    module_name: "single-cell"
+    type: "INT"
+    category: "PLAN_VAR"
+    data: "0"
+    robotUnit: "none"
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 5
+    max_duration: 30
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

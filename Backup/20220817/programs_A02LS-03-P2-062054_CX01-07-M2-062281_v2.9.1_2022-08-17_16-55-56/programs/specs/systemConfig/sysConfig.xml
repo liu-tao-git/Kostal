@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the system state
+ The available unit is defined in FvrUnitDefs.hpp
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+                            system state parameters
+    =========================================================================-->
+    <sys_par_state>
+        <par_name> tcpPose </par_name>
+        <par_desc> "tcp pose in world coordinate" </par_desc>
+        <par_type> COORD </par_type>
+        <par_unit> m-deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianPosX </par_name>
+        <par_desc> "tcp Cartesian position in world coordinate x" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianPosY </par_name>
+        <par_desc> "tcp Cartesian position in world coordinate y" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianPosZ </par_name>
+        <par_desc> "tcp Cartesian position in world coordinate z" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianForceX </par_name>
+        <par_desc> "Cartesian force (x-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianForceY </par_name>
+        <par_desc> "Cartesian force (y-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianForceZ </par_name>
+        <par_desc> "Cartesian force (z-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianMomentX </par_name>
+        <par_desc> "Cartesian moment (x-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> Nm</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianMomentY </par_name>
+        <par_desc> "Cartesian moment (y-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> Nm</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianMomentZ </par_name>
+        <par_desc> "Cartesian moment (z-axis) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> Nm</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianForce </par_name>
+        <par_desc> "Cartesian force ( norm of [fx, fy,fz] ) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> CartesianMoment </par_name>
+        <par_desc> "Cartesian moment ( norm of [mx, my, mz] ) in tcp coordinate" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> Nm</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> totalExtJointTorque </par_name>
+        <par_desc> "norm of external joint torque" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> Nm </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> collisionFlag </par_name>
+        <par_desc> "flag indicating a collision occur" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> jointPos </par_name>
+        <par_desc> "current joint position" </par_desc>
+        <par_type> VEC_7d </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos1 </par_name>
+        <par_desc> "position in axis 1" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos2 </par_name>
+        <par_desc> "position in axis 2" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos3 </par_name>
+        <par_desc> "position in axis 3" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos4 </par_name>
+        <par_desc> "position in axis 4" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos5 </par_name>
+        <par_desc> "position in axis 5" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos6 </par_name>
+        <par_desc> "position in axis 6" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> axisPos7 </par_name>
+        <par_desc> "position in axis 7" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> motionbarEnablePressed </par_name>
+        <par_desc> "enable button is pressed" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none </par_unit>
+        <par_default> 0 </par_default>
+    </sys_par_state>
+    <sys_par_state>
+        <par_name> uiAppConnected </par_name>
+        <par_desc> "UI App is connected" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none </par_unit>
+        <par_default> 0 </par_default>
+    </sys_par_state>
+</fvr>

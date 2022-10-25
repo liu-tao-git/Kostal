@@ -1,0 +1,63 @@
+jointTorqueAnalysis {
+  testDOF: 0
+  timeStamp: 0
+  torqueSensorOffset: -0.29685524
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.12395425
+  CoulombFriction: 0.12411441
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 1
+  timeStamp: 0
+  torqueSensorOffset: 0.21397537
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.00000100
+  CoulombFriction: 0.34979875
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 2
+  timeStamp: 0
+  torqueSensorOffset: -0.06951566
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.00000106
+  CoulombFriction: 0.20786280
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 3
+  timeStamp: 0
+  torqueSensorOffset: -0.09573255
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.09862581
+  CoulombFriction: 0.23553788
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 4
+  timeStamp: 0
+  torqueSensorOffset: -0.00688021
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.00000101
+  CoulombFriction: 0.03335771
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 5
+  timeStamp: 0
+  torqueSensorOffset: 0.04744656
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.00242773
+  CoulombFriction: 0.12062569
+  fittingError: 0.00000000
+}
+jointTorqueAnalysis {
+  testDOF: 6
+  timeStamp: 0
+  torqueSensorOffset: 0.02448202
+  torqueSensorOffsetStd: 0.00000000
+  dampingCoefficient: 0.01024183
+  CoulombFriction: 0.09802023
+  fittingError: 0.00000000
+}

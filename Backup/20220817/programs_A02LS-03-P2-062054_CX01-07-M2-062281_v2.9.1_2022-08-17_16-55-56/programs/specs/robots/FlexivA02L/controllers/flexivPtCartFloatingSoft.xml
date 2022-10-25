@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> CartFloatingSoft </primitive_name>
+        <primitive_type> CARTFLOATINGSOFT </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtCartFloatingSoft.xml</param_configs>
+        <task>
+            <priority> 1 </priority>
+            <task_name>CartAdmit</task_name>
+            <task_type>TASK_CARTFLOATING</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>1800 1800 1800 300 300 180</kp>
+            <kv>50 50 50 5.0 5.0 5.0</kv>
+            <force_kp>1200.0 1200.0 1200.0  250  250  100</force_kp>
+            <force_kv>7  7  7  0.2  0.2  0.05</force_kv>
+            <forceDeadband>1.5 1.5 1.5 0.4 0.4 0.2</forceDeadband>
+        </task>
+        <task>
+            <priority> 2 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>100  100  100  100  80   80   20</kp>
+            <kv>60  60  60  60   60   60  60</kv>
+        </task>
+    </primitive>
+</fvr>

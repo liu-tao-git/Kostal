@@ -1,0 +1,1044 @@
+plan_name: "Pt-PolishSurface"
+config {
+  node_name: "rootNode"
+  pt_name: "PolishSurface"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "CaliForceSensor0"
+  end_node_name: "Contact0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "CaliForceSensor0"
+      type: "BOOL"
+      category: "PT_STATE"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "Contact0"
+  end_node_name: "PolishSurfaceIn0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "Contact0"
+      type: "BOOL"
+      category: "PT_STATE"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "PolishSurfaceIn0"
+  end_node_name: "End0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "PolishSurfaceIn0"
+      type: "BOOL"
+      category: "PT_STATE"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "CaliForceSensor0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+node_list {
+  node_name: "CaliForceSensor0"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "Contact0"
+  pt_name: "Contact"
+  pt_type: "CONTACT"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactVel"
+      module_name: "Contact0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_ApproachingVel"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "coord"
+      module_name: "Contact0"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "tcp"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "movingDir"
+      module_name: "Contact0"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_Direction"
+      module_name: "rootNode"
+      type: "VEC_3d"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxContactForce"
+      module_name: "Contact0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxContactForce"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+node_list {
+  node_name: "PolishSurfaceIn0"
+  pt_name: "PolishSurfaceIn"
+  pt_type: "POLISHSURFACEINTERNAL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "fileName"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Area_FileName"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "equalRadius"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "equalRadius"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxPathJerk"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxPathJerk"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "100.0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxCornerAcc"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxCornerAcc"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxCornerJerk"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxCornerJerk"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "200"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxForceVel"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxForceVel"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxForceAcc"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "maxForceAcc"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1000"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "preferJntPos"
+      module_name: "PolishSurfaceIn0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "preferJntPos"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "frictionViscousCoeff"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "frictionViscousCoeff"
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "motionStiffnessScalePercentage"
+      module_name: "PolishSurfaceIn0"
+      type: "VEC_6d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "motionStiffnessScalePercentage"
+      type: "VEC_6d"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactLinearVel"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_LinearVel"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactForce"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_Force"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "N"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactAxisForce"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_AxisForce"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactCOPOne"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_COPOne"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactAxisComplianceOne"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_AxisComplianceOne"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactCurvatureRadiusOne"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_CurvatureRadiusOne"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactCOPTwo"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_COPTwo"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactAxisComplianceTwo"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_AxisComplianceTwo"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactCurvatureRadiusTwo"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Contact_CurvatureRadiusTwo"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "areaPathPattern"
+      module_name: "PolishSurfaceIn0"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Area_PathPattern"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "areaPathType"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Area_PathType"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "areaEnableOverWrite"
+      module_name: "PolishSurfaceIn0"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Area_EnableOverWrite"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rectPositionOne"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Rectangular_PositionOne"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rectPositionTwo"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Rectangular_PositionTwo"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rectPositionThree"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Rectangular_PositionThree"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rectBlendZone"
+      module_name: "PolishSurfaceIn0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Rectangular_BlendZone"
+      module_name: "rootNode"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rectSpacing"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Rectangular_Spacing"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "spiralPositionOne"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Spiral_PositionOne"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "spiralPositionTwo"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Spiral_PositionTwo"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "spiralPositionThree"
+      module_name: "PolishSurfaceIn0"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Spiral_PositionThree"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "spiralCloseWise"
+      module_name: "PolishSurfaceIn0"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Spiral_CloseWise"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "spiralSpacing"
+      module_name: "PolishSurfaceIn0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "Spiral_Spacing"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m"
+    }
+  }
+}
+node_list {
+  node_name: "End0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+var_list {
+  name: "Tool_ModelName"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  robotUnit: "none"
+}
+var_list {
+  name: "Tool_Radius"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Tool_Length"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Tool_On_Flag"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Tool_Logic_TimeDelay"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "s"
+}
+var_list {
+  name: "Tool_Logic_Offset"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Contact_LinearVel"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m/s"
+}
+var_list {
+  name: "Contact_Force"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "N"
+}
+var_list {
+  name: "Contact_AxisForce"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_COPOne"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Contact_AxisComplianceOne"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_CurvatureRadiusOne"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_COPTwo"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Contact_AxisComplianceTwo"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_CurvatureRadiusTwo"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_ApproachingVel"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m/s"
+}
+var_list {
+  name: "Contact_ApproachingDistance"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Contact_ContactSpaceVel"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m/s"
+}
+var_list {
+  name: "Contact_EnableAlignment"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Area_PathPattern"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "1"
+  robotUnit: "none"
+}
+var_list {
+  name: "Area_PathType"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  robotUnit: "none"
+}
+var_list {
+  name: "Area_FileName"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  robotUnit: "none"
+}
+var_list {
+  name: "Area_EnableOverWrite"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Rectangular_PositionOne"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Rectangular_PositionTwo"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Rectangular_PositionThree"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Rectangular_BlendZone"
+  module_name: "rootNode"
+  type: "STRING"
+  category: "PLAN_VAR"
+  robotUnit: "none"
+}
+var_list {
+  name: "Rectangular_Spacing"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Spiral_PositionOne"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Spiral_PositionTwo"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Spiral_PositionThree"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "Spiral_CloseWise"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Spiral_Spacing"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "m"
+}
+var_list {
+  name: "Control_StiffnessTrans"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Control_StiffnessTorsional"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_Direction"
+  module_name: "rootNode"
+  type: "VEC_3d"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "1"
+  robotUnit: "none"
+}
+var_list {
+  name: "Contact_ForceAxis"
+  module_name: "rootNode"
+  type: "VEC_6d"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Control_ForceKp"
+  module_name: "rootNode"
+  type: "VEC_6d"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Control_ForceKv"
+  module_name: "rootNode"
+  type: "VEC_6d"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  robotUnit: "none"
+}
+var_list {
+  name: "Control_ForceKi"
+  module_name: "rootNode"
+  type: "VEC_6d"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  robotUnit: "none"
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

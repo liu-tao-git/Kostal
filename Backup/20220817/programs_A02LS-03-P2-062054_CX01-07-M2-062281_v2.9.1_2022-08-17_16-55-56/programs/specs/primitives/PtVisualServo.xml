@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "maximum Cartesian linear velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> "maximum Cartesian angular velocity " </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> rad/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>1.0 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetFeaturePoints </par_name>
+            <par_desc> "target feature points in the image, two cooridinates for one point (pixel)" </par_desc>
+            <par_type> ARRAY_DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 205.0 116.0 196.0 260.0 345.0 263.0 349.0 112.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> KpIBVS_pos </par_name>
+            <par_desc> "p gain for the camera delta pos velocity" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 100.0 100.0 100.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> KpIBVS_rot </par_name>
+            <par_desc> "p gain for the camera delta velocity for rotation" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 10.0 10.0 10.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> KpPBVS_pos </par_name>
+            <par_desc> "p gain for the PBVS camera delta pos velocity" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.003 0.003 0.003 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> KpPBVS_rot </par_name>
+            <par_desc> "p gain for the PBVS camera delta velocity for rotation" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.003 0.003 0.003 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> Threshold_stop </par_name>
+            <par_desc> "threshold for IBVS termination condition in pixel" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> posErrorPBVS </par_name>
+            <par_desc> "threshold for PBVS termination condition in meter " </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.002 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> oriErrorPBVS </par_name>
+            <par_desc> "threshold for PBVS termination condition by quat distance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.05 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> vsType </par_name>
+            <par_desc> "Visual servoing type" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default>IMG </par_default>
+            <par_option> IMG POSE</par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera id" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camObjPose </par_name>
+            <par_desc> "Camera pose based on object coordinate " </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_required> 1 </par_required>
+            <par_option>OBJ</par_option>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the camera has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> zeroImgError </par_name>
+            <par_desc> "flag to indicate that the image pixel error is small enough" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

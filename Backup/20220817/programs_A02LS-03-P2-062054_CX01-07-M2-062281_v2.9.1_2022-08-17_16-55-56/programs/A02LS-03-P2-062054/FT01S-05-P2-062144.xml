@@ -1,0 +1,24 @@
+<slave Name="wrist sensor board" ProductID="0x00030000" VendorID="0x00000188">
+    <sdo_address Index="0x9000">
+        <sdo Access="RO" Name="firmware_version" SubIndex="1" Type="STRING" Value="1.2.2.a" />
+    </sdo_address>
+    <sdo_address Index="0x8000">
+        <sdo Access="RW" Name="cutoff_frequency" SubIndex="1" Type="REAL" Value="125" />
+    </sdo_address>
+    <non_sdo Name="serial_number" Value="FT01S-05-P2-062144" />
+    <non_sdo Name="ambient_temperature_coef" Value="-0.010387 -0.001049 -0.218694 0.000637 -0.000289 0.000122" />
+    <non_sdo Name="imu_temperature_coef" Value="0.006296 -0.011253 0.042313 -0.000429 -0.000107 0.000416" />
+    <non_sdo Name="gain" Value=" 0.00496294 -0.00293457 -4.414e-05 -0.00010884 -0.00017896 -9.043e-05 9.072e-05 -9.039e-05 -0.00303319 -8.996e-05 -5.275e-05 -1.37e-06 2.065e-05 0.00597544 -0.00014647 0.00022085 -4.28e-06 -9.246e-05 -2.23e-05 7.25e-06 -0.00317624 9.176e-05 -5.158e-05 7e-07 -0.00524481 -0.00293484 0.0001739 -0.00011012 0.00019323 -9.35e-05 6.593e-05 -3.597e-05 -0.00305889 -1.7e-06 9.942e-05 -2.02e-06 2e-08 -3e-08 5e-08 -0.0 -0.0 -0.0 2e-08 2e-08 -4e-08 0.0 -0.0 0.0 -4e-08 1e-08 -4e-08 -0.0 0.0 -0.0 0.0 -0.0 -1e-08 0.0 -0.0 0.0 -0.0 0.0 -0.0 -0.0 0.0 -0.0 -0.0 0.0 -0.0 -0.0 -0.0 -0.0" />
+    <non_sdo Name="offset" Value="33877.6 31322.4 33668.3 32245.2 32715.5 31850.1" />
+    <non_sdo Name="reversed_gain" Value=" 98.1207178 -65.41879451 2.77494699 149.9223916 -52.29235041 -3758.86085066 -112.46314961 190.94991281 -115.2152864 -5628.85397733 -3174.44268175 -41.80950699 -0.64146313 113.18613806 -0.17618421 -22.70204541 -44.40754037 -3558.41801946 -113.87913912 -210.35499369 -105.8164905 5492.94021128 -3109.35783761 -33.42085121 -98.9460183 -53.05681532 0.7327773 2.71898488 -25.09393111 -3536.67988641 239.43665304 -1.00363727 -108.45372094 29.18024977 6606.20090142 10.65748559" />
+    <non_sdo Name="force_torque_position_x" Value="0" />
+    <non_sdo Name="force_torque_position_y" Value="0" />
+    <non_sdo Name="force_torque_position_z" Value="0" />
+    <non_sdo Name="force_torque_orientation" Value="1 0 0                                                     0 1 0                                                     0 0 1" />
+    <non_sdo Name="imu_position_x" Value="0" />
+    <non_sdo Name="imu_position_y" Value="0" />
+    <non_sdo Name="imu_position_z" Value="0" />
+    <non_sdo Name="imu_orientation" Value="1 0 0                                                     0 1 0                                                     0 0 1" />
+    <non_sdo Name="tool_mount_mass" Value="0" />
+    <non_sdo Name="tool_mount_inertia" Value="0 0 0                                                     0 0 0                                                     0 0 0" />
+</slave>

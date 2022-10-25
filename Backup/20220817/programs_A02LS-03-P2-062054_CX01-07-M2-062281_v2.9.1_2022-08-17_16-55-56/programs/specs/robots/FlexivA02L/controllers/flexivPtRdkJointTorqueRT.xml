@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> RdkJointTorqueRT </primitive_name>
+        <primitive_type> RDK_JOINT_TORQUE_RT </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtRdkJointTorqueRT.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name> jointTorque </task_name>
+            <task_type> TASK_JOINTTORQUE</task_type>
+            <dof>7</dof>
+            <kp>0 0  0  0  0  0  0</kp>
+            <kv>0 0 0 0 0 0 0</kv>
+        </task>
+    </primitive>
+</fvr>

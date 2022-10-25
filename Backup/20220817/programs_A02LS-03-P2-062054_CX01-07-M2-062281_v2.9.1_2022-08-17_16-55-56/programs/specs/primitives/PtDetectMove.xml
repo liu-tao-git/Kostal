@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive detects the predefined object and moves tcp to 
+        target position/orientation based on object coordinate. </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_Visual_Control.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objDetectionType </par_name>
+            <par_desc> "object detection type. If the detection type is 3DPOS, the object's orientation is set as the world coordinate" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> 3DPOS 6DPOSE </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera id" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> toolObjPose </par_name>
+            <par_desc> "tool pose based on object coordinate. If the detection type is 3DPOS, the tool orientation will be fixed" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_required> 1 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                       
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

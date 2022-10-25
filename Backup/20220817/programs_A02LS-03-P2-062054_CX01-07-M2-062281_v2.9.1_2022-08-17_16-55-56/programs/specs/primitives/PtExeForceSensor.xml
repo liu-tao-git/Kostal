@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         user-defined parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> pathfile </par_name>
+            <par_desc> "path file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> exeType </par_name>
+            <par_desc> "exercising type for 6Dofs sensor " </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> SINE TRAJ</par_option>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

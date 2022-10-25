@@ -1,0 +1,130 @@
+plan_name: "PLAN-CaliSensorAnalysis"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "runCaliSensorAnalysis"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+  param_assignment {
+    lhs_param {
+      name: "testPassed"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "0"
+    }
+  }
+}
+
+transit_list {
+  start_node_name: "runCaliSensorAnalysis"
+  end_node_name: "endNode"
+  transit_period: 0.0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliSensorAnalysis"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testPassed"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "testPassed"
+      module_name: "runCaliSensorAnalysis"
+      type: "BOOL"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+
+node_list {
+  node_name: "runCaliSensorAnalysis"
+  pt_name: "caliSensorAnalysis"
+  pt_type: "CALISENSORANALYSIS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "waitTime"
+      module_name: "runCaliSensorAnalysis"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "durationTime"
+      module_name: "runCaliSensorAnalysis"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+
+var_list {
+  name: "testPassed"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

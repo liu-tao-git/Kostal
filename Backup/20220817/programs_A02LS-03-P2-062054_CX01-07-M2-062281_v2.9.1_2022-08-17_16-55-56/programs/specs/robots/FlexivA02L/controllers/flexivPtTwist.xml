@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> twist </primitive_name>
+        <primitive_type> TWIST </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <param_configs>PtTwist.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>UnifiedControl</task_name>
+            <task_type>TASK_UNIFIED</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>1300 1300 1300 5500 5500 5500</kp>
+            <kv>80 80 80 120 120 120</kv>
+            <ki>0.0 0.0 0.0 0.0 0.0 0.0</ki>
+            <force_kp>0.1  0.22  0.22   3.0  3.0   3.3</force_kp>
+            <force_kv>35    80   80  100.0  100.0   100.0</force_kv>
+            <force_ki>0.003  0.003    0.003   0.002  0.002   0.002</force_ki>
+            <max_iForce> 25 25 25 8 8 8</max_iForce>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>40  40  40  40  60   60   60</kp>
+            <kv>30  30  30  30   30   30  35</kv>
+        </task>
+    </primitive>
+</fvr>

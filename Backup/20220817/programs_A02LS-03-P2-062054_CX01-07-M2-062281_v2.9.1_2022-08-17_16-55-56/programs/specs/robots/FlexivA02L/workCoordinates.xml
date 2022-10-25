@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!-- ======================================================================= -->
+<!-- absolution_position : position in world coordinate [m]                  -->
+<!-- absolute_orientation : euler angle in world coordinate [Rx Ry Rz] [deg] -->
+<!-- ======================================================================= -->
+<fvr>
+    <coordinate_frame>
+        <name>WorkFrame1</name>
+        <absolute_position>0.497 -0.133 0.103 </absolute_position>
+        <absolute_orientation>44.690 -0.172 90.340 </absolute_orientation>
+    </coordinate_frame>
+</fvr>

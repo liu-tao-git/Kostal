@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+low level joint position controller gains
+for control mode CMD_CTRL_POS_SIM
+using joint open-loop torque mode
+ ===========================================================================-->
+<fvr>
+    <task>
+        <dof>7</dof>
+        <position_kp>5000 5000 3600 3600 750 750 750</position_kp>
+        <position_kd>420 420 225 225 22.5 22.5 22.5</position_kd>
+        <position_ki>5 5 3 3 1 1 1</position_ki>
+        <enable_disturbance_ff> 1 1 1 1 1 1 1 </enable_disturbance_ff>
+        <disturbance_cutoff> FREQ_1 FREQ_1 FREQ_1 FREQ_1 FREQ_1 FREQ_1 FREQ_1 </disturbance_cutoff>
+        <max_disturbance_torque> 20 20 10 10 5 5 5 </max_disturbance_torque>
+    </task>
+</fvr>

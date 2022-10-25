@@ -1,0 +1,123 @@
+ <?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> hybridPathFile </par_name>
+            <par_desc> "Hybrid path file name" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "force axis" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 0.0 0.0 0.0</par_default>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "maximum Cartesian linear velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> m/s </par_unit>
+            <par_default>0.05 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.01 </par_min>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> "maximum Cartesian angular velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> rad/s </par_unit>
+            <par_default>0.05 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.1 </par_min>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAcc </par_name>
+            <par_desc> "maximum Cartesian linear acceleration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> m/s^2 </par_unit>
+            <par_default>0.1 </par_default>
+            <par_max> 3.0 </par_max>
+            <par_min> 0.1 </par_min>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotAcc </par_name>
+            <par_desc> "maximum Cartesian angular acceleration" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> rad/s^2 </par_unit>
+            <par_default>0.1 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.1 </par_min>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> blendRadiusLevel </par_name>
+            <par_desc> "maximum radius of curvature when the robot passes through waypoints" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> m </par_unit>
+            <par_default>0.1 </par_default>
+            <par_max> 1.0 </par_max>
+            <par_min> 0.0 </par_min>
+            
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> "Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+
+    </primitive>
+</fvr>

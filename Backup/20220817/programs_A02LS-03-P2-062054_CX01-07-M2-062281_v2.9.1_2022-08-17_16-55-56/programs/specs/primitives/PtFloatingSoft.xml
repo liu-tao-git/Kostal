@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> loadWeightError</par_name>
+            <par_desc> "Weight error from the robot payload. 
+                        The larger, floating would be more stable, but more lag." </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> kg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jointFloatingSwitch</par_name>
+            <par_desc> "switches for each joint floating, 0 for off, 1 for on" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0 1.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

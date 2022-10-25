@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>With this primitive, the robot will use hybrid force-motion control 
+        to search for a hole within a rectangular area on a surface by following an increasingly dense 
+        zigzag trajecotry. The search will be carried out by maintaining a certain contact
+        force on the surface, while moving on the surface.</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_slideZigzag.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "VEC_3d", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> contactAxis </par_name>
+            <par_desc> "contact (force control) axis in tcp frame, it has to be one of tcp's principal axes" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> searchAxis </par_name>
+            <par_desc> "search axis in tcp frame, it has to be perpendicular to the contact axis" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 0.0 0.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactForce </par_name>
+            <par_desc> "contact force when searching on the surface" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> N </par_unit>
+            <par_min> 5 </par_min>
+            <par_max> 20 </par_max>
+            <par_default> 5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> length </par_name>
+            <par_desc> "search area length (along the search axis)" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.03 </par_default>
+            <par_min> 0.0002 </par_min>
+            <par_max> 0.03 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> height </par_name>
+            <par_desc> "search area height (perpendicular to the search and contact axis)" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.03 </par_default>
+            <par_min> 0.0002 </par_min>
+            <par_max> 0.03 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> startDensity </par_name>
+            <par_desc> "how many times the geometry pattern will be drawn in the start cycle" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+            <par_min> 1 </par_min>
+            <par_max> 5 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> timeFactor </par_name>
+            <par_desc> "time factor for how long it takes to draw one complete zigzag (setting this value too small when the radius is large, i.e., drawing a large geometric pattern very fast, may cause to robot to exceed its capabilities and stop); in manual mode, this factor is doubled irrelevant of the speed percentage" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+            <par_min> 1 </par_min>
+            <par_max> 10 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> wiggleRange </par_name>
+            <par_desc> "tcp wiggle range along the contact axis for finding the right angle when searching, if this parameter is set to a large value, make sure to increase the wigglePeriod, otherwise the robot may exceed its capabilities" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_min> 0 </par_min>
+            <par_max> 90 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> wigglePeriod </par_name>
+            <par_desc> "time period for tcp to wiggle along the contact axis back and force one time (setting this value too small will likely cause the robot to exceed its capabilities and stop, especially when the wiggle motion is not along the z-axis of the robot flange); in manual mode, this factor is doubled irrelevant of the speed percentage" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.2 </par_default>
+            <par_min> 0.2 </par_min>
+            <par_max> 30 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> randomFactor </par_name>
+            <par_desc> "a factor in [0, 1] controlling how much randomness will be added to the slide trajecotry" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 1 </par_max>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> searchResistanceForce </par_name>
+            <par_desc> "search plane force indicating collision or resistance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> pushDistance </par_name>
+            <par_desc> "how much the tcp has pushed into the surface, could signal a successful find (how the tcp has moved away from the surface will not be checked)" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> forceDrop </par_name>
+            <par_desc> "how much the force has dropped from the set contact force, could signal a successful find (when tcp finds the hole and loses contact with the surface, the measured force is ideally zero, and the force drop from the set value is at most of the magnitude of the set contact force)" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> lostContact </par_name>
+            <par_desc> "a flag indicating lost of contact, user is suggested to handle it by getting the PT transit back to contact if this flag is turned on" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> GREATER </condition_type>
+            <lhs_param_name> pushDistance </lhs_param_name>
+            <lhs_param_category> PT_STATE </lhs_param_category>
+            <rhs_param_category> CONST </rhs_param_category>
+            <rhs_param_data> 0.005 </rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

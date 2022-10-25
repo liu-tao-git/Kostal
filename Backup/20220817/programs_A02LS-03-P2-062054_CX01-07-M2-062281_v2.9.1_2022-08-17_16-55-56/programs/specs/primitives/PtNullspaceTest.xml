@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> nullJntIdx </par_name>
+            <par_desc> "nullspace joint index" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -1 </par_default>
+            <par_max> 6 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> nullJntGoalPos </par_name>
+            <par_desc> "nullspace joint goal position" </par_desc>
+            <par_unit> deg </par_unit>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> nullJntMaxVel </par_name>
+            <par_desc> "nullspace joint goal velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> nullJntMaxAcc </par_name>
+            <par_desc> "nullspace joint goal acceleration" </par_desc>
+            <par_unit> deg/s^2 </par_unit>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> freeTcp </par_name>
+            <par_desc> "if free tcp during nullspace move" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxForceNormXY </par_name>
+            <par_desc> "maximum norm of XY force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 30 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxForceNormZ </par_name>
+            <par_desc> "maximum norm of Z force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxMomentNormXY </par_name>
+            <par_desc> "maximum norm of XY moment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxMomentNormZ </par_name>
+            <par_desc> "maximum norm of Z moment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 4 </par_default>
+        </input_par_config>
+
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

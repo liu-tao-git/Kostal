@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "VEC_3d", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> goalContactForce </par_name>
+            <par_desc> "desired contact force" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -3.5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> spinAxisInc </par_name>
+            <par_desc> "spin axis increment" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.859 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRadius </par_name>
+            <par_desc> "maximum spiral radius" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> slideDir </par_name>
+            <par_desc> "sliding direction in global coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 -1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> slideVel </par_name>
+            <par_desc> "sliding velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.001 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> constOrientation </par_name>
+            <par_desc> "fixed orientation" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> movingDir </par_name>
+            <par_desc> "moving direction in global coordinate" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 -1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceAxis </par_name>
+            <par_desc> "force axis in local (tcp) frame" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 1.0 1.0 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ellipseRatio </par_name>
+            <par_desc> "ratio of y translation wrt x translation in spiral motion" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.5 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> inContact </par_name>
+            <par_desc> "flag to indicate if the robot is in contact or not" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

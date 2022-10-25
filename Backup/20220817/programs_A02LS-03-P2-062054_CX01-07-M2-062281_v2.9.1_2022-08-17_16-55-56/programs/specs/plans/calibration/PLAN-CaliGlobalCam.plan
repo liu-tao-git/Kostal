@@ -1,0 +1,149 @@
+plan_name: "PLAN-CaliGlobalCam"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "caliGlobalCam"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "caliGlobalCam"
+  pt_name: "MacroCaliGlobalCamera"
+  pt_type: "CALI_GLOBAL_CAMERA"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "camId"
+      module_name: "caliGlobalCam"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "CAMID_1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "holdTimeLength"
+      module_name: "caliGlobalCam"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "ifWaitFeedback"
+      module_name: "caliGlobalCam"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rotationCenter"
+      module_name: "caliGlobalCam"
+      type: "POSE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "POSE"
+      category: "CONST"
+      data: "0.415502"
+      data: "0.225667"
+      data: "0.144823"
+      data: "180"
+      data: "-0"
+      data: "180"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "rotationShift"
+      module_name: "caliGlobalCam"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_3d"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "-0.2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "sampleNum"
+      module_name: "caliGlobalCam"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "10"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is used to calibrate robot tool mass and inertia parameters.
+        Now it support three ways to implement the calibration: with wrench sensor(way1), 
+        with joint torque(way2) and with joint torque difference with and without tool installed(way3).
+        Robot would choose the best way according to configuration and input parameters.
+        way1: High Accuracy. Robot is installed with a wrench sensor and tool, "isToolInstalled" set as true
+        way2: Low Accuracy. Robot is installed with tool, but NOT enabled in robot config file."isToolInstalled" set as true
+        way3: High Accuracy. It need to run calibration two times. 
+        For the fist time, Robot IS NOT installed with tool, "isToolInstalled" set as false.
+        For the second time, Robot IS installed with tool,"isToolInstalled" set as true. User could also enbale tool
+        (with a roughly estimated mass) in robot config file to ensure a better calibration motion performance, if 
+        the tool has a large weight.</pt_desc>
+        <!-- ===================================================================
+         input parameter configuration 
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> isToolInstalled </par_name>
+            <par_desc> "1 if tool is installed, otherwise 0 " </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <!-- ==================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+    </primitive>
+</fvr>

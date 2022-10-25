@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name>safetyWrench</par_name>
+            <par_desc>"Cartesian safety wrench threshold"</par_desc>
+            <par_type>VEC_6d</par_type>
+            <par_unit>N</par_unit>
+            <par_required>0</par_required>
+            <par_default>100 100 100 30 30 30</par_default>
+            <par_max>100 100 100 30 30 30</par_max>
+            <par_min>30 30 30 8 8 8</par_min>
+        </input_par_config>
+        <!-- Swivel angle control parameters ================================-->
+        <input_par_config>
+            <par_name> swivelAngleNullspaceGradientScaling </par_name>
+            <par_desc> swivel angle nullspace optmization objective gradient scaling. (linear manipulability, angular manipulability, preferSwivelAngle error norm, cartesian stiffness)</par_desc>
+            <par_type> VEC_4d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 0.0 </par_default>
+            <par_max> 10.0 10.0 5.0 5.0 </par_max>
+            <par_min> 0.0 0.0 0.0 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> controlModeForSwivelAngle </par_name>
+            <par_desc> swivel angle task control mode, 0:qp optimization, 1:OTG, 2:any user input traj, 3:cubic traj, 4:hold pos</par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_max> 4 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> MacroCaliGlobalCamera </primitive_name>
+        <primitive_type> CALI_GLOBAL_CAMERA </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <param_configs>PtCaliGlobalCam.xml</param_configs>
+        <sub_primitives>
+            <primitive_file> controllers/flexivPtHome.xml </primitive_file>
+            <primitive_file> controllers/flexivPtHold.xml </primitive_file>
+            <primitive_file> controllers/flexivPtMoveL.xml </primitive_file>
+        </sub_primitives>
+    </primitive>
+</fvr>

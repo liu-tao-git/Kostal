@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!--
+  The plan involved in this file will reference plans.xml.
+  If it exists, it will be effectively loaded into the UI and can be used.
+
+  name: plan dir path/ plan file name
+  mode: 0:manual, 1:auto, 2:manual and auto
+  time[s]: plan is expected to take time
+
+  For example :
+  <plan_dir>
+       <name>tutorials/</name>
+       <ls_name>tutorials/</ls_name>
+       <mode>2</mode>
+       <time>20</time>
+  </plan_dir>
+-->
+
+<!-- ============== plan dir ================-->
+
+<!-- ============== plan file ================-->
+<plan_file>
+  <title>Sensor Data Analysis</title>
+  <name>calibration/PLAN-CaliSensorAnalysis.plan</name>
+  <user_desc>Health check on different sensor,including encoder,torque sensor,wrench sensor/observer and motor temperature</user_desc>
+  <mode>1</mode>
+  <time>8</time>
+</plan_file>
+<plan_file>
+  <title>Torque Sensor Offset</title>
+  <name>calibration/PLAN-CaliStaticTorqueChannelOffset.plan</name>
+  <user_desc>Health check on torque offset via static pose - recommend to be straight-up pose</user_desc>
+  <mode>1</mode>
+  <time>23</time>
+</plan_file>
+<plan_file>
+  <title>Joint Friction and Torque Sensor Offset</title>
+  <name>production/TWR-JointTorqueAnalysis.plan</name>
+  <user_desc>Health check on torque offset and friction from LED ring via constant velocity test</user_desc>
+  <mode>0</mode>
+  <time>895</time>
+</plan_file>
+<plan_file>
+  <title>Joint Performance Test</title>
+  <name>production/TWR-JointPerformanceTest.plan</name>
+  <user_desc>Benchmark for joint position controller</user_desc>
+  <mode>1</mode>
+  <time>183</time>
+</plan_file>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxJntVel </par_name>
+            <par_desc> "maximum joint velocity for each joint" </par_desc>
+            <par_type> VEC_7d</par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20.0 20.0 20.0 20.0 20.0 20.0 20.0 </par_default>
+            <par_max> 120 120 140 140 280 280 280 </par_max>
+            <par_min> -120 -120 -140 -140 -280 -280 -280 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJntAcc </par_name>
+            <par_desc> "maximum joint acceleration for each joint" </par_desc>
+            <par_type> VEC_7d</par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 10.0 10.0 10.0 10.0 10.0 10.0 10.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> target </par_name>
+            <par_desc> "joint position" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160 120 170 154 170 260 170 </par_max>
+            <par_min> -160 -120 -170 -107 -170 -80 -170 </par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> "Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

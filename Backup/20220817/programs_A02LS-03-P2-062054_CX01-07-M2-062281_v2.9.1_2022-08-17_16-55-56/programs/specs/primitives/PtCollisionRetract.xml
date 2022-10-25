@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> retractVelGain </par_name>
+            <par_desc> "retract velocity gain" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> retractAngleGain </par_name>
+            <par_desc> "retract angle gain" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 10.0 10.0 10.0 10.0 10.0 10.0 10.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> collisionDeadband </par_name>
+            <par_desc> "collision Residual Deadband" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 4.0 3.0 4.0 3.0 0.5 0.5 0.5</par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

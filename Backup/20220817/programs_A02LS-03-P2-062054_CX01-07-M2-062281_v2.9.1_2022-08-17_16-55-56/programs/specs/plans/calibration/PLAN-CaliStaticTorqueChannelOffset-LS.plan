@@ -1,0 +1,203 @@
+plan_name: "PLAN-CaliStaticTorqueChannelOffset-LS"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "straightup"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+  param_assignment {
+    lhs_param {
+      name: "testPassed"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "straightup"
+  end_node_name: "runCaliTorqueChannelOffset"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "straightup"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+
+transit_list {
+  start_node_name: "runCaliTorqueChannelOffset"
+  end_node_name: "endNode"
+  transit_period: 0.0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliTorqueChannelOffset"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testPassed"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "testPassed"
+      module_name: "runCaliTorqueChannelOffset"
+      type: "BOOL"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+
+node_list {
+  node_name: "straightup"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "straightup"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "straightup"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "straightup"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "0"
+      data: "27"
+      data: "0"
+    }
+  }
+}
+
+node_list {
+  node_name: "runCaliTorqueChannelOffset"
+  pt_name: "caliJointStaticTorqueChannelOffset"
+  pt_type: "CALIJOINTSTATICTORQUECHANNELOFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "waitTime"
+      module_name: "runCaliTorqueChannelOffset"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+
+var_list {
+  name: "testPassed"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -1,0 +1,49 @@
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 0
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 1
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 2
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 3
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 4
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 5
+  amplitude: 0
+  phase: 0
+  offset: 0
+}
+sine_parameters {
+  time_stamp: 0
+  jntIndex: 6
+  amplitude: 0
+  phase: 0
+  offset: 0
+}

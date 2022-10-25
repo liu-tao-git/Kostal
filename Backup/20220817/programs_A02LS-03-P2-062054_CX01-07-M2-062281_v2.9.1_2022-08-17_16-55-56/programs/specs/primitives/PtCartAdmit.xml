@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> innerR </par_name>
+            <par_desc> "inner radius of tube workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.38 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> outerR </par_name>
+            <par_desc> "outer radius of tube workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.8 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minZ </par_name>
+            <par_desc> "minimum z of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxZ </par_name>
+            <par_desc> "maximum z of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> admitAxis </par_name>
+            <par_desc> "Admittance control axes in local coordinate. 1: admittance control. 0: fixed" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 1 1 1 1 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> loadWeightError</par_name>
+            <par_desc> "weight error from the robot payload. 
+                        The larger, floating would be more stable, but more lag" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> kg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

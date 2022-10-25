@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+        input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objDetectionType </par_name>
+            <par_desc> "object detection type. If the detection type is 3DPOS, the object's orientation is set as the world coordinate" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> 3DPOS 6DPOSE </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera id" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> timeOutPeriod </par_name>
+            <par_desc> "detection time out" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 30.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pathFileName </par_name>
+            <par_desc> "name of output path file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> AIDetectPath.txt </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pathVel </par_name>
+            <par_desc> "path velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pathWrench </par_name>
+            <par_desc> "control wrench of detect path" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceCtrlAxis </par_name>
+            <par_desc> "axis for force control in local coordinate" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pathCurvature </par_name>
+            <par_desc> "path curvature" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> useDefaultSeed </par_name>
+            <par_desc> "set flag to use default configuration as seed" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         transition parameter configuration                                       
+         ====================================================================-->
+        <state_par_config>
+            <par_name> pathGenerate </par_name>
+            <par_desc> "true if detector path is generated" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+        ====================================================================-->
+        <output_par_config>
+            <par_name> trajStart </par_name>
+            <par_desc> "start pose of detect trajectory" </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+        </output_par_config>
+    </primitive>
+</fvr>

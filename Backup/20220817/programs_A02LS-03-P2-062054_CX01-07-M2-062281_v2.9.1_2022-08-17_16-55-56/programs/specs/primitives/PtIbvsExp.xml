@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>IBVS Experimental</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_Visual_Control.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+         <input_par_config>
+            <par_name> objectName </par_name>
+            <par_desc> "object name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objectIndex </par_name>
+            <par_desc> "object index" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_max> 1 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>
+         <input_par_config>
+            <par_name> targetFeaturesInPixels </par_name>
+            <par_desc> "target features in pixels" </par_desc>
+            <par_type> ARRAY_VEC_2i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type>GREATER</condition_type>
+            <lhs_param_name>timePeriod</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>600.0</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

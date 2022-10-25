@@ -1,0 +1,686 @@
+plan_name: "single-tray"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "next_pose_in_world"
+  end_node_name: "end0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "next_pose_in_world"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      module_name: "end0"
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "success"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "retreat"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "retreat"
+  end_node_name: "to-table"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "retreat"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      module_name: "move2"
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "to-table"
+  end_node_name: "next_pose_in_world"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "to-table"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      module_name: "next_pose_in_world"
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_operation {
+    operator_type: "ELEMENT_SET"
+    in_param_a {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+    in_param_b {
+      name: "next_pre_pose_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+    out_param {
+      name: "wp_to_next_pose_in_world"
+      module_name: "rootNode"
+      type: "ARRAY_COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+}
+node_list {
+  node_name: "retreat"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "retreat"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0"
+      data: "0"
+      data: "-0.2"
+      data: "0"
+      data: "-0"
+      data: "0"
+      data: "TRAJ"
+      data: "START"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "waypoints"
+      module_name: "retreat"
+      type: "ARRAY_COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_COORD"
+      category: "CONST"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "retreat"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_v"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotVel"
+      module_name: "retreat"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_w"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxAcc"
+      module_name: "retreat"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_a"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotAcc"
+      module_name: "retreat"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_dw"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "blendRadiusLevel"
+      module_name: "retreat"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "blend_rl"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetTolLevel"
+      module_name: "retreat"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "accu_tol_level"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "preferJntPos"
+      module_name: "retreat"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "preferJntPos"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "to-table"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "to-table"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.3"
+      data: "0.3"
+      data: "0.5"
+      data: "180"
+      data: "6.23001e-37"
+      data: "180"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "waypoints"
+      module_name: "to-table"
+      type: "ARRAY_COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_COORD"
+      category: "CONST"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "to-table"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_v"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotVel"
+      module_name: "to-table"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_w"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxAcc"
+      module_name: "to-table"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_a"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotAcc"
+      module_name: "to-table"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_dw"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "blendRadiusLevel"
+      module_name: "to-table"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "blend_rl"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetTolLevel"
+      module_name: "to-table"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "accu_tol_level"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "preferJntPos"
+      module_name: "to-table"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "preferJntPos"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "next_pose_in_world"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "next_pose_in_world"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "next_pose_in_world"
+      module_name: "rootNode"
+      type: "COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "waypoints"
+      module_name: "next_pose_in_world"
+      type: "ARRAY_COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "wp_to_next_pose_in_world"
+      module_name: "rootNode"
+      type: "ARRAY_COORD"
+      category: "PLAN_VAR"
+      robotUnit: "m-deg"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "next_pose_in_world"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_v"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotVel"
+      module_name: "next_pose_in_world"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_w"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxAcc"
+      module_name: "next_pose_in_world"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_a"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "m/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotAcc"
+      module_name: "next_pose_in_world"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "max_dw"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "deg/s^2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "blendRadiusLevel"
+      module_name: "next_pose_in_world"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "blend_rl"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetTolLevel"
+      module_name: "next_pose_in_world"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "accu_tol_level"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "preferJntPos"
+      module_name: "next_pose_in_world"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "preferJntPos"
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "end0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+var_list {
+  name: "next_pose_in_world"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "-0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "next_pre_pose_in_world"
+  module_name: "rootNode"
+  type: "COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "-0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "wp_to_next_pose_in_world"
+  module_name: "rootNode"
+  type: "ARRAY_COORD"
+  category: "PLAN_VAR"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "0"
+  data: "-0"
+  data: "0"
+  data: "WORLD"
+  data: "WORLD_ORIGIN"
+  robotUnit: "m-deg"
+}
+var_list {
+  name: "max_v"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "1"
+  robotUnit: "m/s"
+}
+var_list {
+  name: "max_w"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "122.5"
+  robotUnit: "deg/s"
+}
+var_list {
+  name: "max_a"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "1"
+  robotUnit: "m/s^2"
+}
+var_list {
+  name: "max_dw"
+  module_name: "rootNode"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  data: "122.5"
+  robotUnit: "deg/s^2"
+}
+var_list {
+  name: "blend_rl"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "3"
+  robotUnit: "none"
+}
+var_list {
+  name: "accu_tol_level"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "3"
+  robotUnit: "none"
+}
+var_list {
+  name: "success"
+  module_name: "rootNode"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "none"
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

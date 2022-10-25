@@ -41,13 +41,13 @@ namespace {
     Eigen::Quaternion<double> q; // new a quaternion
 
     //stack for data storage
-    std::stack<std::array<double, 16>> data_stack;
+    std::stack<std::array<double, 20>> data_stack;
     std::stack<std::array<uint8_t, 16>> SPI_stack;
-    std::stack<std::array<double, 16>> data_stack_rev;
+    std::stack<std::array<double, 20>> data_stack_rev;
     std::stack<std::array<uint8_t, 16>> SPI_stack_rev;
     std::stack<std::string> nodeName_stack;
-    std::stack<std::int16_t> indexx_stack;
-    std::stack<std::int16_t> indexx_stack_rev;
+    std::stack<std::double_t> indexx_stack;
+    std::stack<std::double_t> indexx_stack_rev;
     std::stack<std::string> nodeName_stack_rev;
 
     struct PrintData
@@ -94,14 +94,17 @@ Struct Quaternion_to_Euler (double w, double x, double y, double z)
     q.x() = x;
     q.y() = y;
     q.z() = z;
-    auto euler = q.toRotationMatrix().eulerAngles(0,1,2);
-    
+    // auto euler = q.toRotationMatrix().eulerAngles(0,1,2);
+    auto euler = q.toRotationMatrix().eulerAngles(2,1,0);
     
     Struct Eout;
     {
-    Eout.Roll = euler[0];
+    // Eout.Roll = euler[0];
+    // Eout.Pitch = euler[1];
+    // Eout.Yaw = euler[2];
+    Eout.Roll = euler[2];
     Eout.Pitch = euler[1];
-    Eout.Yaw = euler[2];
+    Eout.Yaw = euler[0];
     }
     return Eout;
 }
@@ -159,10 +162,10 @@ void highPriorityPeriodicTask(
             outdata[13]=g_printData.flangePose[0]*1000;
             outdata[14]=g_printData.flangePose[1]*1000;
             outdata[15]=g_printData.flangePose[2]*1000;
-            // outdata[16]=g_printData.flangePose[3];
-            // outdata[17]=g_printData.flangePose[4];
-            // outdata[18]=g_printData.flangePose[5];
-            // outdata[19]=g_printData.flangePose[6];
+            outdata[16]=g_printData.flangePose[3];
+            outdata[17]=g_printData.flangePose[4];
+            outdata[18]=g_printData.flangePose[5];
+            outdata[19]=g_printData.flangePose[6];
 
 
             nodeName_stack.push(g_printData.nodeName);
@@ -170,7 +173,7 @@ void highPriorityPeriodicTask(
             indexx=indexx+1;
             {
                 std::lock_guard<std::mutex> lock(g_printDataMutex);
-                data_stack.push({outdata[0],outdata[1],outdata[2],outdata[3],outdata[4],outdata[5],outdata[6],outdata[7],outdata[8],outdata[9],outdata[10],outdata[11],outdata[12],outdata[13],outdata[14],outdata[15]/*,outdata[16],outdata[17],outdata[18],outdata[19]*/});
+                data_stack.push({outdata[0],outdata[1],outdata[2],outdata[3],outdata[4],outdata[5],outdata[6],outdata[7],outdata[8],outdata[9],outdata[10],outdata[11],outdata[12],outdata[13],outdata[14],outdata[15],outdata[16],outdata[17],outdata[18],outdata[19]});
             }
             {
                 std::lock_guard<std::mutex> lock(SPImutex);
@@ -212,7 +215,7 @@ void SPIdata_collection()
         int32_t read_data_num = 0;
         ret = VSI_SlaveReadBytes(VSI_USBSPI, 0, read_buffer, &read_data_num,100);
         if (ret != ERR_SUCCESS){
-            printf("Read data error!\n");
+            // printf("Read data error!\n");
             
         }
         else{
@@ -280,7 +283,7 @@ int sendRobotPlan(
     
     while (!data_stack.empty())            
     {
-        data_stack_rev.push({data_stack.top()[0],data_stack.top()[1],data_stack.top()[2],data_stack.top()[3],data_stack.top()[4],data_stack.top()[5],data_stack.top()[6],data_stack.top()[7],data_stack.top()[8],data_stack.top()[9],data_stack.top()[10],data_stack.top()[11],data_stack.top()[12],data_stack.top()[13],data_stack.top()[14],data_stack.top()[15]/*,data_stack.top()[16],data_stack.top()[17],data_stack.top()[18],data_stack.top()[19]*/});
+        data_stack_rev.push({data_stack.top()[0],data_stack.top()[1],data_stack.top()[2],data_stack.top()[3],data_stack.top()[4],data_stack.top()[5],data_stack.top()[6],data_stack.top()[7],data_stack.top()[8],data_stack.top()[9],data_stack.top()[10],data_stack.top()[11],data_stack.top()[12],data_stack.top()[13],data_stack.top()[14],data_stack.top()[15],data_stack.top()[16],data_stack.top()[17],data_stack.top()[18],data_stack.top()[19]});
         nodeName_stack_rev.push(nodeName_stack.top());
         SPI_stack_rev.push({SPI_stack.top()[0],SPI_stack.top()[1],SPI_stack.top()[2],SPI_stack.top()[3],SPI_stack.top()[4],SPI_stack.top()[5],SPI_stack.top()[6],SPI_stack.top()[7],SPI_stack.top()[8],SPI_stack.top()[9],SPI_stack.top()[10],SPI_stack.top()[11],SPI_stack.top()[12],SPI_stack.top()[13],SPI_stack.top()[14],SPI_stack.top()[15]});
         indexx_stack_rev.push(indexx_stack.top());
@@ -306,7 +309,7 @@ int sendRobotPlan(
     MyExcelFile << "TCP_x"<<","<<"TCP_y"<<"," << "TCP_z"<<"," ;
     MyExcelFile << "TCP_Rx"<<","<<"TCP_Ry"<<"," << "TCP_Rz"<<"," ;
     MyExcelFile << "FLANGE_x"<<","<<"FLANGE_y"<<"," << "FLANGE_z"<<"," ;
-    // MyExcelFile << "FLANGE_Rx"<<","<<"FLANGE_Ry"<<"," << "FLANGR_Rz"<<"," ;
+    MyExcelFile << "FLANGE_Rx"<<","<<"FLANGE_Ry"<<"," << "FLANGR_Rz"<<"," ;
     MyExcelFile << "RawDataSensor0"<<","<< "RawDataSensor1"<<","<< "RawDataSensor2"<<",";
     MyExcelFile << "RawDataSensor3"<<","<< "RawDataSensor4"<<","<< "RawDataSensor5"<<",";
     MyExcelFile << "SPI0-0"<<","<< "SPI0-1"<<","<< "SPI0-2"<<","<< "SPI0-3"<<","<< "SPI0-4"<<",";
@@ -321,12 +324,12 @@ int sendRobotPlan(
     while (!data_stack_rev.empty())            
     {
         MyExcelFile << nodeName_stack_rev.top()<<",";
-        MyExcelFile << nodeName_stack_rev.top()<<",";
+        MyExcelFile << indexx_stack_rev.top()<<",";
         auto showdata = data_stack_rev.top();           
         uint8_t showspi = SPI_stack_rev.top()[6];           
     
         g_euler_Out = Quaternion_to_Euler(data_stack_rev.top()[3],data_stack_rev.top()[4],data_stack_rev.top()[5],data_stack_rev.top()[6]);
-        // g_euler_Out_f = Quaternion_to_Euler(data_stack_rev.top()[16],data_stack_rev.top()[17],data_stack_rev.top()[18],data_stack_rev.top()[19]);
+        g_euler_Out_f = Quaternion_to_Euler(data_stack_rev.top()[16],data_stack_rev.top()[17],data_stack_rev.top()[18],data_stack_rev.top()[19]);
 
         //
         MyExcelFile << data_stack_rev.top()[0]<<",";
@@ -341,9 +344,9 @@ int sendRobotPlan(
         MyExcelFile << data_stack_rev.top()[14]<<",";
         MyExcelFile << data_stack_rev.top()[15]<<",";
         
-        // MyExcelFile << g_euler_Out_f.Roll<<",";
-        // MyExcelFile << g_euler_Out_f.Pitch<<",";
-        // MyExcelFile << g_euler_Out_f.Yaw<<",";
+        MyExcelFile << g_euler_Out_f.Roll<<",";
+        MyExcelFile << g_euler_Out_f.Pitch<<",";
+        MyExcelFile << g_euler_Out_f.Yaw<<",";
         //write sensor data
         for (auto i = 7; i < 13; i++){
         MyExcelFile << data_stack_rev.top()[i]<<",";
@@ -384,7 +387,8 @@ int main(int argc, char* argv[])
     std::string robotIP = "192.168.2.100";
 
     // IP of the workstation PC running this program
-    std::string localIP = "192.168.2.104";
+    // std::string localIP = "192.168.2.102";
+    std::string localIP = argv[2];
 
     // RDK Initialization
     //=============================================================================
@@ -452,13 +456,13 @@ int main(int argc, char* argv[])
     ret = VSI_ScanDevice(1);
     if (ret <= 0) {
         printf("No device connect!\n");
-        return ret;
+        // return ret;
     }
     // Open device
     ret = VSI_OpenDevice(VSI_USBSPI, 0, 0);
     if (ret != ERR_SUCCESS) {
         printf("Open device error!\n");
-        return ret;
+        // return ret;
     }
 
     // Initialize device(Slave Mode, Hardware SPI, Full-Duplex)
@@ -473,7 +477,7 @@ int main(int argc, char* argv[])
     ret = VSI_InitSPI(VSI_USBSPI, 0, &SPI_Config);
     if (ret != ERR_SUCCESS) {
         printf("Initialize device error!\n");
-        return ret;
+        // return ret;
     }
     printf("SPI Initialize device successfully!\n");
     // initialize robot interface and connect to the robot server
@@ -485,8 +489,19 @@ int main(int argc, char* argv[])
 
 
 
-    std::time_t file_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-    std::string time_str = std::ctime(&file_time);
+    // std::time_t file_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    // std::string time_str = std::ctime(&file_time);
+
+    // SYSTEMTIME sys;
+    // GetLocalTime(&sys);
+    // std::string time_str = sys.wYear + "-" + sys.wMonth + "-" + sys.wDay +"-" + sys.wHour + ':' + sys.wMinute + ':'sys.wSecond ;
+
+    time_t rawtime;
+    struct tm *ptminfo;
+    time(&rawtime);
+    ptminfo = localtime(&rawtime);
+    std::string time_str = "-"+to_string(ptminfo->tm_year + 1900)+"-" +to_string(ptminfo->tm_mon + 1)+ "-" +to_string(ptminfo->tm_mday)+"-" +to_string(ptminfo->tm_hour)+":" +to_string(ptminfo->tm_min)+":" +to_string(ptminfo->tm_sec);
+    std::cout << time_str;
 
     std::string planName=argv[1];
     std::string fileName=argv[1]+time_str;

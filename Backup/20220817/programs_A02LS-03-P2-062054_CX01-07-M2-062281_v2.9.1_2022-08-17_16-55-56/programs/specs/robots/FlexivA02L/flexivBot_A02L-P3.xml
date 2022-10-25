@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<!-- =======================================================================================================================================
+position_in_parent                          : position in parent link coordinate [m]
+orientation_in_parent                       : [w x y z ] quaternion in parent frame
+mass                                        : link mass [kg]
+inertia                                     : Ixx Iyy Izz Ixy Ixz Iyz at the center of mass
+joint_type                                  : The type of joint. (p)rismatic/(r)evolute + x/y/z (axis)
+joint_max_vel                               : maximum joint velocity [deg/s] [m/s]
+joint_max_torque                            : maximum joint torque/force [N-m][N]
+joint_position_mode_torque_cmd_cutoff       : cutoff frequency for desired joint torque in joint position mode [FREQ_NONE, FREQ_XX]
+joint_torque_mode_torque_cmd_cutoff         : cutoff frequency for desired joint torque in joint torque mode [FREQ_NONE, FREQ_XX]
+prefer_joint_position                       : home joint position [deg] or [m]
+gravity_joint_position                      : [deg] joint position that aligns link with gravity when base is mounted vertically
+torque_direction                            : 1: align with MDH coordinate's z-axis direction. -1: reverse direction
+joint_direction                             : 1: align with MDH coordinate's z-axis direction. -1: reverse direction
+joint_offset                                : [deg] or [m]
+                                            : q_{rca} = joint_direction * q_{middleware} + joint_offset
+                                            : dq_{rca} = joint_direction * dq_{middleware}
+                                            : tau_{rca} = torque_direction * tau_{middleware}
+coulomb_friction                            : [N-m] or [N]
+stiction_factor                             : 0.0 ~ 1.0 scale factor
+viscous_friction                            : [N-m] or [N]
+graphics/collision_model                    : obj model used to check the collision
+graphics/collision_type                     : 0 = no collision, 1 = convex hull collision, 2 = polygon collision.
+graphics/orientation_in_parent              : [w x y z] quaternion in parent frame, [1 0 0 0] as identity
+============================================================================================================================================ -->
+<fvr>
+    <link>
+        <link_name>base</link_name>
+        <position_in_parent>0.0 0.0 0.0</position_in_parent>
+        <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+        <mass>3.165192</mass>
+        <inertia>0.013283 0.013341 0.006907 -0.000033 -0.000242 0.000264</inertia>
+        <center_of_mass>-0.001426 0.001499 0.073871</center_of_mass>
+        <joint_name>base</joint_name>
+        <parent_link_name>none</parent_link_name>
+        <joint_type>fixed</joint_type>
+        <joint_max_vel>80</joint_max_vel>
+        <joint_max_torque>0</joint_max_torque>
+        <joint_max_torque_diff>0</joint_max_torque_diff>
+        <prefer_joint_position>0.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_NONE</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.5</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/legacy/link0_pvt3.obj</path>
+                <collision_model>meshes/legacy/link0_pvt3.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link1</link_name>
+        <position_in_parent>0.0 0.0 0.135</position_in_parent>
+        <orientation_in_parent>0.0 0.0 0.0 1.0</orientation_in_parent>
+        <mass>3.463530</mass>
+        <inertia>0.025579 0.025107 0.007014 -0.000029 0.000021 0.001781</inertia>
+        <center_of_mass>0.000139 0.006661 0.148657</center_of_mass>
+        <joint_name>joint1</joint_name>
+        <parent_link_name>base</parent_link_name>
+        <joint_type>rz</joint_type>
+        <joint_max_vel>120</joint_max_vel>
+        <joint_max_torque>123</joint_max_torque>
+        <joint_max_torque_diff>62</joint_max_torque_diff>
+        <vel_filter>0</vel_filter>
+        <prefer_joint_position>0.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_20</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.5</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link1.obj</path>
+                <collision_model>meshes/collision/link1.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link2</link_name>
+        <position_in_parent>0.0 0.03 0.210</position_in_parent>
+        <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+        <mass>2.461088</mass>
+        <inertia>0.021017 0.021754 0.003223 -0.000004 0.000003 -0.000107</inertia>
+        <center_of_mass>0.000124 0.035809 0.100437</center_of_mass>
+        <joint_name>joint2</joint_name>
+        <parent_link_name>link1</parent_link_name>
+        <joint_type>ry</joint_type>
+        <joint_max_vel>120</joint_max_vel>
+        <joint_max_torque>123</joint_max_torque>
+        <joint_max_torque_diff>62</joint_max_torque_diff>
+        <vel_filter>0</vel_filter>
+        <prefer_joint_position>-40.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_20</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link2.obj</path>
+                <collision_model>meshes/collision/link2.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link3</link_name>
+        <position_in_parent>0.0 0.035 0.205</position_in_parent>
+        <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+        <mass>2.114110</mass>
+        <inertia>0.012226 0.012012 0.003112 0.000137 -0.001256 -0.000899</inertia>
+        <center_of_mass>-0.011086 -0.005253 0.131548</center_of_mass>
+        <joint_name>joint3</joint_name>
+        <parent_link_name>link2</parent_link_name>
+        <joint_type>rz</joint_type>
+        <joint_max_vel>140</joint_max_vel>
+        <joint_max_torque>64</joint_max_torque>
+        <joint_max_torque_diff>32</joint_max_torque_diff>
+        <prefer_joint_position>-0.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <vel_filter>0</vel_filter>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_40</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link3.obj</path>
+                <collision_model>meshes/collision/link3.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link4</link_name>
+        <position_in_parent>-0.02 -0.03 0.19</position_in_parent>
+        <orientation_in_parent>0.0 0.0 0.0 1.0</orientation_in_parent>
+        <mass>2.114110</mass>
+        <inertia>0.015236 0.015646 0.002410 0.000052 -0.001263 -0.000604</inertia>
+        <center_of_mass>-0.013775 0.028770 0.107932</center_of_mass>
+        <joint_name>joint4</joint_name>
+        <parent_link_name>link3</parent_link_name>
+        <joint_type>ry</joint_type>
+        <joint_max_vel>140</joint_max_vel>
+        <joint_max_torque>64</joint_max_torque>
+        <joint_max_torque_diff>32</joint_max_torque_diff>
+        <prefer_joint_position>90.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <vel_filter>0</vel_filter>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_30</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link4.obj</path>
+                <collision_model>meshes/collision/link4.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link5</link_name>
+        <position_in_parent>-0.02 0.025 0.195</position_in_parent>
+        <orientation_in_parent>0.0 0.0 0.0 1.0</orientation_in_parent>
+        <mass>2.007245</mass>
+        <inertia>0.012881 0.012487 0.003005 -0.000019 0.000025 0.000903</inertia>
+        <center_of_mass>0.000135 0.005594 0.132106</center_of_mass>
+        <joint_name>joint5</joint_name>
+        <parent_link_name>link4</parent_link_name>
+        <joint_type>rz</joint_type>
+        <joint_max_vel>280</joint_max_vel>
+        <joint_max_torque>39</joint_max_torque>
+        <joint_max_torque_diff>20</joint_max_torque_diff>
+        <prefer_joint_position>0.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <vel_filter>0</vel_filter>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_200</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link5.obj</path>
+                <collision_model>meshes/collision/link5.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link6</link_name>
+        <position_in_parent>0.0 0.03 0.19</position_in_parent>
+        <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+        <mass>1.953128</mass>
+        <inertia>0.007438 0.007679 0.003232 -0.000278 -0.000730 0.001580</inertia>
+        <center_of_mass>-0.009555 0.056435 0.071550</center_of_mass>
+        <joint_name>joint6</joint_name>
+        <parent_link_name>link5</parent_link_name>
+        <joint_type>ry</joint_type>
+        <joint_max_vel>280</joint_max_vel>
+        <joint_max_torque>39</joint_max_torque>
+        <joint_max_torque_diff>20</joint_max_torque_diff>
+        <prefer_joint_position>40.0</prefer_joint_position>
+        <gravity_joint_position>19.9264</gravity_joint_position>
+        <vel_filter>0</vel_filter>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>-90.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_200</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link6.obj</path>
+                <collision_model>meshes/collision/link6.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <link>
+        <link_name>link7</link_name>
+        <position_in_parent>-0.055 0.070 0.11</position_in_parent>
+        <orientation_in_parent>0.7071068 0.0 -0.7071068 0.0</orientation_in_parent>
+        <mass>0.789282</mass>
+        <inertia>0.000980 0.001060 0.001033 0.000006 0.000001 -0.000002</inertia>
+        <center_of_mass>-0.028033 -0.000597 -0.000008</center_of_mass>
+        <joint_name>joint7</joint_name>
+        <parent_link_name>link6</parent_link_name>
+        <joint_type>rz</joint_type>
+        <joint_max_vel>280</joint_max_vel>
+        <joint_max_torque>39</joint_max_torque>
+        <joint_max_torque_diff>20</joint_max_torque_diff>
+        <vel_filter>0</vel_filter>
+        <prefer_joint_position>-0.0</prefer_joint_position>
+        <gravity_joint_position>0.0</gravity_joint_position>
+        <torque_direction>1</torque_direction>
+        <joint_direction>1</joint_direction>
+        <joint_offset>0.0</joint_offset>
+        <joint_position_mode_torque_cmd_cutoff>FREQ_200</joint_position_mode_torque_cmd_cutoff>
+        <coulomb_friction>0.0</coulomb_friction>
+        <stiction_factor>1.0</stiction_factor>
+        <viscous_friction>1.0</viscous_friction>
+        <graphics>
+            <obj_file>
+                <path>meshes/visual/link7.obj</path>
+                <collision_model>meshes/collision/link7.obj</collision_model>
+                <position_in_parent>0.0 0.0 0.0</position_in_parent>
+                <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+                <scaling>1 1 1</scaling>
+            </obj_file>
+        </graphics>
+    </link>
+    <!-- ============ Robot Flange Transformation ==============================
+    position_in_link        : the position in parent link coordinate [m]
+    orientation_in_link     : quaternion [w x y z]
+    ======================================================================== -->
+    <robot_flange>
+        <parent_link_name>link7</parent_link_name>
+        <position_in_link>0.0 0.0 0.081</position_in_link>
+        <orientation_in_link>0.0 0.0 0.0 1.0</orientation_in_link>
+    </robot_flange>
+</fvr>

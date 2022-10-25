@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> enableWS </par_name>
+            <par_desc> "flag to enable/disable the workspace" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minX </par_name>
+            <par_desc> "minimum x of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.75 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxX </par_name>
+            <par_desc> "maximum x of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.7 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minY </par_name>
+            <par_desc> "minimum y of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.6 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxY </par_name>
+            <par_desc> "maximum y of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.6 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> minZ </par_name>
+            <par_desc> "minimum z of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -0.2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxZ </par_name>
+            <par_desc> "maximum z of workspace in world coordinate" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.7 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

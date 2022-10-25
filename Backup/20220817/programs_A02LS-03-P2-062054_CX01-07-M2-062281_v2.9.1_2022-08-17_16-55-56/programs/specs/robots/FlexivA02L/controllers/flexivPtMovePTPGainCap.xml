@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> move_ptp_gaincap </primitive_name>
+        <primitive_type> MOVE_PTP_TORQUEMODE </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_CLOSE_LOOP_TORQUE</control_mode>
+        <param_configs>PtMovePTP.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_GAINCAP</task_type>
+            <dof>7</dof>
+            <kp>1200 1200 1200 1200 2500 2500 2500</kp>
+            <kv>35   35   35   30   40   40   40</kv>
+            <!-- <kp>1500 1500 1500 1500 500 500 500</kp>
+            <kv>60   60   60   60   5   5   5</kv> -->
+            <ki>0.03 0.03 0.03 0.03   0.0025  0.0025 0.0025</ki>
+            <max_iForce> 3.0 3.0 3.0  3.0  2.0 2.0 2.0</max_iForce>
+            <friction_compensation> 0 </friction_compensation>
+        </task>
+    </primitive>
+</fvr>

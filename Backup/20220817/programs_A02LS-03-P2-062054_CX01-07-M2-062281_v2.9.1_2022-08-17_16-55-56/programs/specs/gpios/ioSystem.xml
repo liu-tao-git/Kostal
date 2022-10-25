@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ This is the file to specify the I/O command and return state
+ =========================================================================== -->
+<fvr>
+    <!-- =======================================================================
+    type: type of I/O devices
+    ======================================================================== -->
+    <gpio_name>GPIOSystem</gpio_name>
+    <gpio_type>GPIO_SYSTEM</gpio_type>
+    <!-- =======================================================================
+                            general IO command parameters
+    =========================================================================-->
+    <gpio_par_command>
+        <par_name> gpioOut0 </par_name>
+        <par_desc> "pin 0 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut1 </par_name>
+        <par_desc> "pin 1 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut2 </par_name>
+        <par_desc> "pin 2 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut3 </par_name>
+        <par_desc> "pin 3 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut4 </par_name>
+        <par_desc> "pin 4 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut5 </par_name>
+        <par_desc> "pin 5 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut6 </par_name>
+        <par_desc> "pin 6 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut7 </par_name>
+        <par_desc> "pin 7 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut8 </par_name>
+        <par_desc> "pin 8 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut9 </par_name>
+        <par_desc> "pin 9 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut10 </par_name>
+        <par_desc> "pin 10 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut11 </par_name>
+        <par_desc> "pin 11 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut12 </par_name>
+        <par_desc> "pin 12 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut13 </par_name>
+        <par_desc> "pin 13 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut14 </par_name>
+        <par_desc> "pin 14 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <gpio_par_command>
+        <par_name> gpioOut15 </par_name>
+        <par_desc> "pin 15 in gpio output " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+        <par_required> 1 </par_required>
+        <par_default> false </par_default>
+    </gpio_par_command>
+    <!-- =======================================================================
+                            general IO state parameters
+    =========================================================================-->
+    <gpio_par_state>
+        <par_name> gpioIn0 </par_name>
+        <par_desc> "pin 0 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn1 </par_name>
+        <par_desc> "pin 1 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn2 </par_name>
+        <par_desc> "pin 2 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn3 </par_name>
+        <par_desc> "pin 3 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn4 </par_name>
+        <par_desc> "pin 4 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn5 </par_name>
+        <par_desc> "pin 5 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn6 </par_name>
+        <par_desc> "pin 6 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn7 </par_name>
+        <par_desc> "pin 7 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn8 </par_name>
+        <par_desc> "pin 8 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn9 </par_name>
+        <par_desc> "pin 9 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn10 </par_name>
+        <par_desc> "pin 10 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn11 </par_name>
+        <par_desc> "pin 11 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn12 </par_name>
+        <par_desc> "pin 12 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn13 </par_name>
+        <par_desc> "pin 13 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn14 </par_name>
+        <par_desc> "pin 14 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+    <gpio_par_state>
+        <par_name> gpioIn15 </par_name>
+        <par_desc> "pin 15 in gpio input " </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </gpio_par_state>
+</fvr>

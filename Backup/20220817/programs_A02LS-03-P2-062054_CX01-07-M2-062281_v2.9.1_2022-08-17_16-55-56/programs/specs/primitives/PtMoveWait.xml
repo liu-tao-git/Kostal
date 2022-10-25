@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc> Executing move line command and at each waypoint, robot could wait for a specific DI port to be 1 or 0 and then go to next waypoint  </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_moveWait.svg</icon>
+        </ui_par_config>
+        <input_par_group>
+            <group_name> waypointInfo </group_name>
+            <par_name>waypoints</par_name>
+            <par_name>maxVel</par_name>
+            <par_name>maxAcc</par_name>
+            <par_name>zoneRadius</par_name>
+            <par_name>enableWait</par_name>
+            <par_name>waitTime</par_name>
+            <par_name>diPort</par_name>
+            <par_name>diValue</par_name>
+        </input_par_group>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> waypoints </par_name>
+            <par_desc> "waypoints on the trajectory" </par_desc>
+            <par_type> ARRAY_COORD </par_type>
+            <par_option>TRAJ::START TRAJ::GOAL TRAJ::PREVIOUSWAYPOINT WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 1 </par_required>
+            <par_unit> m-deg </par_unit>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "maximum Cartesian linear velocity" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.01 </par_min>
+            <par_default>1.0</par_default>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAcc </par_name>
+            <par_desc> "maximum Cartesian linear acceleration" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> m/s^2 </par_unit>
+            <par_max> 10.0 </par_max>
+            <par_min> 0.1 </par_min>
+            <par_default>1.0</par_default>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> zoneRadius </par_name>
+            <par_desc> "zone radius approaching waypoints" </par_desc>
+            <par_type> ARRAY_TYPE </par_type>
+            <par_unit> m </par_unit>
+            <par_default> Z10 </par_default>
+            <par_option> Z0 Z1 Z5 Z10 Z15 Z20 Z30 Z40 Z50 Z60 Z80 Z100 Z150 Z200</par_option>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> ioModule </par_name>
+            <par_desc> "IO module could be System or Modbus" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_default> System </par_default>
+            <par_option> System Modbus</par_option>
+            <par_required> 0 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> diPort </par_name>
+            <par_desc> "digital input port number" </par_desc>
+            <par_type> ARRAY_INT </par_type>
+            <par_unit> none </par_unit>
+            <par_max> 15 </par_max>
+            <par_min> 0 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> diValue </par_name>
+            <par_desc> "expected digital input value" </par_desc>
+            <par_type> ARRAY_INT </par_type>
+            <par_unit> none </par_unit>
+            <par_max> 1 </par_max>
+            <par_min> 0 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> enableWait </par_name>
+            <par_desc> "if enabled wait DI function at corresponding waypoint index" </par_desc>
+            <par_type> ARRAY_BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waitTime </par_name>
+            <par_desc> "wait time at each waypoint. If timeout, the corresponding timeout index will be set" </par_desc>
+            <par_type> ARRAY_DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_max> 1000 </par_max>
+            <par_min> 0.1 </par_min>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> equalRadius </par_name>
+            <par_desc> Convert orientation to linear distance. It standards for the ability that the orientation follows the orientation </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.1 </par_default>
+            <par_max> 10.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxJerk </par_name>
+            <par_desc> maximum jerk along the path </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s^3 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>1000.0 </par_default>
+            <par_max> 10000.0 </par_max>
+            <par_min> 10.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxCornerAcc </par_name>
+            <par_desc> maximum acceleration at corner </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>20.0 </par_default>
+            <par_max> 20.0 </par_max>
+            <par_min> 0.5 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxCornerJerk </par_name>
+            <par_desc> maximum jerk at corner </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s^3 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>800.0 </par_default>
+            <par_max> 10000.0 </par_max>
+            <par_min> 10.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetTolLevel </par_name>
+            <par_desc> "tolerance level of target pose accuracy ranged from 0 to 10, where 1 is the smallest tolerence, 0 means no tolerance check" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+            <par_max> 10 </par_max>
+            <par_min> 1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the robot has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> "Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <state_par_config>
+            <par_name> timeoutIndex </par_name>
+            <par_desc> "Index of the timeout waypoint. Equals to 0 if no timeout occurs" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>reachedTarget</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

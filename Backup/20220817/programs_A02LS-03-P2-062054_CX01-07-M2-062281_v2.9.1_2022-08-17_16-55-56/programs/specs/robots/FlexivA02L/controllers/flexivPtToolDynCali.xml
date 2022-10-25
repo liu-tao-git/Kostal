@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> MACRO-ToolDynCali </primitive_name>
+        <primitive_type> TOOLDYNCALI </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <param_configs>PtToolDynCali.xml</param_configs>
+        <sub_primitives>
+            <primitive_file> controllers/flexivPtHold.xml </primitive_file>
+            <primitive_file> controllers/flexivPtToolDynCaliWithJntTrq.xml </primitive_file>
+            <primitive_file> controllers/flexivPtToolDynCaliWithJntTrqDiff.xml </primitive_file>
+            <primitive_file> controllers/flexivPtToolDynCaliWithWrench.xml </primitive_file>
+        </sub_primitives>
+    </primitive>
+</fvr>

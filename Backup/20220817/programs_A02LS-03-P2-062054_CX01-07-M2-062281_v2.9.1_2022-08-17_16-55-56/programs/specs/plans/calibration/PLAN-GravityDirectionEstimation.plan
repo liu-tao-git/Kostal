@@ -1,0 +1,534 @@
+plan_name: "PLAN-GravityDirectionEst"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home1"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "jntTest1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest1"
+  end_node_name: "hold2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_jntPos"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "target"
+      module_name: "jntTest1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_sineFitPhase"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "sineFitPhase"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_sineFitAmplitude"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "sineFitAmplitude"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold2"
+  end_node_name: "moveJntSpace1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpace1"
+  end_node_name: "hold3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpace1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold3"
+  end_node_name: "jntTest2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold3"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntTest2"
+  end_node_name: "hold4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "jntTest2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold4"
+  end_node_name: "home2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold4"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "home1"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home2"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold2"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold3"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold4"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "moveJntSpace1"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpace1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_jntPos"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest1"
+  pt_name: "joint_constant_velocity_test"
+  pt_type: "JOINT_CONSTANT_VELOCITY_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "gravityDirectionCheck"
+      module_name: "jntTest1"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "jntTest1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "20"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionLowerBound"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-110"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionUpperBound"
+      module_name: "jntTest1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "110"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "jntTest1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "jntTest1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "jntTest2"
+  pt_name: "joint_constant_velocity_test"
+  pt_type: "JOINT_CONSTANT_VELOCITY_TEST"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "gravityDirectionCheck"
+      module_name: "jntTest2"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "jntTest2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "20"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionLowerBound"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-50"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionUpperBound"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "110"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "jntTest2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "jntTest2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "sineFitPhase"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_sineFitPhase"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "sineFitAmplitude"
+      module_name: "jntTest2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_sineFitAmplitude"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+var_list {
+  name: "g_jntPos"
+  type: "ARRAY_DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_sineFitPhase"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_sineFitAmplitude"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_filePrintLevel"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "5"
+  robotUnit: "unknown"
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

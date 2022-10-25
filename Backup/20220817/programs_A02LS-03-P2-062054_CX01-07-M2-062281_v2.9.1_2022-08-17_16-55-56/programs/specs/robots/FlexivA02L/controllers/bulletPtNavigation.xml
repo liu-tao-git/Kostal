@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Mobile Platform Flexiv
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> Navigation </primitive_name>
+        <primitive_type> NAVIGATION </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtNavigation.xml</param_configs>
+    </primitive>
+</fvr>

@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> testDOF </par_name>
+            <par_desc> "joint DOF to test " </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalType </par_name>
+            <par_desc> "type of the excitation signal" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> CHIRP </par_default>
+            <par_option> CHIRP MULTISINE </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalInjectionType </par_name>
+            <par_desc> "signal jnjection location type" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> REF_JOINTPOSITION REF_JOINTVELOCITY CMD_JOINTPOSITION CMD_JOINTVELOCITY CMD_JOINTTORQUE </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> frequencyStart </par_name>
+            <par_desc> "initial freqeuncy of excitation signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> frequencyEnd </par_name>
+            <par_desc> "terminal frequency of excitation signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Hz </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 30.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalDuration </par_name>
+            <par_desc> "duration of excitation signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 50.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> signalAmplitudeFactor </par_name>
+            <par_desc> "amplitude factor of excitation signal" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> dateTimeString </par_name>
+            <par_desc> "date and time string for writing analysis result into protobuf file" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> uninitialized  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> numSine </par_name>
+            <par_desc> "number of sine in multi sine signal" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 11 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> chirpType </par_name>
+            <par_desc> "type of the chirp signal" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> QUADRATIC </par_default>
+            <par_option> LINEAR QUADRATIC LOGARITHMIC </par_option>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

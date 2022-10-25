@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc> Execute trajectory learning based on edge of object </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_polish.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> normalDir </par_name>
+            <par_desc> "Force control direction, 1 or -1" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> initMotionCtrlDir </par_name>
+            <par_desc> "init motion direction in tcp coordinate. 
+                        It should perpendicular to init force control direction." </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxPosError </par_name>
+            <par_desc> "max position error between the measurement pose and the target pose" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetForce </par_name>
+            <par_desc> "target force to control on the control force axis" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> -10  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxTcpForce </par_name>
+            <par_desc> "total max tcp force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 50  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> motionVel </par_name>
+            <par_desc> "motion velocity for the polish" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.05  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxEdgeTraversalDistance </par_name>
+            <par_desc> "polish distance before robot terminates this primitive" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxEdgeTraversalTime </par_name>
+            <par_desc> "polish duration before robot terminates this primitive" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 7 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> velAdjustRatio </par_name>
+            <par_desc> "motion velocity based polish angle adjustment ratio, between 0 and 1" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> estimatedFriction </par_name>
+            <par_desc> "estimated friction force, force based polish angle adjustment utilizes this force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetTolLevel </par_name>
+            <par_desc> "target tol level" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAngAdjustVel </par_name>
+            <par_desc> "max angular velocity for robot to adjust it control direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 100.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxFreeMotionDuration</par_name>
+            <par_desc> "terminate if duration of NO CONTACT exceed this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 2.0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waypointDist</par_name>
+            <par_desc> "waypoint distance to record a waypoint for the trajectory" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> mm </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 7.0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> recordedTrajVel</par_name>
+            <par_desc> "recorded path waypoints commanded velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.05  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> recordTrajFlag</par_name>
+            <par_desc> "waypoint distance to record a waypoint for the trajectory" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> pathFileName</par_name>
+            <par_desc> "save to file name for the recorded trajectory path" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> EdgeLearntTraj  </par_default>
+        </input_par_config>
+    </primitive>
+</fvr>

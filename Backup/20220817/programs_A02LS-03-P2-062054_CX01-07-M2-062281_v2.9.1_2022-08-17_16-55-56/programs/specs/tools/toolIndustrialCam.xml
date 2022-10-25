@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ tool_name: tool name
+ tool_type: tool type is defined in string format
+ tcp_position    : tcp position in tool coordinate [m]
+ tcp_orientation : [w; x; y; z] quaternion in tool coordinate
+ mass : kg
+ inertia : [ Ixx Iyy Izz Ixy Ixz Iyz ] at the center of mass (tool coordinate)
+ center_of_mass : [m] in tool coordinate
+
+ graphics/position_in_parent : posiiton in parent coordinate [m]
+ graphics/orientation_in_parent : [w; x; y; z] quaternion in parent coordinate
+ =========================================================================== -->
+<fvr>
+    <tool_name>IndustrialCam</tool_name>
+    <tool_type> TOOL_INDUSTRIAL_CAM </tool_type>
+    <tcp>
+        <tcp_position>-0.0010605 -0.000717537 0.161512 </tcp_position>
+        <tcp_orientation>1 0 0 0 </tcp_orientation>
+    </tcp>
+    <mass>0.2</mass>
+    <inertia>0 0 0 0 0 0 </inertia>
+    <center_of_mass>0 0 0 </center_of_mass>
+    <graphics>
+        <obj_file>
+            <path>graphics/toolCube.obj</path>
+            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+            <scaling>0.1 0.1 1</scaling>
+        </obj_file>
+    </graphics>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_config>
+        <par_name> ipAddress </par_name>
+        <par_desc>"IP address of industrial camera"</par_desc>
+        <par_type>STRING</par_type>
+        <par_unit> none</par_unit>
+        <!-- <par_value> 127.0.0.1 </par_value> -->
+        <par_value> 192.168.2.124 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> port </par_name>
+        <par_desc>"Port of industrial camera"</par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none</par_unit>
+        <par_value> 9527 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> enableInSimulator </par_name>
+        <par_desc>"if enable device while in simulator"</par_desc>
+        <par_type>BOOL</par_type>
+        <par_unit> none</par_unit>
+        <par_value>1</par_value>
+    </device_par_config>
+    <!-- =======================================================================
+                            device command parameters
+    Notice: this part can be specified by the users in UIApp
+    =========================================================================-->
+    <device_par_command>
+        <par_name> clear </par_name>
+        <par_desc> "clear command and result" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none </par_unit>
+        <par_required> 1 </par_required>
+        <par_option> NOT_CLEAR CLEAR </par_option>
+        <par_default> NOT_CLEAR </par_default>
+    </device_par_command>
+    <device_par_command>
+        <par_name> type </par_name>
+        <par_desc> "detection type" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none </par_unit>
+        <par_required> 1 </par_required>
+        <par_option> A B C D E F NOT_SET </par_option>
+        <par_default> NOT_SET </par_default>
+    </device_par_command>
+    <device_par_command>
+        <par_name> index </par_name>
+        <par_desc> "object index" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none </par_unit>
+        <par_required> 1 </par_required>
+        <par_min> 0 </par_min>
+        <par_max> 99 </par_max>
+        <par_default> -1 </par_default>
+    </device_par_command>
+    <!-- =======================================================================
+                            device state parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_state>
+        <par_name> connectionState </par_name>
+        <par_desc> "connection state" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none</par_unit>
+        <par_option> CONNECTED DISCONNECTED </par_option>
+    </device_par_state>
+    <device_par_state>
+        <par_name> index </par_name>
+        <par_desc> "object result" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none </par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> detectState </par_name>
+        <par_desc> "detection result" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none </par_unit>
+        <par_option> NO_RESULT NG OK </par_option>
+    </device_par_state>
+    <device_par_state>
+        <par_name> data_x </par_name>
+        <par_desc> "data x" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m </par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> data_y </par_name>
+        <par_desc> "data y" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m </par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> data_u </par_name>
+        <par_desc> "data u" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> deg </par_unit>
+    </device_par_state>
+</fvr>

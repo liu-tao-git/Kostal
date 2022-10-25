@@ -1,0 +1,973 @@
+plan_name: "Tutorial10-AICmdExample"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "home0"
+  end_node_name: "hold0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold0"
+  end_node_name: "Plan0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold0"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "20.5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "home0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "Plan0"
+  end_node_name: "hold2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "Plan0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_operation {
+    operator_type: "QUERY_OBJ_DATA_DOUBLE"
+    in_param_a {
+      module_name: "Plan0"
+      type: "STRING"
+      category: "CONST"
+      data: "LOGO_logo_0[0]"
+    }
+    out_param {
+      name: "ObjDoubleValue"
+      module_name: "Plan0"
+      type: "DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold2"
+  end_node_name: "end0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home0"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "home0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+      data: "20"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "home0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "10"
+      data: "10"
+      data: "10"
+      data: "10"
+      data: "10"
+      data: "10"
+      data: "10"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "home0"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "hold0"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold2"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "end0"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+ai_commands {
+  device_name: "AI"
+  node_name: "hold0"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold0"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.03"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "command"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "POSE6D"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "cameraId"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "CAMID_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectName"
+      module_name: "AI"
+      type: "OBJNAME"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "OBJNAME"
+      category: "CONST"
+      data: "LOGO_logo_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectNum"
+      module_name: "AI"
+      type: "INT"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableStream"
+      module_name: "AI"
+      type: "BOOL"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+ai_commands {
+  device_name: "AI"
+  node_name: "hold0"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold0"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "18"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "command"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "IDLE"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "cameraId"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "CAMID_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableStream"
+      module_name: "AI"
+      type: "BOOL"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+ai_commands {
+  device_name: "AI"
+  node_name: "hold1"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.03"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "command"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "CLEAR_POOL"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "cameraId"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "CAMID_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectName"
+      module_name: "AI"
+      type: "OBJNAME"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "OBJNAME"
+      category: "CONST"
+      data: "LOGO_logo_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectNum"
+      module_name: "AI"
+      type: "INT"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+ai_commands {
+  device_name: "AI"
+  node_name: "hold2"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER_EQUAL"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.03"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "command"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "GET_DOUBLE_VALUE"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "cameraId"
+      module_name: "AI"
+      type: "TYPE"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "CAMID_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectName"
+      module_name: "AI"
+      type: "OBJNAME"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "OBJNAME"
+      category: "CONST"
+      data: "LOGO_logo_0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "objectNum"
+      module_name: "AI"
+      type: "INT"
+      category: "AI_CMD"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+obj_names: "CIIFCAR_cnct_0"
+obj_names: "DSDCxH42_element_0"
+obj_names: "LOGO_logo_0"
+var_list {
+  name: "ObjDoubleValue"
+  module_name: "Plan0"
+  type: "DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+child_plans {
+  plan_name: "childPlan"
+  config {
+    node_name: "Plan0"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "hold0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+    param_operation {
+      operator_type: "ADDITION"
+      in_param_a {
+        name: "ObjIndex"
+        module_name: "Plan0"
+        type: "INT"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+      in_param_b {
+        type: "INT"
+        category: "CONST"
+        data: "1"
+      }
+      out_param {
+        name: "ObjIndex"
+        module_name: "Plan0"
+        type: "INT"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "hold0"
+    end_node_name: "move0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "AND"
+      trigger_condition {
+        condition_type: "GREATER_EQUAL"
+        lhs_param {
+          name: "timePeriod"
+          module_name: "hold0"
+          type: "DOUBLE"
+          category: "PT_STATE"
+        }
+        rhs_param {
+          type: "DOUBLE"
+          category: "CONST"
+          data: "0.03"
+        }
+      }
+      trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "objectNumInMap"
+          module_name: "AI"
+          type: "INT"
+          category: "AI_STATE"
+        }
+        rhs_param {
+          type: "INT"
+          category: "CONST"
+          data: "1"
+        }
+      }
+    }
+    param_operation {
+      operator_type: "QUERY_OBJ_DATA_INT"
+      in_param_a {
+        type: "STRING"
+        category: "CONST"
+        data: "LOGO_logo_0[0]"
+      }
+      out_param {
+        name: "ObjINTValue"
+        module_name: "Plan0"
+        type: "INT"
+        category: "PLAN_VAR"
+        robotUnit: "unknown"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "move0"
+    end_node_name: "home0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "move0"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "home0"
+    end_node_name: "end0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "home0"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        module_name: "end0"
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "move0"
+    pt_name: "move"
+    pt_type: "MOVE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "move0"
+        type: "COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "COORD"
+        category: "CONST"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "-0"
+        data: "0"
+        data: "OBJ"
+        data: "LOGO_logo_0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "waypoints"
+        module_name: "move0"
+        type: "ARRAY_COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_COORD"
+        category: "CONST"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxVel"
+        module_name: "move0"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "0.2"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxRotVel"
+        module_name: "move0"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxAcc"
+        module_name: "move0"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "0.2"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxRotAcc"
+        module_name: "move0"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxRadiusCurvature"
+        module_name: "move0"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "targetTolLevel"
+        module_name: "move0"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "home0"
+    pt_name: "Home"
+    pt_type: "HOME"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntVel"
+        module_name: "home0"
+        type: "VEC_7d"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "VEC_7d"
+        category: "CONST"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntAcc"
+        module_name: "home0"
+        type: "VEC_7d"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "VEC_7d"
+        category: "CONST"
+        data: "10"
+        data: "10"
+        data: "10"
+        data: "10"
+        data: "10"
+        data: "10"
+        data: "10"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "home0"
+        type: "VEC_7d"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "VEC_7d"
+        category: "CONST"
+        data: "0"
+        data: "-40"
+        data: "0"
+        data: "90"
+        data: "0"
+        data: "40"
+        data: "0"
+      }
+    }
+  }
+  node_list {
+    node_name: "hold0"
+    pt_name: "Hold"
+    pt_type: "HOLD"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  node_list {
+    node_name: "end0"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  ai_commands {
+    device_name: "AI"
+    node_name: "hold0"
+    one_time_only: true
+    trigger_condition {
+      condition_type: "GREATER_EQUAL"
+      lhs_param {
+        name: "timePeriod"
+        module_name: "hold0"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "0.03"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "command"
+        module_name: "AI"
+        type: "TYPE"
+        category: "AI_CMD"
+      }
+      rhs_param {
+        type: "TYPE"
+        category: "CONST"
+        data: "GET_INT_VALUE"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "cameraId"
+        module_name: "AI"
+        type: "TYPE"
+        category: "AI_CMD"
+      }
+      rhs_param {
+        type: "TYPE"
+        category: "CONST"
+        data: "CAMID_0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "objectName"
+        module_name: "AI"
+        type: "OBJNAME"
+        category: "AI_CMD"
+      }
+      rhs_param {
+        type: "OBJNAME"
+        category: "CONST"
+        data: "LOGO_logo_0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "objectNum"
+        module_name: "AI"
+        type: "INT"
+        category: "AI_CMD"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  obj_names: "CIIFCAR_cnct_0"
+  obj_names: "DSDCxH42_element_0"
+  obj_names: "LOGO_logo_0"
+  var_list {
+    name: "ObjINTValue"
+    module_name: "Plan0"
+    type: "INT"
+    category: "PLAN_VAR"
+    data: "0"
+    robotUnit: "unknown"
+  }
+  var_list {
+    name: "ObjIndex"
+    module_name: "Plan0"
+    type: "INT"
+    category: "PLAN_VAR"
+    data: "0"
+    robotUnit: "unknown"
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 0
+    max_duration: 0
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

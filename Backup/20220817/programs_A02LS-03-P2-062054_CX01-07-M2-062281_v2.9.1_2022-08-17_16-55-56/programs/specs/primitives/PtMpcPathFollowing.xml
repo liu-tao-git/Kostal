@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <input_par_config>
+            <par_name> MPCtimeStep</par_name>
+            <par_desc> "Time step for one MPC iteration" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.05 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCtimeHorizon </par_name>
+            <par_desc> "Time horizon of the MPC" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCstepsHorizon </par_name>
+            <par_desc> "Steps horizon of the MPC" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 20 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCmaxGradientIter </par_name>
+            <par_desc> "Max gradient iterations" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 8 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCmaxLagrangianIter </par_name>
+            <par_desc> "Max lagrangian iterations" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCwPos</par_name>
+            <par_desc> "Weight for position tracking in the MPC loss function" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 10 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCwVel </par_name>
+            <par_desc> "Weight on velocity in the MPC loss function" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCwAcc</par_name>
+            <par_desc> "Weight on acceleration in the MPC loss function" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCwS </par_name>
+            <par_desc> "Weight on the distance to goal in the MPC loss function" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCwV </par_name>
+            <par_desc> "Weight on the path parameter rate of evolution in the MPC loss function" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> MPCdeltaS </par_name>
+            <par_desc> "Threshold for goal penalty type" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> computationDelayEstimation </par_name>
+            <par_desc> "Estimation of the MPC computation duration in ms" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> commandTimeout </par_name>
+            <par_desc> "Exit the primitive when no path command was received for this duration" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 10 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> numberOfJoints </par_name>
+            <par_desc> "Number of joints used for Path Following" </par_desc>
+            <par_type> INT</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 6 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

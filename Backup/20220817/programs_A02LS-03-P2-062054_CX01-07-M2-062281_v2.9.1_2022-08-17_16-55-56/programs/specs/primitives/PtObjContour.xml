@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> initContactDir </par_name>
+            <par_desc> "contact direction in tcp coordinate. It could be any direction vector" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> initContourDir </par_name>
+            <par_desc> "object outline contour direction in tcp coordinate. 
+                        It should perpendicular to contact direction. </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetForce </par_name>
+            <par_desc> "target contact force that robot output on pre-set force control axis" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 15  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactForceThres </par_name>
+            <par_desc> "force threshold indicate robot contact with object" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.5  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetForceInFreeSpace </par_name>
+            <par_desc> "target force when robot lose contact with object" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> safetyForce </par_name>
+            <par_desc> "total max safety force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 40  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contourVel </par_name>
+            <par_desc> "contour velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAdjustAngVel </par_name>
+            <par_desc> "max angular velocity for robot to adjust it control direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3.0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAdjustAngInFreeSpace </par_name>
+            <par_desc> "max adjust angular in contour direction when robot lose contact" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 90.0  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> terminateDuration</par_name>
+            <par_desc> "terminate if duration of NO CONTACT exceed this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 30.0  </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> contourAng </par_name>
+            <par_desc> "current contouring direction difference to initial one" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> contourDis </par_name>
+            <par_desc> "current contouring distance length" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> mm </par_unit>
+        </state_par_config>
+    </primitive>
+</fvr>

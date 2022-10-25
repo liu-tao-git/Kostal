@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ tool_name: tool name
+ tool_type: tool type is defined in string format 
+ tcp_position    : tcp position in tool coordinate [m]
+ tcp_orientation : [w; x; y; z] quaternion in tool coordinate
+ mass : kg
+ inertia : [ Ixx Iyy Izz Ixy Ixz Iyz ] at the center of mass (tool coordinate)
+ center_of_mass : [m] in tool coordinate
+  
+ graphics/position_in_parent : posiiton in parent coordinate [m]
+ graphics/orientation_in_parent : [w; x; y; z] quaternion in parent coordinate 
+ =========================================================================== -->
+<fvr>
+    <tool_name>toolForceControlTCPOffset</tool_name>
+    <tool_type> TOOL_RIGIDBODY</tool_type>
+    <tcp>
+        <tcp_position>0.0 -0.10 0.125</tcp_position>
+        <tcp_orientation>1.0 0.0 0.0 0.0</tcp_orientation>
+    </tcp>
+    <mass>0.85</mass>
+    <inertia>1.0e-06 1.0e-06 1.0e-05 0.0 0.0 0.0</inertia>
+    <center_of_mass>0.0 -0.08 0.070 </center_of_mass>
+    <graphics>
+        <obj_file>
+            <path>graphics/toolPolish.obj</path>
+            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+            <scaling>1 1 1</scaling>
+        </obj_file>
+    </graphics>
+</fvr>

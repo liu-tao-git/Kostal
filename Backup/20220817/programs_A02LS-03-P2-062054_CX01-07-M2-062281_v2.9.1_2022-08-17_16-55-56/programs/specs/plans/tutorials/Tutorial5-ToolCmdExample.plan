@@ -1,0 +1,418 @@
+plan_name: "Tutorial5-ToolCmdExample"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "move1"
+  transit_period: 0.3
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "move1"
+  end_node_name: "move2"
+  transit_period: 0.2
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "move1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "move2"
+  end_node_name: "end1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "move2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "move2"
+  end_node_name: "home"
+  transit_period: 0.5
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedWidth"
+        module_name: "GripperRobotiq"
+        type: "BOOL"
+        category: "TOOL_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "move2"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "move1"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "move1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxAcc"
+      module_name: "move1"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "move1"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.65"
+      data: "0"
+      data: "0.35"
+      data: "180"
+      data: "-0"
+      data: "180"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+    }
+  }
+}
+node_list {
+  node_name: "move2"
+  pt_name: "MoveL"
+  pt_type: "MOVEL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "move2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "move2"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.55"
+      data: "0.3"
+      data: "0.25"
+      data: "180"
+      data: "-0"
+      data: "180"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+    }
+  }
+}
+node_list {
+  node_name: "end1"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+tool_commands {
+  device_name: "GripperRobotiq"
+  node_name: "rootNode"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetWidth"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.05"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetForce"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+}
+tool_commands {
+  device_name: "GripperRobotiq"
+  node_name: "move1"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "move1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetWidth"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetForce"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+}
+tool_commands {
+  device_name: "GripperRobotiq"
+  node_name: "move2"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "move2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetWidth"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.08"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVel"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+}
+tool_commands {
+  device_name: "GripperRobotiq"
+  node_name: "move2"
+  one_time_only: true
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "move2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetWidth"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.03"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVel"
+      module_name: "GripperRobotiq"
+      type: "DOUBLE"
+      category: "TOOL_CMD"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.1"
+    }
+  }
+}
+tool_names: "GripperRobotiq"
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

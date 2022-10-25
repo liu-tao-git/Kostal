@@ -1,0 +1,283 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="A02H-P_joints_links" params="prefix mesh_prefix_path">
+
+    <!-- JOINTS-->
+    <joint name="${prefix}joint1" type="revolute">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link1"/>
+      <origin xyz="0.0 0.0 0.21" rpy="0 0 ${pi}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="261" lower="-2.7925" upper="2.7925" velocity="1.7453"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.7925" soft_upper_limit="2.7925"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint2" type="revolute">
+      <parent link="${prefix}link1"/>
+      <child link="${prefix}link2"/>
+      <origin xyz="0.0 0.0675 0.240" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="261" lower="-2.2515" upper="2.2515" velocity="1.7453"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.2515" soft_upper_limit="2.2515"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint3" type="revolute">
+      <parent link="${prefix}link2"/>
+      <child link="${prefix}link3"/>
+      <origin xyz="0.0 0.0625 0.2275" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="123" lower="-2.7925" upper="2.7925" velocity="2.0944"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.7925" soft_upper_limit="2.7925"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint4" type="revolute">
+      <parent link="${prefix}link3"/>
+      <child link="${prefix}link4"/>
+      <origin xyz="0.0 -0.0625 0.2225" rpy="0 0 ${-pi}"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="123" lower="-2.0071" upper="2.7053" velocity="2.0944" />
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.0071" soft_upper_limit="2.7053"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint5" type="revolute">
+      <parent link="${prefix}link4"/>
+      <child link="${prefix}link5"/>
+      <origin xyz="-0.0 0.0575 0.2" rpy="0 0 ${-pi}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="57" lower="-2.9671" upper="2.9671" velocity="3.8397"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.9671" soft_upper_limit="2.9671"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint6" type="revolute">
+      <parent link="${prefix}link5"/>
+      <child link="${prefix}link6"/>
+      <origin xyz="0.0 0.03 0.19" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="57" lower="-1.3963" upper="4.5379" velocity="3.8397" />
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.3963" soft_upper_limit="4.5379"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>${-pi/2}</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}joint7" type="revolute">
+      <parent link="${prefix}link6"/>
+      <child link="${prefix}link7"/>
+      <origin xyz="-0.015 0.072 0.11" rpy="0 ${-pi/2} 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="57" lower="-2.9671" upper="2.9671" velocity="3.8397" />
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.9671" soft_upper_limit="2.9671"/>
+      <flexiv>
+        <mdh_to_rca_coordinate_transform>
+          <offset>0</offset>
+          <direction>1</direction>
+        </mdh_to_rca_coordinate_transform>
+      </flexiv>
+    </joint>
+
+    <joint name="${prefix}link7_to_flange" type="fixed">
+      <parent link="${prefix}link7"/>
+      <child link="${prefix}flange"/>
+      <origin xyz="0.0 0.0 0.081" rpy="0 0 ${-pi}"/>
+    </joint>
+
+    <!-- LINKS -->
+    <link name="${prefix}base_link">
+      <inertial>
+        <mass value="8.994" />
+        <origin xyz="0.0002 -0.0008 0.0008" rpy="0 0 0"/>
+        <inertia ixx="0.0752" iyy="0.0754" izz="0.0348" ixy="0" ixz="-0.0002" iyz="0.001"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link0.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link0.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link1">
+      <inertial>
+        <mass value="9.478" />
+        <origin xyz="0.0006 0.0266 0.181" rpy="0 0 0"/>
+        <inertia ixx="0.1099" iyy="0.0958" izz="0.0433" ixy="-0.0003" ixz="-0.0008" iyz="0.0169"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link1.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link1.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link2">
+      <inertial>
+        <mass value="5.997" />
+        <origin xyz="-0.0007 0.0597 0.111" rpy="0 0 0"/>
+        <inertia ixx="0.0772" iyy="0.0784" izz="0.0136" ixy="0.0002" ixz="0.0008" iyz="0.003"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link2.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link2.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link3">
+      <inertial>
+        <mass value="4.474" />
+        <origin xyz="-0.0003 -0.027 0.1672" rpy="0 0 0"/>
+        <inertia ixx="0.0387" iyy="0.0338" izz="0.0131" ixy="0.0" ixz="0.0" iyz="-0.0068"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link3.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link3.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link4">
+      <inertial>
+        <mass value="2.868" />
+        <origin xyz="0.0001 0.0557 0.0957" rpy="0 0 0"/>
+        <inertia ixx="0.0243" iyy="0.0248" izz="0.0044" ixy="0" ixz="0.0001" iyz="0.0009"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link4.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link4.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link5">
+      <inertial>
+        <mass value="2.248" />
+        <origin xyz="-0.0002 0.0048 0.1322" rpy="0 0 0"/>
+        <inertia ixx="0.0134" iyy="0.0128" izz="0.0034" ixy="0" ixz="0" iyz="0.001"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link5.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link5.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link6">
+      <inertial>
+        <mass value="2.115" />
+        <origin xyz="0.018 0.0588 0.0715" rpy="0 0 0"/>
+        <inertia ixx="0.0082" iyy="0.0084" izz="0.0037" ixy="0.0003" ixz="0.0011" iyz="0.0018"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link6.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link6.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}link7">
+      <inertial>
+        <mass value="0.823" />
+        <origin xyz="0.0 -0.0004 0.0293" rpy="0 0 0"/>
+        <inertia ixx="0.0011" iyy="0.0011" izz="0.0010" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/visual/link7.obj" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh_prefix_path}meshes/A02L-M/collision/link7.obj" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}flange"/>
+
+  </xacro:macro>
+
+</robot>

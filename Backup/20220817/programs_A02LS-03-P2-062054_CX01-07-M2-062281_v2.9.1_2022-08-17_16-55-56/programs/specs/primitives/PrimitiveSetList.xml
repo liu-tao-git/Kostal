@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--  ==========================================================================
+This file is used to specify the category of the primitive. This helps to
+visualize the primitive with different categories on Flexiv Elements.
+
+1) How to create a primitive set?
+   you can directly add a new primitive set by using <pt_set></pt_set> and
+   define it name with <pt_set_name>
+
+2) How to add a primitive into the primitive set?
+   You can add a primitive with <pt_name>.
+
+3) The primitive set for internal test/used is required to name as "Test-xxxx"
+
+=============================================================================-->
+<fvr>
+    <!--  ========================= Workflow ============================= -->
+    <pt_set>
+        <pt_set_name>Workflow</pt_set_name>
+        <pt_name>End</pt_name>
+        <pt_name>Home</pt_name>
+        <pt_name>Hold</pt_name>
+        <pt_name>Fault</pt_name>
+        <pt_name>GoTo</pt_name>
+        <pt_name>Plan</pt_name>
+    </pt_set>
+    <!--  ========================= Motion ================================= -->
+    <pt_set>
+        <pt_set_name>Motion</pt_set_name>
+        <pt_name>MoveL</pt_name>
+        <pt_name>MovePTP</pt_name>
+        <pt_name>MoveIK</pt_name>
+        <pt_name>MoveC</pt_name>
+        <pt_name>MoveJ</pt_name>
+        <pt_name>MoveWait</pt_name>
+        <pt_name>MoveTraj</pt_name>
+        <pt_name>MoveCompliance</pt_name>
+        <pt_name>MoveHybrid</pt_name>
+    </pt_set>
+    <!-- ========================= Hybrid Motion/Force ===================== -->
+    <pt_set>
+        <pt_set_name>Hybrid Motion/Force</pt_set_name>
+        <pt_name>CaliForceSensor</pt_name>
+        <pt_name>Contact</pt_name>
+        <pt_name>AlignContact</pt_name>
+    </pt_set>
+    <!--  ========================== Grasping ============================== -->
+    <pt_set>
+        <pt_set_name>Grasping</pt_set_name>
+        <pt_name>CompliantGripExt</pt_name>
+        <pt_name>CompliantGripInt</pt_name>
+        <pt_name>ContactGripExt</pt_name>
+        <pt_name>ContactGripInt</pt_name>
+        <pt_name>Grasp</pt_name>
+    </pt_set>
+    <!--  ========================= Assembly ============================= -->
+    <pt_set>
+        <pt_set_name>Assembly</pt_set_name>
+        <pt_name>SlideSpiral</pt_name>
+        <pt_name>SlideZigzag</pt_name>
+        <pt_name>PihSpiral</pt_name>
+        <pt_name>PihZigzag</pt_name>
+        <pt_name>SlideMating</pt_name>
+        <pt_name>RubMating</pt_name>
+        <pt_name>Sleeve</pt_name>
+        <pt_name>RasterSlideMating</pt_name>
+        <pt_name>PihCheckTran</pt_name>
+    </pt_set>
+    <!--  ========================= TrayLoading =========================== -->
+    <pt_set>
+        <pt_set_name>Tray Loading</pt_set_name>
+        <pt_name>TrayUnloading</pt_name>
+        <pt_name>TrayLoading</pt_name>
+    </pt_set>
+    <!--  ========================= Polishing ============================= -->
+    <pt_set>
+        <pt_set_name>Polishing</pt_set_name>
+        <pt_name>Polish</pt_name>
+        <pt_name>PolishStiff</pt_name>
+        <pt_name>PolishStiffer</pt_name>
+        <pt_name>PolishILC</pt_name>
+        <pt_name>PolishStiffILC</pt_name>
+        <pt_name>PolishStifferILC</pt_name>
+        <pt_name>EdgeLearning</pt_name>
+        <pt_name>SurfaceLearning</pt_name>
+    </pt_set>
+    <!--  ========================= Demo =================================== -->
+    <pt_set>
+        <pt_set_name>Demo</pt_set_name>
+        <pt_name>BallBalance</pt_name>
+    </pt_set>
+    <!-- ============= Primitives for Internal Test/Development ================
+         All the tested (internal used) primitives should go to this section.
+         It will be used/tested by R&D and our AE team. It could be applied on
+         POC projects.
+         Please mark the pt_set_name as "Test-xxxx"
+    ======================================================================== -->
+    <!-- ======================== Test - Motion> ======================-->
+    <pt_set>
+        <pt_set_name>Test-Motion</pt_set_name>
+        <pt_name>MoveLine</pt_name>
+        <pt_name>TimeOptimalMoveJ</pt_name>
+        <pt_name>MoveOptRed</pt_name>
+    </pt_set>
+    <!-- ======================== Test - Polishing ======================-->
+    <pt_set>
+        <pt_set_name>Test-Polishing</pt_set_name>
+        <pt_name>Massage</pt_name>
+    </pt_set>
+    <!--  ========================= Test-Assembly ======================== -->
+    <pt_set>
+        <pt_set_name>Test-Assembly</pt_set_name>
+        <pt_name>PinLocator</pt_name>
+        <pt_name>EdgeAlignContact</pt_name>
+        <pt_name>Touch</pt_name>
+        <pt_name>ScrewFasten</pt_name>
+    </pt_set>
+    <!--  ========================= Test-Visual Servo =================== -->
+    <pt_set>
+        <pt_set_name>Test-Visual Control</pt_set_name>
+        <pt_name>PointIBVS</pt_name>
+        <pt_name>PNPVS</pt_name>
+        <pt_name>LineIBVS</pt_name>
+        <pt_name>PBVSEIH</pt_name>
+        <pt_name>PBVSPIH</pt_name>
+        <pt_name>VisualTrack</pt_name>
+    </pt_set>
+    <!--  ========================= Test- Planning ============================= -->
+    <pt_set>
+        <pt_set_name>Test-Planning</pt_set_name>
+        <pt_name>MotionPlanning</pt_name>
+    </pt_set>
+    <!--  ========================= Test-Navigation ====================== -->
+    <!-- <pt_set>
+        <pt_set_name>Test-Navigation</pt_set_name>
+        <pt_name>Navigation</pt_name>
+    </pt_set> -->
+</fvr>

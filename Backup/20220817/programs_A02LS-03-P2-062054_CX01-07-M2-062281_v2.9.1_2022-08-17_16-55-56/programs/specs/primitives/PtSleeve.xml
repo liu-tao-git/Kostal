@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is used to perform sleeve action, plugging a bolt into a hole,
+        for example. Robot would insert in predefined direction and adjust its position and orientation
+        at the same time if it gets stuck druing the insertion motion. </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_sleeve.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> insertDir </par_name>
+            <par_desc> " insert direction in tool coordinate. " </par_desc>
+            <par_type> TYPE </par_type>
+            <par_required> 1 </par_required>
+            <par_unit> none </par_unit>
+            <par_option> X -X Y -Y Z -Z  </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> alignmentDir </par_name>
+            <par_desc> "alignment direction in tool coordinate. It could be 0 or 1 for each axis. 
+                        if set as 1, the robot would be force compliant in corresponding axis. 
+                        For example, (0,1,0,1,0,0) means compliant in linear y and rotation x axis" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 0 0 0 0  </par_default>
+            <par_max> 1 1 1 1 1 1 </par_max>
+            <par_min> 0 0 0 0 0 0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxContactForce </par_name>
+            <par_desc> "maximum contact force between robot and environment. Robot would stop insertion
+                        if contact force exceed this value, and adjust its position and orientation if needed" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 1 </par_min>
+            <par_max> 30 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 5  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> deadbandScale</par_name>
+            <par_desc> "robot alignment wrench deadband scale. 0 means no deadband.
+                        Robot would not adjust its position or orientation when external wrench is smaller
+                        than deadband"</par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_min> 0.0 </par_min>
+            <par_max> 1.0 </par_max>
+            <par_default> 0.5 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> insertVel </par_name>
+            <par_desc> "velocity in insertion direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.01  </par_default>
+            <par_max> 0.03 </par_max>
+            <par_min> 0.001 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> adjustVelScale </par_name>
+            <par_desc> "scale of adjustment speed to observed external wrench. 
+                        Robot would adjust its pose faster when this valuse is bigger, but may become less stable. 
+                        The default value is recommended." </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.2  </par_default>
+            <par_max> 1.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> insertDis </par_name>
+            <par_desc> "robot moving distance in insert direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> isMoving </par_name>
+            <par_desc> "flag if robot is still moving" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>isMoving</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>0</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

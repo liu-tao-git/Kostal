@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<scene>
+    <obj>
+        <obj_name> helmet </obj_name>
+        <pos_wrt_parent> 0.625 -0.0 0.00 </pos_wrt_parent>
+        <ori_wrt_parent> 1.0000 0.0000 0.0000 0.0000 </ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>100.0</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/helmet.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>0.03 0.03 0.02</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>  
+</scene>

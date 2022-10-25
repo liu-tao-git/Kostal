@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> posCtrl </primitive_name>
+        <primitive_type> POS_CTRL </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtPosCtrl.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PosControl</task_name>
+            <task_type>TASK_POS</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>3</dof>
+            <kp>30 30 30 </kp>
+            <kv>25 25 25 </kv>
+            <ki>0  0  0 </ki>
+            <max_iForce> 0  0  0 </max_iForce>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>20 20 20 20 10 20 5</kp>
+            <kv>3 3 3 3 3 3 3</kv>
+        </task>
+    </primitive>
+</fvr>

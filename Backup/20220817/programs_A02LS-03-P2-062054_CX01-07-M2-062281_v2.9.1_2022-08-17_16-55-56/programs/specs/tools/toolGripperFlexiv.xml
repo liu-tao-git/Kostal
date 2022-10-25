@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<!-- ===========================================================================
+ tool_name: tool name
+ tool_type: tool type is defined in string format
+ tcp_position    : tcp position in tool coordinate [m]
+ tcp_orientation : [w; x; y; z] quaternion in tool coordinate
+ mass : kg
+ inertia : [ Ixx Iyy Izz Ixy Ixz Iyz ] at the center of mass (tool coordinate)
+ center_of_mass : [m] in tool coordinate
+
+ graphics/position_in_parent : posiiton in parent coordinate [m]
+ graphics/orientation_in_parent : [w; x; y; z] quaternion in parent coordinate
+ =========================================================================== -->
+<fvr>
+    <tool_name>GripperFlexiv</tool_name>
+    <tool_type> TOOL_GRIPPER_FLEXIV </tool_type>
+    <tcp>
+        <tcp_position>0.0 0.0 0.15</tcp_position>
+        <tcp_orientation>1.0 0.0 0.0 0.0</tcp_orientation>
+    </tcp>
+    <mass>0.9</mass>
+    <inertia>2.768e-03 3.149e-03 5.64e-04 0.0 0.0 0.0</inertia>
+    <center_of_mass>0.0 0.0 0.057 </center_of_mass>
+    <graphics>
+        <obj_file>
+            <path>graphics/toolGripperRobotiq.obj</path>
+            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+            <scaling>1 1 1</scaling>
+        </obj_file>
+    </graphics>
+    <!-- =======================================================================
+                           device configuration parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_config>
+        <par_name> slaveAddr </par_name>
+        <par_desc> "slave address in modbus" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none </par_unit>
+        <par_value> 10 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> baudrate </par_name>
+        <par_desc> "modbus(RTU) baudrate" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none </par_unit>
+        <par_value> 115200 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> inputRegBgnAddr </par_name>
+        <par_desc> "input register start address" </par_desc>
+        <par_unit> none </par_unit>
+        <par_type> INT </par_type>
+        <par_value> 0 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> holdingRegBgnAddr </par_name>
+        <par_desc> "holding register start address" </par_desc>
+        <par_unit> none </par_unit>
+        <par_type> INT </par_type>
+        <par_value> 0 </par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxWidth </par_name>
+        <par_desc>"maximum width"</par_desc>
+        <par_unit> m </par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>0.1</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> minWidth </par_name>
+        <par_desc>"minimum width"</par_desc>
+        <par_unit> m</par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>0.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxForce </par_name>
+        <par_desc>"maximum force"</par_desc>
+        <par_unit> N</par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>300.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> minForce </par_name>
+        <par_desc>"minimum force"</par_desc>
+        <par_unit> N</par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>-300.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxVel </par_name>
+        <par_desc>"maximum velocity"</par_desc>
+        <par_type>DOUBLE</par_type>
+        <par_unit> m/s</par_unit>
+        <par_value>0.2</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> minVel </par_name>
+        <par_desc>"minimum velocity"</par_desc>
+        <par_type>DOUBLE</par_type>
+        <par_unit> m/s</par_unit>
+        <par_value>0.001</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> maxCurrent </par_name>
+        <par_desc>"maximum current"</par_desc>
+        <par_unit> A</par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>2.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> minCurrent </par_name>
+        <par_desc>"minimum current"</par_desc>
+        <par_unit> A</par_unit>
+        <par_type>DOUBLE</par_type>
+        <par_value>-2.0</par_value>
+    </device_par_config>
+    <device_par_config>
+        <par_name> widthTolerance </par_name>
+        <par_desc> "tolerance for width" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 0.001 </par_value>
+        <par_unit> m </par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> forceTolerance </par_name>
+        <par_desc> "tolerance for force" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_value> 1.0 </par_value>
+        <par_unit> Nm </par_unit>
+    </device_par_config>
+    <device_par_config>
+        <par_name> enableInSimulator </par_name>
+        <par_desc>"if enable device while in simulator"</par_desc>
+        <par_type>BOOL</par_type>
+        <par_unit> none</par_unit>
+        <par_value>0</par_value>
+    </device_par_config>
+    <!-- =======================================================================
+                            device command parameters
+    Notice: this part can be specified by the users in UIApp
+    =========================================================================-->
+    <device_par_command>
+        <par_name> ctrlMode </par_name>
+        <par_desc> "the control mode. 0, current control; 1, postion control; 2, force control; 3, force and postion control" </par_desc>
+        <par_type> INT </par_type>
+        <par_unit> none </par_unit>
+        <par_required> 1 </par_required>
+        <par_min> 0 </par_min>
+        <par_max> 3 </par_max>
+        <par_default> 1 </par_default>
+    </device_par_command>
+    <device_par_command>
+        <par_name> targetWidth </par_name>
+        <par_desc> "desired width" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> m </par_unit>
+        <par_required> 1 </par_required>
+        <par_min> 0.0 </par_min>
+        <par_max> 0.1 </par_max>
+        <par_default> 0.06 </par_default>
+        <par_input_type> KEYIN PT </par_input_type>
+    </device_par_command>
+    <device_par_command>
+        <par_name> targetForce </par_name>
+        <par_desc> "desired grasping force" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> N </par_unit>
+        <par_required> 0 </par_required>
+        <par_min> -300.0 </par_min>
+        <par_max> 300.0 </par_max>
+        <par_default> 50.0 </par_default>
+        <par_input_type> KEYIN PT </par_input_type>
+    </device_par_command>
+    <device_par_command>
+        <par_name> targetVel </par_name>
+        <par_desc> "desired grasping speed" </par_desc>
+        <par_unit> m/s </par_unit>
+        <par_type> DOUBLE </par_type>
+        <par_required> 0 </par_required>
+        <par_min> 0.001 </par_min>
+        <par_max> 0.2 </par_max>
+        <par_default> 0.1 </par_default>
+        <par_input_type> KEYIN PT </par_input_type>
+    </device_par_command>
+    <device_par_command>
+        <par_name> targetCurrent </par_name>
+        <par_desc> "desired grasping current" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> A </par_unit>
+        <par_required> 0 </par_required>
+        <par_min> -2.0 </par_min>
+        <par_max> 2.0 </par_max>
+        <par_default> 1.0 </par_default>
+        <par_input_type> KEYIN PT </par_input_type>
+    </device_par_command>
+    <!-- =======================================================================
+                            device state parameters
+    Notice: this part is specified by the developers and cannot be modified in
+            UIApp
+    =========================================================================-->
+    <device_par_state>
+        <par_name> state </par_name>
+        <par_desc> "gripper current state" </par_desc>
+        <par_type> TYPE </par_type>
+        <par_unit> none</par_unit>
+        <par_option> GRIPPER_OK GRIPPER_ERROR </par_option>
+    </device_par_state>
+    <device_par_state>
+        <par_name> width </par_name>
+        <par_desc> "current width" </par_desc>
+        <par_unit> m </par_unit>
+        <par_type> DOUBLE </par_type>
+    </device_par_state>
+    <device_par_state>
+        <par_name> reachedForce </par_name>
+        <par_desc> "flag to indicate if the gripper has reached the desired grasping force" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> reachedWidth </par_name>
+        <par_desc> "flag to indicate if the gripper has reached the desired width" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> moving </par_name>
+        <par_desc> "flag to indicate if the gripper is moving the fingers now" </par_desc>
+        <par_type> BOOL </par_type>
+        <par_unit> none</par_unit>
+    </device_par_state>
+    <device_par_state>
+        <par_name> desiredWidth </par_name>
+        <par_desc> "desired width" </par_desc>
+        <par_unit> m </par_unit>
+        <par_type> DOUBLE </par_type>
+    </device_par_state>
+    <device_par_state>
+        <par_name> current </par_name>
+        <par_desc> "electrical current" </par_desc>
+        <par_type> DOUBLE </par_type>
+        <par_unit> A</par_unit>
+    </device_par_state>
+</fvr>

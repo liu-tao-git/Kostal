@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<!--
+  The plan involved in this file will reference plans.xml.
+  If it exists, it will be effectively loaded into the UI and can be used.
+
+  name: plan dir path/ plan file name
+  mode: 0:manual, 1:auto, 2:manual and auto
+  time[s]: plan is expected to take time
+-->
+
+<!-- ============== plan dir ================-->
+<plan_dir>
+  <name>tutorials/</name>
+  <mode>2</mode>
+  <time>20</time>
+</plan_dir>
+<!-- ============== plan file ================-->
+<plan_file>
+  <name>production/MultiDOFSineTest_A1.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A2.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A3.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A4.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A5.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A6.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MultiDOFSineTest_A7.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TWR-MultiDOFSineTest.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TWR-MultiDOFSineTest_FullPayload.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TWR-MultiDOFSineTest_Slow.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TWR-JointTorqueAnalysis.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TWR-JointPerformanceTest.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-EncoderCorrection.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliJointTorqueSensorGain.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-OffAxisTorqueHorizontal.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-OffAxisTorqueVertical.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliStaticTorqueChannelOffset.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliStaticTorqueChannelOffset-LS.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliStaticTorqueSensorOffset.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliStaticTorqueSensorOffset-LS.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliDynamicTorqueSensorOffset.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>demo/PLAN-FloatingSoft.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-NullspaceKinematicCalibration.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-CaliRobotDynamics.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-VeriRobotDynamics.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-6DofCaliMultiPoses.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-6DofCaliHome.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-6DofCaliHomeHighTemperature.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>calibration/PLAN-6DofCaliHomeLowTemperature.plan</name>
+  <mode>1</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/MoveAllJointsToZeroDeg.plan</name>
+  <mode>0</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TestEasyContact.plan</name>
+  <mode>0</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/TestEasyMove.plan</name>
+  <mode>0</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>system/PLAN-Home.plan</name>
+  <mode>0</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>system/PLAN-ArmPackagingPose.plan</name>
+  <mode>0</mode>
+  <time>20</time>
+</plan_file>
+<plan_file>
+  <name>production/PLAN-OQCLS-SineTracking.plan</name>
+  <mode>1</mode>
+  <time>60</time>
+</plan_file>
+<plan_file>
+  <name>production/PLAN-OQCLS-StepResponse.plan</name>
+  <mode>1</mode>
+  <time>60</time>
+</plan_file>

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is used to move the TCP of the robot to a target pose
+        while passing through various waypoints. User can specify the maximum velocity
+        and acceleration of the TCP for the robot to move.</pt_desc>
+        <!-- ==================================================================
+         primitive license (optional)
+         ====================================================================-->
+        <!-- <public_key_file>simple_test.public_key </public_key_file>
+        <signature_file> simple_test.signature</signature_file>
+        <license_file>home.lic </license_file> -->
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_moveL.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH", "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> target </par_name>
+            <par_desc> target (tcp) coordinate </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_option>TRAJ::START WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 1 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waypoints </par_name>
+            <par_desc> waypoints between initial and target poses </par_desc>
+            <par_type> ARRAY_COORD </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_option>TRAJ::START TRAJ::GOAL TRAJ::PREVIOUSWAYPOINT WORLD::WORLD_ORIGIN</par_option>
+            <par_required> 0 </par_required>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> maximum Cartesian linear velocity </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+            <par_max> 2.2 </par_max>
+            <par_min> 0.01 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> maximum Cartesian angular velocity </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 300 </par_default>
+            <par_max> 800 </par_max>
+            <par_min> 5 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxAcc </par_name>
+            <par_desc> maximum Cartesian linear acceleration </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>1.5 </par_default>
+            <par_max> 3.0 </par_max>
+            <par_min> 0.1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotAcc </par_name>
+            <par_desc> maximum Cartesian angular acceleration </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s^2 </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 300 </par_default>
+            <par_max> 800 </par_max>
+            <par_min> 5 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> blendRadiusLevel </par_name>
+            <par_desc> blend radius level approaching waypoints </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+            <par_max> 9 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetTolLevel </par_name>
+            <par_desc> "tolerance level of target pose accuracy ranged from 1 to 10, where 1 is the smallest tolerence" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 3 </par_default>
+            <par_max> 10 </par_max>
+            <par_min> 1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> preferJntPos </par_name>
+            <par_desc> preferred target joint configuration. The robot is compliance with Cartesian constraint while reaching this configuration as close as possible.</par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 -40.0 0.0 90.0 0.0 40.0 0.0 </par_default>
+            <par_max> 160  130  170  154 170  260  170</par_max>
+            <par_min> -160 -130 -170 -107 -170 -80 -170</par_min>
+            <par_freedrive> 1 </par_freedrive>
+        </input_par_config>
+        <input_par_config>
+            <par_name> swivelAngleNullspaceGradientScaling </par_name>
+            <par_desc> swivel angle nullspace optmization objective gradient scaling. (linear manipulability, angular manipulability, preferSwivelAngle error norm, cartesian stiffness)</par_desc>
+            <par_type> VEC_4d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.0 0.0 1.0 0.0 </par_default>
+            <par_max> 10.0 10.0 5.0 5.0 </par_max>
+            <par_min> 0.0 0.0 0.0 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> controlModeForSwivelAngle </par_name>
+            <par_desc> swivel angle task control mode, 0:qp optimization, 1:OTG, 2:any user input traj, 3:cubic traj， 4:hold pos</par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_max> 4 </par_max>
+            <par_min> 0 </par_min>
+        </input_par_config>   
+        <input_par_config>
+            <par_name> preferSwivelAngle </par_name>
+            <par_desc> goal swivel angle </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+            <par_max> 120 </par_max>
+            <par_min> -120 </par_min>
+        </input_par_config>            
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> flag to indicate if the robot has reached target </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> waypointIndex </par_name>
+            <par_desc> Index of the current waypoint the robot just passed. The waypoint index is 0 indexed where the 0th index is the initial pose </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>reachedTarget</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

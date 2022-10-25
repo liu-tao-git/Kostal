@@ -1,0 +1,208 @@
+plan_name: "PLAN-MoveJntSpaceControlTuning-ILC"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "moveInitConfig"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig"
+  end_node_name: "forLoopPlan"
+  transit_period: 0.1
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "forLoopPlan"
+  end_node_name: "end1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "forLoopPlan"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "end1"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+child_plans {
+  plan_name: "forLoopPlan"
+  config {
+    node_name: "forLoopPlan"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "moveJointSpaceILC"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  transit_list {
+    start_node_name: "moveJointSpaceILC"
+    end_node_name: "end2"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "moveJointSpaceILC"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "moveJointSpaceILC"
+    pt_name: "MACRO-MoveJointSpaceILC"
+    pt_type: "MOVE_JNTSPACE_ILC"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "writeResultToFile"
+        module_name: "moveJointSpaceILC"
+        type: "BOOL"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "targetDof"
+        module_name: "moveJointSpaceILC"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "3"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "iterationNumber"
+        module_name: "moveJointSpaceILC"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        name: "loopCounter"
+        module_name: "forLoopPlan"
+        type: "INT"
+        category: "PLAN_STATE"
+      }
+    }
+  }
+  node_list {
+    node_name: "end2"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 0
+    max_duration: 0
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

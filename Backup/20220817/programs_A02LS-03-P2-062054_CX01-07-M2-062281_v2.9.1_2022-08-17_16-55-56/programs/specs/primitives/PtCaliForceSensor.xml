@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc> This primitive calibrates the 6Dofs load cell and joint torque 
+                  sensors during the run-time. It zeros the force/torque measurement offset in 100 ms.
+                  It is recommended to run this primitive before any force-controlled primitive. </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_caliForceSensor.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> dataCollectionTime </par_name>
+            <par_desc> "time period of the force offset estimation" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.2 </par_default>
+            <par_max> 1.0 </par_max>
+            <par_min> 0.1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> enableStaticCheck </par_name>
+            <par_desc> "switch to enable checking whether the robot is static" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

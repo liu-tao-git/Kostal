@@ -1,0 +1,323 @@
+plan_name: "Pt-PihSpiral"
+config {
+  node_name: "rootNode"
+  pt_name: "PihSpiral"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "calibrate"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "calibrate"
+  end_node_name: "contact"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "calibrate"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "contact"
+  end_node_name: "spiral"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "LESS"
+    lhs_param {
+      name: "contactForce"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+    rhs_param {
+      name: "curContactForce"
+      module_name: "contact"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+  }
+}
+transit_list {
+  start_node_name: "spiral"
+  end_node_name: "endNode"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "OR"
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "pushDistance"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_INPUT"
+      }
+      rhs_param {
+        name: "pushDistance"
+        module_name: "spiral"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "forceDrop"
+        module_name: "rootNode"
+        type: "DOUBLE"
+        category: "PLAN_INPUT"
+      }
+      rhs_param {
+        name: "forceDrop"
+        module_name: "spiral"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+    }
+  }
+}
+node_list {
+  node_name: "calibrate"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "contact"
+  pt_name: "Contact"
+  pt_type: "CONTACT"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxContactForce"
+      module_name: "contact"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactForce"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "coord"
+      module_name: "contact"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "tcp"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "movingDir"
+      module_name: "contact"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactAxis"
+      module_name: "PihSpiral0"
+      type: "VEC_3d"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactVel"
+      module_name: "contact"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactVel"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+}
+node_list {
+  node_name: "spiral"
+  pt_name: "SlideSpiral"
+  pt_type: "SLIDE_SPIRAL"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "wigglePeriod"
+      module_name: "spiral"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "wigglePeriod"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "wiggleRange"
+      module_name: "spiral"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "wiggleRange"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "timeFactor"
+      module_name: "spiral"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "timeFactor"
+      module_name: "PihSpiral0"
+      type: "INT"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "radius"
+      module_name: "spiral"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "radius"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactForce"
+      module_name: "spiral"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactForce"
+      module_name: "PihSpiral0"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "searchAxis"
+      module_name: "spiral"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "searchAxis"
+      module_name: "PihSpiral0"
+      type: "VEC_3d"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "contactAxis"
+      module_name: "spiral"
+      type: "VEC_3d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "contactAxis"
+      module_name: "PihSpiral0"
+      type: "VEC_3d"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "startDensity"
+      module_name: "spiral"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "startDensity"
+      module_name: "rootNode"
+      type: "INT"
+      category: "PLAN_INPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "randomFactor"
+      module_name: "spiral"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "randomFactor"
+      module_name: "rootNode"
+      type: "DOUBLE"
+      category: "PLAN_INPUT"
+    }
+  }
+}
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== 
+ primitive type options : 
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL", 
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> posAdmit </primitive_name>
+        <primitive_type> POS_ADMIT </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <param_configs>PtPosAdmit.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>OriControl</task_name>
+            <task_type>TASK_ORI</task_type>
+            <link_name>link7</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>3</dof>
+            <kp>30 30 30</kp>
+            <kv>5 5 5</kv>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>JointAdmit</task_name>
+            <task_type>TASK_JNTADMIT</task_type>
+            <dof>7</dof>
+            <kp>50 50 50 50 50 50 50</kp>
+            <kv>5 5 5 5 5 5 5</kv>
+            <force_kp>50.0 50.0 50.0 100.0 100.0 80.0 80.0</force_kp>
+        </task>
+    </primitive>
+</fvr>

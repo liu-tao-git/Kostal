@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>This primitive uses hybrid motion-force control to repeatedly move along a zigzag trajectory
+        as well as appling force to assist parts-mating operations in assembly applications.</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_rasterSlideMating.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "VEC_3d", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> matingDir </par_name>
+            <par_desc> "mating slide direction in tcp coordiante, could be any direction vector" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 1 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceDir </par_name>
+            <par_desc> "force control axis in tcp coordiante, could be any direction vector" </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 0 1</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> matingRange</par_name>
+            <par_desc> "mating range in slide direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_min> 0.001 </par_min>
+            <par_max> 0.35 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxMatingVel </par_name>
+            <par_desc> "max slide velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_min> 0.001 </par_min>
+            <par_max> 0.5 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> totalMatingTimes</par_name>
+            <par_desc> "total number of mating times. if set as 0, robot would run the range one-way for once " </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 1000 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> matingForce</par_name>
+            <par_desc> "force during mating in tcp coordinate" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> N </par_unit>
+            <par_min> 5 </par_min>
+            <par_max> 50 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 15 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> safetyForce</par_name>
+            <par_desc> "max force during mating for safety" </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> N </par_unit>
+            <par_min> 20 </par_min>
+            <par_max> 80 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 50.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxMotionDisInForceDir </par_name>
+            <par_desc> "max motion distance in force control direction, primitive would terminate if exceed this value". </par_desc>
+            <par_type> DOUBLE</par_type>
+            <par_unit> m </par_unit>
+            <par_min> 0.005 </par_min>
+            <par_max> 0.5 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 0.05 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rasterRange </par_name>
+            <par_desc> " raster range" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_min> 0.001 </par_min>
+            <par_max> 0.1 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 0.05 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRasterVel </par_name>
+            <par_desc> "max raster velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_min> 0.001 </par_min>
+            <par_max> 0.5 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rasterDir</par_name>
+            <par_desc> "raster slide direction in tcp coordiante," </par_desc>
+            <par_type> VEC_3d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 0 0</par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         transit parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> matingFinished </par_name>
+            <par_desc> "flag if mating is finished" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>matingFinished</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

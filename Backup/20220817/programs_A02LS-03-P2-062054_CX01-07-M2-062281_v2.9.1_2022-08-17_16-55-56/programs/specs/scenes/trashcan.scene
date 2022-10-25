@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+
+<!-- ===========================================================================
+          This is the scene file for testing visual servo
+============================================================================ -->
+<scene>
+    <obj>
+        <obj_name>trashcan</obj_name>
+        <pos_wrt_parent>0.4 0.0 0.40</pos_wrt_parent>
+        <ori_wrt_parent>1.0 0.0 0.0  0.0000</ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/trashcan.obj</path>
+	            <position_in_parent>0.6 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 1.0 0.0</orientation_in_parent>
+	            <scaling>1.0 1.0 1.0</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>shelf</obj_name>
+        <pos_wrt_parent>0.0 0.6 0.00</pos_wrt_parent>
+        <ori_wrt_parent>0.0 0.0 1.0  0.0000</ori_wrt_parent>
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/shelf.obj</path>
+	            <position_in_parent>0.6 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>0.0 0.0 1.0 0.0</orientation_in_parent>
+	            <scaling>1.0 1.0 1.0</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>tag4</obj_name>
+        <pos_wrt_parent>0.4 0.0 0.35</pos_wrt_parent>
+        <ori_wrt_parent>1.0 0.0 0.0 0.0</ori_wrt_parent>
+        <!-- <ori_wrt_parent>0.7071 0.0 0.0 0.7071</ori_wrt_parent> -->
+        <!-- <ori_wrt_parent>1.0 0.0 0.0 0.0</ori_wrt_parent> -->
+        <obj_parent>world</obj_parent>
+        <connection_type>SP_INDEPENDENT</connection_type>
+        <enable_physics>0</enable_physics>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/smallcube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>1.0 1.0 1.0</scaling>
+	        </obj_file>
+    	</graphics>
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.01 -0.02 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.01 0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 670 850 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 1070 850 </sim_target_img_pos2>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>0.01 -0.012 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>-0.015 0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 670 1300 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 1250 850 </sim_target_img_pos2>
+    	</obj_feature>
+    	<obj_feature>
+    	     <feature_type> LINE </feature_type> 
+    	     <pos1_wrt_obj>-0.02 0.02 0.019</pos1_wrt_obj>
+    	     <imgNoise1> 0 </imgNoise1>
+    	     <pos2_wrt_obj>0.02 0.02 0.019</pos2_wrt_obj>
+    	     <imgNoise2> 0 </imgNoise2>
+    	     <sim_target_img_pos1> 670 600 </sim_target_img_pos1>
+    	     <sim_target_img_pos2> 670 1500 </sim_target_img_pos2>
+    	</obj_feature>
+    </obj>
+</scene>

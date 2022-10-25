@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive is designed to grasp small/thin object which is OUTSIDE gripper fingers 
+        and on a flat surface. The gripper contacts the surface first and keeps maintaining the contact
+        while opening fingers.</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_contactGripInt.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration 
+         
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH"                                          
+         ====================================================================-->
+        <input_par_config>
+            <par_name> gripSpeed </par_name>
+            <par_desc> "gripper finger closing moving" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_default> 0.01 </par_default>
+            <par_required> 0 </par_required>
+            <par_min> 0.0 </par_min>
+            <par_max> 0.05 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> gripWidth </par_name>
+            <par_desc> "gripper target open width" </par_desc>
+            <par_unit> m </par_unit>
+            <par_type> DOUBLE </par_type>
+            <par_required> 0 </par_required>
+            <par_default> 0.1 </par_default>
+            <par_min> 0.0 </par_min>
+            <par_max> 0.1 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxGripForce </par_name>
+            <par_desc> "maximum grip force between gripper and object" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 30.0 </par_default>
+            <par_min> 0.0 </par_min>
+            <par_max> 50.0 </par_max>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactTCPAxis </par_name>
+            <par_desc> "contact axis in gripper coordinate." </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> Z </par_default>
+            <par_option> X -X Y -Y Z -Z </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> contactForce </par_name>
+            <par_desc> "target contact force in tcp coordinate that robot output on pre-set force control axis" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5 </par_default>
+            <par_min> 1.0 </par_min>
+            <par_max> 6.0 </par_max>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration                                     
+         ====================================================================-->
+        <state_par_config>
+            <par_name> curWidth </par_name>
+            <par_desc> "current width between gripper fingers" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> reachedForce </par_name>
+            <par_desc> "flag to indicate if force between gripper and object reaches set value " </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> reachedWidth </par_name>
+            <par_desc> "flag to indicate if width between gripper fingers reaches set value " </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> isMoving </par_name>
+            <par_desc> "flag to indicate if gripper fingers are moving " </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ==================================================================
+         default transition condition  
+          condition_type : trigger condition type    
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive  
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now 
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category 
+          rhs_param_data (optional) : RHS parameter data. 
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

@@ -1,0 +1,1787 @@
+plan_name: "PLAN-VeriGravityTorque"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "homeA1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "homeA1"
+  end_node_name: "hold1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "homeA1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold1"
+  end_node_name: "testA1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold1"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA1"
+  end_node_name: "hold2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "dateTimeString"
+      module_name: "testA1"
+      type: "STRING"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold2"
+  end_node_name: "moveJntSpaceA2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold2"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpaceA2"
+  end_node_name: "hold3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpaceA2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold3"
+  end_node_name: "testA2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold3"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA2"
+  end_node_name: "hold4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold4"
+  end_node_name: "moveJntSpaceA3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold4"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpaceA3"
+  end_node_name: "hold5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpaceA3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold5"
+  end_node_name: "testA3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold5"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA3"
+  end_node_name: "hold6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold6"
+  end_node_name: "moveJntSpaceA4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold6"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpaceA4"
+  end_node_name: "hold7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpaceA4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold7"
+  end_node_name: "testA4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold7"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA4"
+  end_node_name: "hold8"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold8"
+  end_node_name: "moveJntSpaceA5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold8"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpaceA5"
+  end_node_name: "hold9"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpaceA5"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold9"
+  end_node_name: "testA5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold9"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA5"
+  end_node_name: "hold10"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA5"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold10"
+  end_node_name: "moveJntSpaceA6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold10"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveJntSpaceA6"
+  end_node_name: "hold11"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveJntSpaceA6"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold11"
+  end_node_name: "testA6"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold11"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA6"
+  end_node_name: "hold12"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA6"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold12"
+  end_node_name: "homeA7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold12"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+transit_list {
+  start_node_name: "homeA7"
+  end_node_name: "hold13"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "homeA7"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold13"
+  end_node_name: "testA7"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold13"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "5"
+    }
+  }
+}
+transit_list {
+  start_node_name: "testA7"
+  end_node_name: "hold14"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "testA7"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA7"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA7"
+      type: "ARRAY_DOUBLE"
+      category: "PT_OUTPUT"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold14"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "GREATER"
+    lhs_param {
+      name: "timePeriod"
+      module_name: "hold14"
+      type: "DOUBLE"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "2"
+    }
+  }
+}
+node_list {
+  node_name: "homeA1"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "homeA7"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "moveJntSpaceA2"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpaceA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "-90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "moveJntSpaceA3"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpaceA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "moveJntSpaceA4"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpaceA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "moveJntSpaceA5"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpaceA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "moveJntSpaceA6"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveJntSpaceA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "hold1"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold2"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold3"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold4"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold5"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold6"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold7"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold8"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold9"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold10"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold11"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold12"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold13"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "hold14"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "testA1"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "appendData"
+      module_name: "testA1"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA1"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA2"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionLowerBound"
+      module_name: "testA2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-110"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionUpperBound"
+      module_name: "testA2"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "55"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA2"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA2"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA3"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA3"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA3"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA3"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA4"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA4"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "3"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA4"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA4"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA5"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionLowerBound"
+      module_name: "testA5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-110"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointPositionUpperBound"
+      module_name: "testA5"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "55"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA5"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "4"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA5"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA5"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA5"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA6"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA6"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA6"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA6"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA6"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+node_list {
+  node_name: "testA7"
+  pt_name: "caliJointDynamicTorqueSensorOffset"
+  pt_type: "CALIJOINTDYNAMICTORQUESENSOROFFSET"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "lastTest"
+      module_name: "testA7"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "targetVelocity"
+      module_name: "testA7"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "testJointIndex"
+      module_name: "testA7"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "INT"
+      category: "CONST"
+      data: "6"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "filePrintLevel"
+      module_name: "testA7"
+      type: "INT"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_filePrintLevel"
+      type: "INT"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetStdAllJnts"
+      module_name: "testA7"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetStdAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "trqSensorOffsetAllJnts"
+      module_name: "testA7"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_trqSensorOffsetAllJnts"
+      type: "ARRAY_DOUBLE"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "dateTimeString"
+      module_name: "testA7"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "g_dateTimeString"
+      type: "STRING"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+}
+var_list {
+  name: "g_dateTimeString"
+  type: "STRING"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_trqSensorOffsetAllJnts"
+  type: "ARRAY_DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_trqSensorOffsetStdAllJnts"
+  type: "ARRAY_DOUBLE"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "g_filePrintLevel"
+  type: "INT"
+  category: "PLAN_VAR"
+  data: "5"
+  robotUnit: "unknown"
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

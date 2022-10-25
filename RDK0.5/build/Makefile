@@ -51,10 +51,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/flexiv/Documents/Case/2022/Kostal/RDK5.0
+CMAKE_SOURCE_DIR = /home/flexiv/Documents/Case/2022/Kostal/RDK0.5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/flexiv/Documents/Case/2022/Kostal/RDK5.0/build
+CMAKE_BINARY_DIR = /home/flexiv/Documents/Case/2022/Kostal/RDK0.5/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -83,9 +83,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/flexiv/Documents/Case/2022/Kostal/RDK5.0/build/CMakeFiles /home/flexiv/Documents/Case/2022/Kostal/RDK5.0/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/flexiv/Documents/Case/2022/Kostal/RDK0.5/build/CMakeFiles /home/flexiv/Documents/Case/2022/Kostal/RDK0.5/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/flexiv/Documents/Case/2022/Kostal/RDK5.0/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/flexiv/Documents/Case/2022/Kostal/RDK0.5/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -112,6 +112,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named RPY
+
+# Build rule for target.
+RPY: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RPY
+.PHONY : RPY
+
+# fast build rule for target.
+RPY/fast:
+	$(MAKE) -f CMakeFiles/RPY.dir/build.make CMakeFiles/RPY.dir/build
+.PHONY : RPY/fast
 
 #=============================================================================
 # Target rules for targets named KostalWithSPIPrint
@@ -179,6 +192,33 @@ source/KostalWithSPIPrint.cpp.s:
 	$(MAKE) -f CMakeFiles/KostalWithSPIPrint.dir/build.make CMakeFiles/KostalWithSPIPrint.dir/source/KostalWithSPIPrint.cpp.s
 .PHONY : source/KostalWithSPIPrint.cpp.s
 
+source/RPY.o: source/RPY.cpp.o
+
+.PHONY : source/RPY.o
+
+# target to build an object file
+source/RPY.cpp.o:
+	$(MAKE) -f CMakeFiles/RPY.dir/build.make CMakeFiles/RPY.dir/source/RPY.cpp.o
+.PHONY : source/RPY.cpp.o
+
+source/RPY.i: source/RPY.cpp.i
+
+.PHONY : source/RPY.i
+
+# target to preprocess a source file
+source/RPY.cpp.i:
+	$(MAKE) -f CMakeFiles/RPY.dir/build.make CMakeFiles/RPY.dir/source/RPY.cpp.i
+.PHONY : source/RPY.cpp.i
+
+source/RPY.s: source/RPY.cpp.s
+
+.PHONY : source/RPY.s
+
+# target to generate assembly for a file
+source/RPY.cpp.s:
+	$(MAKE) -f CMakeFiles/RPY.dir/build.make CMakeFiles/RPY.dir/source/RPY.cpp.s
+.PHONY : source/RPY.cpp.s
+
 source/display_robot_states.o: source/display_robot_states.cpp.o
 
 .PHONY : source/display_robot_states.o
@@ -240,6 +280,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... RPY"
 	@echo "... rebuild_cache"
 	@echo "... KostalWithSPIPrint"
 	@echo "... kostal"
@@ -247,6 +288,9 @@ help:
 	@echo "... source/KostalWithSPIPrint.o"
 	@echo "... source/KostalWithSPIPrint.i"
 	@echo "... source/KostalWithSPIPrint.s"
+	@echo "... source/RPY.o"
+	@echo "... source/RPY.i"
+	@echo "... source/RPY.s"
 	@echo "... source/display_robot_states.o"
 	@echo "... source/display_robot_states.i"
 	@echo "... source/display_robot_states.s"

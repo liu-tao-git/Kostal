@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> jointPerformanceTestTorqueModeCloseLoop </primitive_name>
+        <primitive_type> JOINT_PERFORMANCE_TEST </primitive_type>
+        <robot_type>Bullet</robot_type>
+        <control_mode>CMD_CTRL_CLOSE_LOOP_TORQUE</control_mode>
+        <param_configs>PtJointPerformanceTest.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE_TORQUEMODE</task_type>
+            <dof>7</dof>
+            <kp>30  60  50  70   150  300  400</kp>
+            <kv>3   3   4   10   12   20   0</kv>
+        </task>
+    </primitive>
+</fvr>

@@ -1,0 +1,18 @@
+<arm_driver_param>
+    <arm_driver_version>1.20.1.a</arm_driver_version>
+    <arm_state_topic>flexiv_arm_state_A02LS_03_P2_062054</arm_state_topic>
+    <arm_command_topic>flexiv_arm_command_A02LS_03_P2_062054</arm_command_topic>
+    <safety_functions_param_file>safety_functions.xml</safety_functions_param_file>
+    <safety_board_param_file>safety_board.txt</safety_board_param_file>
+    <user_board_param_file>user_board.txt</user_board_param_file>
+    <braking_board_param_file>braking_board.txt</braking_board_param_file>
+    <joint_1_param_file>J02B1-12-M2-062377.txt</joint_1_param_file>
+    <joint_2_param_file>J02B2-12-M2-062382.txt</joint_2_param_file>
+    <joint_3_param_file>J02A3-11-M2-062384.txt</joint_3_param_file>
+    <joint_4_param_file>J02A4-11-M2-062318.txt</joint_4_param_file>
+    <joint_5_param_file>J02A5-11-M2-062407.txt</joint_5_param_file>
+    <joint_6_param_file>J02A6-11-M2-062345.txt</joint_6_param_file>
+    <joint_7_param_file>J02A7S-02-P2-062052.txt</joint_7_param_file>
+    <wrist_sensor_param_file>FT01S-05-P2-062144.txt</wrist_sensor_param_file>
+<force_torque_sensor_param_file>FT01S-05-P2-062144.txt</force_torque_sensor_param_file>
+</arm_driver_param>

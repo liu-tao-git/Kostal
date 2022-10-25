@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> waitTime </par_name>
+            <par_desc> "wait time before start collecting sensor data" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 5.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> durationTime </par_name>
+            <par_desc> "time duration to collect sensor data" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <!-- ===================================================================
+         output parameter configuration
+         ====================================================================-->
+        <output_par_config>
+            <par_name> testPassed </par_name>
+            <par_desc> "if the sensor analysis passes all checks." </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+            <par_default> 0 </par_default>
+        </output_par_config>
+    </primitive>
+</fvr>

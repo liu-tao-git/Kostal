@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+
+<robot name="A02H-P" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="A02H-P_joints_links.xacro" />
+  <xacro:A02H-P_joints_links prefix="" mesh_prefix_path="package://flexiv_description/" />
+
+  <xacro:include filename="flexiv_arm_materials.xacro" />
+  <xacro:flexiv_arm_materials />
+
+</robot>

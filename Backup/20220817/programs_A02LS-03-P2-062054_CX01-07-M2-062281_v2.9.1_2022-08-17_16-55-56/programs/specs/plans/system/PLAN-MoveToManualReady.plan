@@ -1,0 +1,156 @@
+plan_name: "PLAN-MoveToManualReady"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "moveToReady"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+  param_assignment {
+    lhs_param {
+      name: "reachedReady"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveToReady"
+  end_node_name: "hold"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveToReady"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "reachedReady"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "hold"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "moveToReady"
+  pt_name: "MoveJ"
+  pt_type: "MOVEJ"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveToReady"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "varTargetPos"
+      module_name: "rootNode"
+      type: "VEC_7d"
+      category: "PLAN_VAR"
+      robotUnit: "unknown"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveToReady"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveToReady"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+      data: "15"
+    }
+  }
+}
+var_list {
+  name: "reachedReady"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "0"
+  robotUnit: "unknown"
+}
+var_list {
+  name: "varTargetPos"
+  type: "VEC_7d"
+  category: "PLAN_VAR"
+  robotUnit: "unknown"
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

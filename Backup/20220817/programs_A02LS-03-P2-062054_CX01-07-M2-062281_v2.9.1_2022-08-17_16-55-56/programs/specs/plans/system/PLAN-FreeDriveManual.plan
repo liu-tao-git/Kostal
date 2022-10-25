@@ -1,0 +1,1383 @@
+plan_name: "PLAN-FreeDriveManual"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "hold"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "jntjogging"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "joint_jogging"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "CaliForceSensor"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "OR"
+      trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "teachMode"
+          module_name: "UI"
+          type: "STRING"
+          category: "UI_STATE"
+        }
+        rhs_param {
+          type: "STRING"
+          category: "CONST"
+          data: "floating"
+        }
+      }
+      trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "teachMode"
+          module_name: "UI"
+          type: "STRING"
+          category: "UI_STATE"
+        }
+        rhs_param {
+          type: "STRING"
+          category: "CONST"
+          data: "cartAdmit"
+        }
+      }
+    }
+    trigger_condition {
+      condition_type: "LESS"
+      lhs_param {
+        name: "totalExtJointTorque"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "5"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "float"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "none"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "CaliForceSensor0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "0"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "CaliForceSensor"
+  end_node_name: "float"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "floating"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "terminated"
+        module_name: "CaliForceSensor"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        module_name: "float"
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "CaliForceSensor"
+  end_node_name: "cartAdmit"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "cartAdmit"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "terminated"
+        module_name: "CaliForceSensor"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        module_name: "float"
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "CaliForceSensor0"
+  end_node_name: "float"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "CaliForceSensor0"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      module_name: "float"
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "cart_jogging"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "cartesian_jogging"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "hold"
+  end_node_name: "popUpConfirmMsg"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "OR"
+      trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "teachMode"
+          module_name: "UI"
+          type: "STRING"
+          category: "UI_STATE"
+        }
+        rhs_param {
+          type: "STRING"
+          category: "CONST"
+          data: "cartAdmit"
+        }
+      }
+      trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "teachMode"
+          module_name: "UI"
+          type: "STRING"
+          category: "UI_STATE"
+        }
+        rhs_param {
+          type: "STRING"
+          category: "CONST"
+          data: "floating"
+        }
+      }
+    }
+    trigger_condition {
+      condition_type: "GREATER_EQUAL"
+      lhs_param {
+        name: "totalExtJointTorque"
+        module_name: "SYSTEM"
+        type: "DOUBLE"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "5"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "enableBtnHasBeenReleasedFlag"
+        module_name: "rootNode"
+        type: "BOOL"
+        category: "PLAN_VAR"
+        robotUnit: "none"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "uiAppConnected"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "popUpConfirmMsg"
+  end_node_name: "CaliForceSensor"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+        condition_type: "EQUAL"
+        lhs_param {
+          name: "caliFSConfirm"
+          module_name: "UI"
+          type: "STRING"
+          category: "UI_STATE"
+        }
+        rhs_param {
+          type: "STRING"
+          category: "CONST"
+          data: "CALI"
+        }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "popUpConfirmMsg"
+  end_node_name: "float"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "caliFSConfirm"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "SKIPCALI"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "floating"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "popUpConfirmMsg"
+  end_node_name: "cartAdmit"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "caliFSConfirm"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "SKIPCALI"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "teachMode"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "cartAdmit"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+}
+transit_list {
+  start_node_name: "popUpConfirmMsg"
+  end_node_name: "waitingForReleaseEnableBtn"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "AND"
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "caliFSConfirm"
+        module_name: "UI"
+        type: "STRING"
+        category: "UI_STATE"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "CANCELENTERFLOAT"
+      }
+    }
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "motionbarEnablePressed"
+        module_name: "SYSTEM"
+        type: "BOOL"
+        category: "SYS_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+}
+transit_list {
+  start_node_name: "jntjogging"
+  end_node_name: "goto0"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "cart_jogging"
+  end_node_name: "goto1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "cartAdmit"
+  end_node_name: "goto2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "float"
+  end_node_name: "goto3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "waitingForReleaseEnableBtn"
+  end_node_name: "goto4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "popUpConfirmMsg"
+  end_node_name: "goto5"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "motionbarEnablePressed"
+      module_name: "SYSTEM"
+      type: "BOOL"
+      category: "SYS_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableBtnHasBeenReleasedFlag"
+      module_name: "rootNode"
+      type: "BOOL"
+      category: "PLAN_VAR"
+      robotUnit: "none"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "hold"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "CaliForceSensor"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "dataCollectionTime"
+      module_name: "CaliForceSensor"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.25"
+    }
+  }
+}
+node_list {
+  node_name: "CaliForceSensor0"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "dataCollectionTime"
+      module_name: "CaliForceSensor0"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.5"
+    }
+  }
+}
+node_list {
+  node_name: "cartAdmit"
+  pt_name: "CartImpedanceFloating"
+  pt_type: "CARTIMPEDANCEFLOATING"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "cartFloatingAxis"
+      module_name: "cartAdmit"
+      type: "VEC_6i"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_6i"
+      category: "CONST"
+      data: "1"
+      data: "1"
+      data: "1"
+      data: "1"
+      data: "1"
+      data: "1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxVel"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.25"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxRotVel"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "200.0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "forceDeadband"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "1.0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "momentDeadband"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.2"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "forceDeadbandTimeThreshold"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.3"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "momentDeadbandTimeThreshold"
+      module_name: "cartAdmit"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.6"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "kpFloatingScale"
+      module_name: "cartAdmit"
+      type: "VEC_6d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_6d"
+      category: "CONST"
+      data: "0.9"
+      data: "0.9"
+      data: "0.9"
+      data: "0.012"
+      data: "0.012"
+      data: "0.012"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "kvFloatingScale"
+      module_name: "cartAdmit"
+      type: "VEC_6d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_6d"
+      category: "CONST"
+      data: "0.5"
+      data: "0.5"
+      data: "0.5"
+      data: "0.5"
+      data: "0.5"
+      data: "0.5"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableJointFloating"
+      module_name: "cartAdmit"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "enableJntFloating"
+      type: "BOOL"
+      category: "UI_STATE"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "cartFloatingFrame"
+      module_name: "cartAdmit"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      name: "setCartFloatingFrame"
+      type: "STRING"
+      category: "UI_STATE"
+    }
+  }
+}
+node_list {
+  node_name: "cart_jogging"
+  pt_name: "cartesian_jogging"
+  pt_type: "CARTESIAN_JOGGING"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "preferJntPos"
+      module_name: "cart_jogging"
+      type: "VEC_7d"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "VEC_7d"
+      category: "CONST"
+      data: "0"
+      data: "-40"
+      data: "0"
+      data: "-90"
+      data: "0"
+      data: "40"
+      data: "0"
+    }
+  }
+}
+node_list {
+  node_name: "float"
+  pt_name: "floating"
+  pt_type: "FLOATING"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "loadWeightError"
+      module_name: "float"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "enableWS"
+      module_name: "float"
+      type: "BOOL"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "0"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "innerR"
+      module_name: "float"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.38"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "outerR"
+      module_name: "float"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.8"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "minZ"
+      module_name: "float"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "-0.1"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxZ"
+      module_name: "float"
+      type: "DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "DOUBLE"
+      category: "CONST"
+      data: "0.7"
+    }
+  }
+}
+node_list {
+  node_name: "jntjogging"
+  pt_name: "joint_jogging"
+  pt_type: "JOINT_JOGGING"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "popUpConfirmMsg"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "goto0"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto0"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+node_list {
+  node_name: "goto1"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto1"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+node_list {
+  node_name: "goto2"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto2"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+node_list {
+  node_name: "goto3"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto3"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+node_list {
+  node_name: "goto5"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto5"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+node_list {
+  node_name: "waitingForReleaseEnableBtn"
+  pt_name: "Hold"
+  pt_type: "HOLD"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "goto4"
+  pt_name: "GoTo"
+  pt_type: "GOTO"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "nodeName"
+      module_name: "goto4"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "hold"
+    }
+  }
+}
+var_list {
+  name: "enableBtnHasBeenReleasedFlag"
+  module_name: "rootNode"
+  type: "BOOL"
+  category: "PLAN_VAR"
+  data: "1"
+  robotUnit: "none"
+}
+plan_log {
+  enable_log: false
+  time_interval: 5
+  max_duration: 30
+}
+plan_desc: ""

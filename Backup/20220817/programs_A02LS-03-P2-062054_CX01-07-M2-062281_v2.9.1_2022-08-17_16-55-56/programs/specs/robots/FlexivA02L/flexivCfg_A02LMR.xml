@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<fvr>
+    <!-- ============ Robot Setting ============================================
+    robot_type                              : Flexiv, UR5, Bullet, Klampt, SimDynBot
+    simulate_joint_friction                 : Enable: 1 Disable: 0
+    max_payload_limit                       : maximum payload limit [kg]
+    reduced_speed_scale                     : velocity scale in reduced mode (0~1)
+    manual_speed_scale                      : velocity scale in manual mode (0~1)
+    manual_tcp_speed_limit_tol*             : TCP speed limit tolerence in manual mode  [m/s]
+    manual_tcp_angular_speed_limit_tol*     : TCP angular velocity in manual mode [deg/s]
+    manual_joint_speed_limit_tol*           : Joint angle speed limit tolerance in manual mode [deg/s]
+    auto_tcp_speed_limit_tol*               : TCP speed limit tolerence in auto mode [m/s]
+    auto_tcp_angular_speed_limit_tol*       : TCP angular velocity tolerence in auto mode [deg/s]
+    auto_joint_speed_limit_tol*             : Joint angle speed limit tolerance in auto mode [deg/s]
+    rm_tcp_speed_limit_tol*                 : TCP speed limit tolerence in reduced mode [m/s]
+    rm_tcp_angular_speed_limit_tol*         : TCP angular velocity tolerence in reduced mode [deg/s]
+    rm_joint_speed_limit_tol*               : Joint angle speed limit tolerance in reduced mode [deg/s]
+    show_graphics                           : Enable: 1, Disable: 0
+    log_console                             : Enable: 1, Disable: 0
+
+    * system limit - tol = software limit. The tolerance should be smaller than system limit
+    ========================================================================= -->
+    <robot>
+        <robot_name>A02LMR</robot_name>
+        <robot_config_file>flexivBot_A02LMR.xml</robot_config_file>
+        <robot_urdf>../flexiv_description/urdf/A02LMR-M.urdf</robot_urdf>
+        <robot_controller_file>controllers/ctrlFlexiv.xml</robot_controller_file>
+        <robot_joint_controller_file>controllers/jntCtrl.xml</robot_joint_controller_file>
+        <force_torque_sensor_file>None</force_torque_sensor_file>
+        <robot_type>Flexiv</robot_type>
+        <gravity>0.0 0.0 -9.81</gravity>
+        <base_angles>0.0 0.0</base_angles>
+        <simulate_joint_friction>0</simulate_joint_friction>
+        <dynamics>rbdyn</dynamics>
+        <max_payload_limit>10.0</max_payload_limit>
+        <reduced_speed_scale>1.0</reduced_speed_scale>
+        <manual_speed_scale>0.8</manual_speed_scale>
+        <manual_tcp_speed_limit_tol>0.05</manual_tcp_speed_limit_tol>
+        <manual_tcp_angular_speed_limit_tol>5.0</manual_tcp_angular_speed_limit_tol>
+        <manual_joint_speed_limit_tol>10.0</manual_joint_speed_limit_tol>
+        <auto_tcp_speed_limit_tol>0.1</auto_tcp_speed_limit_tol>
+        <auto_tcp_angular_speed_limit_tol>20.0</auto_tcp_angular_speed_limit_tol>
+        <auto_joint_speed_limit_tol>10.0</auto_joint_speed_limit_tol>
+        <rm_tcp_speed_limit_tol>0.05</rm_tcp_speed_limit_tol>
+        <rm_tcp_angular_speed_limit_tol>5.0</rm_tcp_angular_speed_limit_tol>
+        <rm_joint_speed_limit_tol>10.0</rm_joint_speed_limit_tol>
+        <robot_coordinate_file>coordinateframes.xml</robot_coordinate_file>
+        <work_coordinate_file>workCoordinates.xml</work_coordinate_file>
+        <show_graphics>1</show_graphics>
+        <log_console>1</log_console>
+    </robot>
+    <!-- ============ ArmDriver Parameters ========================================
+    comm_type               : Middleware, Middleware2
+    serial_num              : serial number of arm
+    safety_applied_linux    : currently applied params, would record modifications.
+                              (for linux) should be the name of applied safety params in specs/safety/
+    safety_boundary         : params as boundary, could not be modified
+                              should be the name of boundary safety params in specs/safety/
+    joint_params            : joint parameters for control
+    ======================================================================== -->
+    <arm_driver_params>
+        <comm_type>Middleware</comm_type>
+        <serial_num>A02F-04-P3-00002</serial_num>
+        <safety_applied_linux>safetyParamsApplied_A02L-MP.xml</safety_applied_linux>
+        <safety_boundary>safetyParamsBoundary_A02L-MP.xml</safety_boundary>
+        <joint_params>jointParams_A02L.xml</joint_params>
+    </arm_driver_params>
+    <!-- ============ Disturbance Observer ==============================
+    tau_ext_type            : FiniteTime, SlidingMode, MomentumBased
+    tau_ext_config_file     : config file for external joint torque observer
+    wrench_ext_type         : StaticComp, ExtendedMomentum
+    wrench_ext_config_file  : config file for external Cartesian wrench observer
+    ======================================================================== -->
+    <disturbance_observer>
+        <tau_ext_type>FiniteTime</tau_ext_type>
+        <tau_ext_config_file>FiniteTimeObserver.xml</tau_ext_config_file>
+        <wrench_ext_type>StaticComp</wrench_ext_type>
+        <wrench_ext_config_file>WrenchObserverStaticCompensation.xml</wrench_ext_config_file>
+    </disturbance_observer>
+    <!-- ============ Trajectory optimization ==================================
+    Specify parameters for trajectory optimization
+    ======================================================================== -->
+    <trajectory_opt_cfg_file>trajectoryOptimizationCfg.xml</trajectory_opt_cfg_file>
+    <!-- ============ Motion Bar ============================================
+    type    : FlexivMotionBar, LogitechF710, None, MotionBarDummy(enter auto mode directly)
+    path    : path of connected device.
+            FlexivMotionBar on QNX      : /dev/serusb1
+            FlexivMotionBar on Ubuntu   : /dev/ttyS0
+            LogitechF710 on Ubuntu      : /dev/input/js0
+    ========================================================================= -->
+    <motion_bar>
+        <type>FlexivMotionBar</type>
+        <path>/dev/serusb1</path>
+    </motion_bar>
+    <!-- ============ External Interface ====================================
+    enable                  : Enable: 1, Disable: 0
+    interface_config_file   : externalIOConfig.xml, externalEthernetConfig.xml externalProfinetConfig.xml
+    ========================================================================= -->
+    <external_interface>
+        <enable>0</enable>
+        <interface_config_file>externalIOConfig.xml</interface_config_file>
+    </external_interface>
+    <!-- ============ I/O ====================================================
+    enable              : Enable: 1, Disable: 0
+    io_config_file      : the I/O configuration file
+    ======================================================================== -->
+    <gpio>
+        <enable>1</enable>
+        <gpio_config_file>ioSystem.xml</gpio_config_file>
+    </gpio>
+    <gpio>
+        <enable>0</enable>
+        <gpio_config_file>ioModbusBK9100.xml</gpio_config_file>
+    </gpio>
+    <gpio>
+        <enable>0</enable>
+        <gpio_config_file>ioProfinetSlave.xml</gpio_config_file>
+    </gpio>
+    <!-- ============ Control box LED duty cycle =============================
+    controlbox_led_duty_cycle   : LED duty cycle (wrgb) ranged from 0 to 1
+    ======================================================================== -->
+    <controlbox_led_duty_cycle>0.4 0.04 0.9 0.51</controlbox_led_duty_cycle>
+    <!-- ============ Tool ===================================================
+    This label indicates which tools are configured for the robot,
+     which can be multiple tools
+    ======================================================================== -->
+    <tool_cfg_file>robotToolCfg.xml</tool_cfg_file>
+    <!-- ============ Calibration ========================================== -->
+    <calibration_joint_torque_sensors>calibration/cali_jointTorqueSensorOffset.cali</calibration_joint_torque_sensors>
+    <calibration_kinematics>calibration/cali_kinematics.cali</calibration_kinematics>
+    <calibration_joint_position_link_encoder>calibration/cali_jointPositionLinkEncoder.cali</calibration_joint_position_link_encoder>
+    <calibration_dynamics>calibration/cali_dynamics.cali</calibration_dynamics>
+    <calibration_joint_torque_analysis>calibration/cali_jointTorqueAnalysis.cali</calibration_joint_torque_analysis>
+    <!-- ============ Semantic planner ===================================== -->
+    <semanticplanner_rules>rules/RULES</semanticplanner_rules>
+    <!--<scene_file>world.scene</scene_file>-->
+    <!-- <scene_file>visualServo.scene</scene_file> -->
+    <!-- ============ Camera Info =============================================
+    enable              : Enabled 1, Disable 0
+    camera_type         : camera type
+    parent_link_name    : the link that camera is attached
+    calibration         : camera pose in link coordinate
+    camera_size         : [length(x-axis); width(y-axis); height(z-axis)] in meters
+    show_frame          : (optional, bool) 1 will show the camera frame and FOV, 0 will hide
+    intr_params         : (optional, 6 params) camera intrinsic parameters in the order of
+                          fx (float), fy (float), cx (float), cy (float), width (unsigned int), height (unsigned int)
+                          <intr_params> 1378.57 1378.57 960 540 1920 1080 </intr_params> are RealSense D435's params
+                          for setting up fov and VisualServoSim, which will use CAMID_0's params for simulation
+    pyramid_size        : (optional, double) camera field of view (FOV) pyramid's edge size
+    solid_fov           : (optional, bool) whether the fov is solid or a wireframe
+    ========================================================================= -->
+    <robot_camera>
+        <enable>1</enable>
+        <camera_type>CAM_DATA_RGBD</camera_type>
+        <camera_id>CAMID_0</camera_id>
+        <parent_link_name>link7</parent_link_name>
+        <calibration>calibration/cali_CAMID_0_MR.cali</calibration>
+        <camera_size>0.088 0.015 0.015</camera_size>
+        <show_frame>0</show_frame>
+        <intr_params>1378.57 1378.57 960 540 1920 1080</intr_params>
+        <pyramid_size>0.6</pyramid_size>
+        <solid_fov>0</solid_fov>
+    </robot_camera>
+    <robot_camera>
+        <enable>1</enable>
+        <camera_type>CAM_DATA_RGBD</camera_type>
+        <camera_id>CAMID_1</camera_id>
+        <parent_link_name>world</parent_link_name>
+        <camera_size>0.088 0.015 0.015</camera_size>
+        <calibration>calibration/cali_CAMID_1.cali</calibration>
+        <show_frame>0</show_frame>
+    </robot_camera>
+    <!-- ======== Simulator Setting ===========================================
+    trajectory_size     : (optional, int) change trajectory size (value must be > 0) in simulation
+                           will be set to 100 if not provided
+    env_cam_frame       : (optional, bool) show:1 or hide:0 the environment camera's frame in simulation
+                           will be set to 0 by if not provided
+    ======================================================================== -->
+    <simulator>
+        <camera>
+            <pos>1.8 0.0 0.35</pos>
+            <target>0.0 0.0 0.35</target>
+            <up>0 0 1</up>
+            <clip>0 10</clip>
+        </camera>
+        <light>
+            <pos>50.0 0.0 0.0</pos>
+            <target>0.0 0.0 0.1</target>
+        </light>
+        <light>
+            <pos>10.0 5.0 1.0</pos>
+            <target>0.0 0.0 0.5</target>
+        </light>
+        <light>
+            <pos>-10.0 -10.0 1.0</pos>
+            <target>0.0 0.0 0.0</target>
+        </light>
+        <trajectory_size>100</trajectory_size>
+        <env_cam_frame>0</env_cam_frame>
+    </simulator>
+</fvr>

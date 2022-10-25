@@ -1,0 +1,17 @@
+<!-- ============ Force Sensor ============================================
+This section contains the information of mass and inertia to be excluded from the
+force-torque sensor measurement.
+
+enable   	            : enable force sensor: 1, disable: 0
+enable_temp_comp        : enable temperature compensation: 1, disable: 0
+center_of_mass          : center of mass in flange coordinate[m]
+mass                    : mass [kg]
+inertia                 : inertia [ Ixx Iyy Izz Ixy Ixz Iyz ]
+======================================================================== -->
+<force_sensor_6DOFs>
+	<enable> 1 </enable>
+	<enable_temp_comp> 0 </enable_temp_comp>
+	<center_of_mass>0.000032 -0.000011 -0.020313</center_of_mass>
+	<mass>0.399167</mass>
+	<inertia>0.00029 0.000291 0.000502 -0.000001 0.0 0.0</inertia>
+</force_sensor_6DOFs>

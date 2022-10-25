@@ -1,0 +1,448 @@
+plan_name: "Tutorial4-LoopStatement"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "home"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "home"
+  end_node_name: "move1"
+  transit_period: 0.3
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "home"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "move1"
+  end_node_name: "forLoopPlan"
+  transit_period: 0.1
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "move1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "forLoopPlan"
+  end_node_name: "whileLoopPlan"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "forLoopPlan"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "whileLoopPlan"
+  end_node_name: "end1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "whileLoopPlan"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "home"
+  pt_name: "Home"
+  pt_type: "HOME"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "move1"
+  pt_name: "move"
+  pt_type: "MOVE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "move1"
+      type: "COORD"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "COORD"
+      category: "CONST"
+      data: "0.65"
+      data: "0.3"
+      data: "0.35"
+      data: "180"
+      data: "-0"
+      data: "180"
+      data: "WORLD"
+      data: "WORLD_ORIGIN"
+    }
+  }
+}
+node_list {
+  node_name: "end1"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+child_plans {
+  plan_name: "forLoopPlan"
+  config {
+    node_name: "forLoopPlan"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "repeatTimes"
+        module_name: "forLoopPlan"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "3"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "child1_move1"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  transit_list {
+    start_node_name: "child1_move1"
+    end_node_name: "child1_move2"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "child1_move1"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "child1_move2"
+    end_node_name: "end0"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "child1_move2"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        module_name: "end0"
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "child1_move1"
+    pt_name: "move"
+    pt_type: "MOVE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "child1_move1"
+        type: "COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "COORD"
+        category: "CONST"
+        data: "0.55"
+        data: "0.2"
+        data: "0.15"
+        data: "180"
+        data: "-0"
+        data: "180"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+      }
+    }
+  }
+  node_list {
+    node_name: "child1_move2"
+    pt_name: "move"
+    pt_type: "MOVE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "child1_move2"
+        type: "COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "COORD"
+        category: "CONST"
+        data: "0.65"
+        data: "-0.1"
+        data: "0.35"
+        data: "180"
+        data: "-0"
+        data: "180"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+      }
+    }
+  }
+  node_list {
+    node_name: "end0"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 0
+    max_duration: 0
+  }
+  plan_desc: ""
+}
+child_plans {
+  plan_name: "whileLoopPlan"
+  config {
+    node_name: "whileLoopPlan"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "repeatTimes"
+        module_name: "whileLoopPlan"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "child2_move1"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  transit_list {
+    start_node_name: "child2_move1"
+    end_node_name: "child2_move2"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "child2_move1"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "child2_move2"
+    end_node_name: "child2_end1"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "child2_move2"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "child2_move1"
+    pt_name: "move"
+    pt_type: "MOVE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "child2_move1"
+        type: "COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "COORD"
+        category: "CONST"
+        data: "0.55"
+        data: "0.2"
+        data: "0.15"
+        data: "180"
+        data: "-0"
+        data: "180"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+      }
+    }
+  }
+  node_list {
+    node_name: "child2_move2"
+    pt_name: "move"
+    pt_type: "MOVE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "child2_move2"
+        type: "COORD"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "COORD"
+        category: "CONST"
+        data: "0.65"
+        data: "-0.1"
+        data: "0.25"
+        data: "180"
+        data: "-0"
+        data: "180"
+        data: "WORLD"
+        data: "WORLD_ORIGIN"
+      }
+    }
+  }
+  node_list {
+    node_name: "child2_end1"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 0
+    max_duration: 0
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

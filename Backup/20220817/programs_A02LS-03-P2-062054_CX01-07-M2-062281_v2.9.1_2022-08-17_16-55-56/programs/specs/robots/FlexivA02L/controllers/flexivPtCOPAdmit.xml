@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <primitive_name> COPAdmit </primitive_name>
+        <primitive_type> COPADMIT </primitive_type>
+        <robot_type>Flexiv</robot_type>
+        <control_mode>CMD_CTRL_OPEN_LOOP_TORQUE</control_mode>
+        <param_configs>PtCOPAdmit.xml</param_configs>
+        <task>
+            <priority> 0 </priority>
+            <task_name>COPAdmitControl</task_name>
+            <task_type>TASK_COPADMIT</task_type>
+            <link_name>tcp</link_name>
+            <pos_in_parent>0.0 0.0 0.0</pos_in_parent>
+            <dof>6</dof>
+            <kp>1500 1500 1500 500 500 500</kp>
+            <kv>50 50 50 5 5 5</kv>
+            <ki>0.0 0.0 0.0 0.0 0.0 0.0</ki>
+            <force_kp>0.01  0.01  0.01   1.0  1.0   1.0</force_kp>
+            <force_kv>5.00  5.00   5.00   5.0  5.0   5.0</force_kv>
+            <force_ki>0.0005   0.0005    0.0005   0.001  0.001   0.001</force_ki>
+            <cop_kp>1.00   1.00  1.00  20.0  20.0  20.0</cop_kp>
+            <cop_kv>0.00   0.00  0.00  0.00  0.00  0.00</cop_kv>
+            <cop_ki>0.00   0.00  0.00  0.00  0.00  0.00</cop_ki>
+            <max_iForce> 15 15 15 5 5 5</max_iForce>
+        </task>
+        <task>
+            <priority> 1 </priority>
+            <task_name>PostureControl</task_name>
+            <task_type>TASK_POSTURE</task_type>
+            <dof>7</dof>
+            <kp>40  40  40  40  60  60  60</kp>
+            <kv>30  30  30  30  30  30  35</kv>
+        </task>
+    </primitive>
+</fvr>

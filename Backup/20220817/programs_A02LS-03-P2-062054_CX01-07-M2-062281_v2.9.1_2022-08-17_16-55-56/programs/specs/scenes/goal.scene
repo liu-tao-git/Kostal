@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<scene>
+    <obj>
+        <obj_name>obj_01</obj_name>
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_02</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_01.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_02</obj_name>
+        <pos_wrt_parent>0.130 0.21 0.0000</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>FLOOR</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_02.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_03</obj_name>
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_01</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_03.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_04</obj_name>        
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_03</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_04.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_05</obj_name>
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_04</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_05.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_06</obj_name>
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_09</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_06.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_07</obj_name>
+        <pos_wrt_parent>0.13 0.115 0.0000</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>FLOOR</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_07.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_08</obj_name>
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_07</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_08.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+   		</graphics>
+    </obj>
+    <obj>
+        <obj_name>obj_09</obj_name>        
+        <pos_wrt_parent>0.0 0.0 -0.0576</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>obj_08</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_09.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+    <!--<obj>
+        <obj_name>obj_10</obj_name>
+        <pos_wrt_parent>0.01 0.07 0.0000</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>FLOOR</obj_parent>
+        <connection_type>SP_PIH</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/lego/obj_10.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0 </orientation_in_parent>
+	            <scaling>0.001 0.001 0.001</scaling>
+	        </obj_file>
+   		</graphics>
+    </obj>-->
+    <obj>
+        <obj_name>FLOOR</obj_name>
+        <pos_in_world>0.00 0.00 0.0</pos_in_world>
+        <ori_in_world>1.0000 0.0000 0.0000 0.0000</ori_in_world>
+        <pos_wrt_parent>0.0 0.0 0.0</pos_wrt_parent>
+        <ori_wrt_parent>1.0000 0.0000 0.0000 0.0000</ori_wrt_parent>
+        <obj_parent>_</obj_parent>
+        <connection_type>SP_ONBASE</connection_type>
+        <enable_physics>1</enable_physics>
+        <object_mass>0.5</object_mass>
+        <graphics>
+	        <obj_file>
+	            <path>graphics/cube.obj</path>
+	            <position_in_parent>0.0 0.0 0.0</position_in_parent>
+	            <orientation_in_parent>1.0 0.0 0.0 0.0</orientation_in_parent>
+	            <scaling>1.0 1.0 0.2</scaling>
+	        </obj_file>
+    	</graphics>
+    </obj>
+</scene>

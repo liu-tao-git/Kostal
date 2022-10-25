@@ -1,0 +1,688 @@
+plan_name: "PLAN-A02H-CaliJntTrqSensorGain"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "forLoopPlan"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "forLoopPlan"
+  end_node_name: "endNode"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "forLoopPlan"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+child_plans {
+  plan_name: "forLoopPlan"
+  config {
+    node_name: "forLoopPlan"
+    pt_name: "Plan"
+    pt_type: "PLAN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "repeatTimes"
+        module_name: "forLoopPlan"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "3"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "startNode"
+    end_node_name: "hold1"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "NO_CHECK"
+    }
+  }
+  transit_list {
+    start_node_name: "hold1"
+    end_node_name: "caliJntTrqSensorGain"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "GREATER"
+      lhs_param {
+        name: "timePeriod"
+        module_name: "hold1"
+        type: "DOUBLE"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "caliJntTrqSensorGain"
+    end_node_name: "moveJntSpaceEndConfig"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "terminated"
+        module_name: "caliJntTrqSensorGain"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  transit_list {
+    start_node_name: "moveJntSpaceEndConfig"
+    end_node_name: "end"
+    transit_period: 0
+    trigger_condition {
+      condition_type: "EQUAL"
+      lhs_param {
+        name: "reachedTarget"
+        module_name: "moveJntSpaceEndConfig"
+        type: "BOOL"
+        category: "PT_STATE"
+      }
+      rhs_param {
+        type: "BOOL"
+        category: "CONST"
+        data: "1"
+      }
+    }
+  }
+  node_list {
+    node_name: "hold1"
+    pt_name: "Hold"
+    pt_type: "HOLD"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  node_list {
+    node_name: "caliJntTrqSensorGain"
+    pt_name: "caliJointTorqueSensorGain"
+    pt_type: "CALIJOINTTORQUESENSORGAIN"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "logFileCustomizedPrefix"
+        module_name: "caliJntTrqSensorGain"
+        type: "STRING"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "STRING"
+        category: "CONST"
+        data: "CaliJntTrqSensorGain"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig16"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "90"
+        data: "-90"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig15"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "90"
+        data: "90"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig14"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "-90"
+        data: "90"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig13"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig12"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig11"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "90"
+        data: "0"
+        data: "60"
+        data: "0"
+        data: "150"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig10"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "90"
+        data: "0"
+        data: "90"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig9"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "90"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig8"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "90"
+        data: "90"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig7"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "-90"
+        data: "90"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig6"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "90"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig5"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "-90"
+        data: "0"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig4"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig3"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "90"
+        data: "0"
+        data: "90"
+        data: "0"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig2"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "0"
+        data: "90"
+        data: "90"
+        data: "90"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig1"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "90"
+        data: "0"
+        data: "-90"
+        data: "90"
+        data: "90"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliJntConfig0"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "0"
+        data: "0"
+        data: "0"
+        data: "90"
+        data: "90"
+        data: "0"
+        data: "0"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "numOfCaliJntConfigs"
+        module_name: "caliJntTrqSensorGain"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "17"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "caliLoad"
+        module_name: "caliJntTrqSensorGain"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "1"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "numOfDataPerConfig"
+        module_name: "caliJntTrqSensorGain"
+        type: "INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "INT"
+        category: "CONST"
+        data: "4000"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "skippedConfigurationIndex"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_INT"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_INT"
+        category: "CONST"
+        data: "9"
+        data: "12"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "waitTime"
+        module_name: "caliJntTrqSensorGain"
+        type: "DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "DOUBLE"
+        category: "CONST"
+        data: "4"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntAcc"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntVel"
+        module_name: "caliJntTrqSensorGain"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+      }
+    }
+  }
+  node_list {
+    node_name: "moveJntSpaceEndConfig"
+    pt_name: "move_jntspace"
+    pt_type: "MOVE_JNTSPACE"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntAcc"
+        module_name: "moveJntSpaceEndConfig"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+        data: "40"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "maxJntVel"
+        module_name: "moveJntSpaceEndConfig"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+        data: "20"
+      }
+    }
+    param_assignment {
+      lhs_param {
+        name: "target"
+        module_name: "moveJntSpaceEndConfig"
+        type: "ARRAY_DOUBLE"
+        category: "PT_INPUT"
+      }
+      rhs_param {
+        type: "ARRAY_DOUBLE"
+        category: "CONST"
+        data: "-90"
+        data: "0"
+        data: "0"
+        data: "-90"
+        data: "90"
+        data: "0"
+        data: "0"
+      }
+    }
+  }
+  node_list {
+    node_name: "end"
+    pt_name: "End"
+    pt_type: "END"
+    switch_tcp_param {
+      switch_tcp: false
+      tool_name: ""
+      tcp_index: 0
+    }
+  }
+  plan_log {
+    enable_log: false
+    time_interval: 0
+    max_duration: 0
+  }
+  plan_desc: ""
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

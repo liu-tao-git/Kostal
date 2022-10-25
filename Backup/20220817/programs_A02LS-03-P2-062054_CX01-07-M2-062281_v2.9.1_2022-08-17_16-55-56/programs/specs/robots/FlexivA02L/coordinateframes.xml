@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<!-- ======================================================================= -->
+<!-- absolution_position    : position in world coordinate [m]                  -->
+<!-- absolute_orientation   : euler angle in world coordinate [Rx Ry Rz] [deg] -->
+<!-- ======================================================================= -->
+<fvr />

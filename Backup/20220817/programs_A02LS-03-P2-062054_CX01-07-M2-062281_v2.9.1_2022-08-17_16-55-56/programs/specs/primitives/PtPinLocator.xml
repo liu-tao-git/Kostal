@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc> This primitive locate current tcp pose by fit a plug tool into 
+                   a slot, both of which are specially designed
+        </pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_Assembly.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN PT", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> insertDir</par_name>
+            <par_desc> "insertion direction in tcp coordinate." </par_desc>
+            <par_type> TYPE </par_type>
+            <par_required> 1 </par_required>
+            <par_unit> none </par_unit>
+            <par_option> X Y Z </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rotationAng </par_name>
+            <par_desc> "robot roation angle during location process" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_min> 1 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 10  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> targetForce </par_name>
+            <par_desc> "target contact force in in insertion direction" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 1 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 20  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> safetyForce </par_name>
+            <par_desc> "safety force. Primivite would teminate if exceed this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 20 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 120  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> usePreviousResult </par_name>
+            <par_desc> "If true, this primitive would read location pose directly from previous calibration file." </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0  </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> locateFinish</par_name>
+            <par_desc> "force location process finish" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <!-- ===================================================================
+                output parameter configuration
+        ====================================================================-->
+        <output_par_config>
+            <par_name> locationPose </par_name>
+            <par_desc> "location pose in world coordinate" </par_desc>
+            <par_type> COORD </par_type>
+            <par_unit> m-deg </par_unit>
+        </output_par_config>
+    </primitive>
+</fvr>

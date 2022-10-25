@@ -1,0 +1,851 @@
+plan_name: "PLAN-VeriRobotDynamics"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "moveInitConfig1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig1"
+  end_node_name: "runCaliRobotDynamics1"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "runCaliRobotDynamics1"
+  end_node_name: "moveInitConfig2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliRobotDynamics1"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig2"
+  end_node_name: "runCaliRobotDynamics2"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "runCaliRobotDynamics2"
+  end_node_name: "moveInitConfig3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliRobotDynamics2"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig3"
+  end_node_name: "runCaliRobotDynamics3"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "runCaliRobotDynamics3"
+  end_node_name: "moveInitConfig4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliRobotDynamics3"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "moveInitConfig4"
+  end_node_name: "runCaliRobotDynamics4"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "reachedTarget"
+      module_name: "moveInitConfig4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+transit_list {
+  start_node_name: "runCaliRobotDynamics4"
+  end_node_name: "endNode"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "runCaliRobotDynamics4"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig1"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-82.8809"
+      data: "21.429"
+      data: "-55.2318"
+      data: "63.9496"
+      data: "-75.5906"
+      data: "115.7746"
+      data: "-60.3764"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveInitConfig1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+    }
+  }
+}
+node_list {
+  node_name: "runCaliRobotDynamics1"
+  pt_name: "caliRobotDynamics"
+  pt_type: "CALIROBOTDYNAMICS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "trajParams"
+      module_name: "runCaliRobotDynamics1"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-0.281348099"
+      data: "0.183215479"
+      data: "-0.0752792344"
+      data: "0.192375328"
+      data: "-0.0189634715"
+      data: "0.971028512"
+      data: "-0.260729286"
+      data: "-0.0227579247"
+      data: "-0.127137211"
+      data: "0.0254505485"
+      data: "-0.163144987"
+      data: "-0.620963942"
+      data: "-0.123446025"
+      data: "0.336180626"
+      data: "0.362892894"
+      data: "0.0453366104"
+      data: "-0.12451111"
+      data: "-0.133367462"
+      data: "0.0822509021"
+      data: "0.351189606"
+      data: "-0.252053006"
+      data: "0.17284939"
+      data: "0.354598782"
+      data: "0.297069882"
+      data: "-0.0376115635"
+      data: "-0.3715958"
+      data: "-0.242461358"
+      data: "0.800315332"
+      data: "-0.379318211"
+      data: "0.182782083"
+      data: "-0.103690155"
+      data: "-0.0350529416"
+      data: "0.052467308"
+      data: "0.417671365"
+      data: "0.0537809071"
+      data: "-0.201227128"
+      data: "0.121987939"
+      data: "-0.392213054"
+      data: "-0.598978979"
+      data: "-0.372895784"
+      data: "0.305217555"
+      data: "0.166808738"
+      data: "-0.0476233663"
+      data: "0.0792211526"
+      data: "-0.461948927"
+      data: "-0.0319993244"
+      data: "-0.0889392969"
+      data: "0.0567434221"
+      data: "0.52614421"
+      data: "0.832304749"
+      data: "0.133023947"
+      data: "-0.500728402"
+      data: "0.164616022"
+      data: "-0.0509263312"
+      data: "-0.105149614"
+      data: "-0.786673603"
+      data: "-0.0465716246"
+      data: "-0.17036519"
+      data: "0.440352946"
+      data: "0.563257519"
+      data: "-0.586099695"
+      data: "0.279864757"
+      data: "-0.19398498"
+      data: "-0.0602488378"
+      data: "0.16986411"
+      data: "1.237735"
+      data: "0.412581727"
+      data: "-0.724159722"
+      data: "-0.414957475"
+      data: "0.378858282"
+      data: "0.347677183"
+      data: "0.803562385"
+      data: "-0.578506558"
+      data: "0.24614111"
+      data: "0.155733759"
+      data: "-0.201581527"
+      data: "-0.106837047"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig2"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-22.7155"
+      data: "1.2286"
+      data: "97.0519"
+      data: "74.7926"
+      data: "40.875"
+      data: "41.1363"
+      data: "92.235"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveInitConfig2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+    }
+  }
+}
+node_list {
+  node_name: "runCaliRobotDynamics2"
+  pt_name: "caliRobotDynamics"
+  pt_type: "CALIROBOTDYNAMICS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "trajParams"
+      module_name: "runCaliRobotDynamics2"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-0.8721675"
+      data: "0.392721514"
+      data: "0.275426717"
+      data: "0.0563078733"
+      data: "0.147711394"
+      data: "0.261268661"
+      data: "-0.0119300772"
+      data: "-0.186890938"
+      data: "-0.00671474382"
+      data: "0.0700246561"
+      data: "-0.0696621505"
+      data: "-0.601917702"
+      data: "-0.0996090374"
+      data: "0.507033561"
+      data: "0.368519085"
+      data: "-0.174025904"
+      data: "0.0438062544"
+      data: "0.0679448466"
+      data: "-0.132724338"
+      data: "-0.0274544609"
+      data: "0.0656589831"
+      data: "0.0847961946"
+      data: "-0.0177567503"
+      data: "0.00237098881"
+      data: "-0.0158723449"
+      data: "0.0601493578"
+      data: "-0.0288912502"
+      data: "-1.01020726"
+      data: "0.294937788"
+      data: "-0.0897314465"
+      data: "0.318593518"
+      data: "-0.11696961"
+      data: "0.362712405"
+      data: "0.0801754796"
+      data: "0.397353389"
+      data: "-0.1676701"
+      data: "0.112961933"
+      data: "-0.422820701"
+      data: "-0.731931583"
+      data: "-0.0674184369"
+      data: "0.0585532402"
+      data: "-0.108978456"
+      data: "0.225404513"
+      data: "0.146272085"
+      data: "-0.696313505"
+      data: "0.125484194"
+      data: "0.0318173245"
+      data: "0.18416672"
+      data: "0.354845264"
+      data: "-0.332820518"
+      data: "-0.565085754"
+      data: "0.862890747"
+      data: "-0.311115631"
+      data: "0.0237564617"
+      data: "0.0755729801"
+      data: "-0.9197293"
+      data: "0.158594703"
+      data: "0.605189455"
+      data: "0.129321937"
+      data: "0.026623205"
+      data: "0.0927869271"
+      data: "0.114752996"
+      data: "0.0698574148"
+      data: "-0.229476382"
+      data: "0.0772080731"
+      data: "0.9272868"
+      data: "0.49984784"
+      data: "-0.153608477"
+      data: "-0.0654501671"
+      data: "-0.0308161609"
+      data: "-0.249973036"
+      data: "-0.906113549"
+      data: "-0.434340309"
+      data: "0.381782559"
+      data: "0.142062152"
+      data: "0.0122395774"
+      data: "0.0850056162"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig3"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "15.6004"
+      data: "-68.9089"
+      data: "53.9222"
+      data: "1.8059"
+      data: "-5.1408"
+      data: "104.312"
+      data: "20.7308"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveInitConfig3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveInitConfig3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+    }
+  }
+}
+node_list {
+  node_name: "runCaliRobotDynamics3"
+  pt_name: "caliRobotDynamics"
+  pt_type: "CALIROBOTDYNAMICS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "trajParams"
+      module_name: "runCaliRobotDynamics3"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "0.817676255"
+      data: "-0.438491306"
+      data: "-0.312077131"
+      data: "0.00787417291"
+      data: "-0.074981992"
+      data: "-0.248866145"
+      data: "0.138485941"
+      data: "0.18906076"
+      data: "-0.11586576"
+      data: "-0.0263649964"
+      data: "0.0322057298"
+      data: "-0.341772836"
+      data: "0.259142899"
+      data: "-0.111259087"
+      data: "-0.071929948"
+      data: "0.265818965"
+      data: "0.675475782"
+      data: "0.152071138"
+      data: "0.00695712529"
+      data: "0.0435975995"
+      data: "-0.234975962"
+      data: "-0.0603771648"
+      data: "0.682512101"
+      data: "0.0441579811"
+      data: "-0.38049985"
+      data: "-0.0793333863"
+      data: "-0.266836854"
+      data: "-0.554128157"
+      data: "-0.169535718"
+      data: "0.327060633"
+      data: "0.0915939433"
+      data: "-0.0908716223"
+      data: "0.105314352"
+      data: "-0.63525458"
+      data: "0.285655229"
+      data: "0.151593138"
+      data: "0.278167498"
+      data: "-0.0801612937"
+      data: "-0.127299238"
+      data: "0.3808308"
+      data: "0.0295083181"
+      data: "-0.387303865"
+      data: "0.165265623"
+      data: "0.0461281866"
+      data: "-0.635036263"
+      data: "-0.706290125"
+      data: "0.765440685"
+      data: "0.589535747"
+      data: "-0.0136500517"
+      data: "0.0336829678"
+      data: "0.121959362"
+      data: "-0.217177688"
+      data: "-0.0121841273"
+      data: "0.0845335761"
+      data: "-0.032220051"
+      data: "0.739833421"
+      data: "-0.471101181"
+      data: "-0.719013002"
+      data: "0.0921413262"
+      data: "0.358139461"
+      data: "-0.544986951"
+      data: "0.171536793"
+      data: "-0.00304029446"
+      data: "-0.0984240262"
+      data: "0.120946074"
+      data: "1.08744295"
+      data: "-0.815669584"
+      data: "-0.0376053169"
+      data: "0.465888063"
+      data: "0.245432057"
+      data: "0.141954791"
+      data: "-0.0738627762"
+      data: "0.0470797764"
+      data: "-0.659366985"
+      data: "-0.0293966552"
+      data: "0.415078163"
+      data: "0.0523504585"
+    }
+  }
+}
+node_list {
+  node_name: "moveInitConfig4"
+  pt_name: "move_jntspace"
+  pt_type: "MOVE_JNTSPACE"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "target"
+      module_name: "moveInitConfig4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "68.8238"
+      data: "-32.1073"
+      data: "-95.2358"
+      data: "-34.1276"
+      data: "-11.7692"
+      data: "74.1582"
+      data: "-83.4808"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntAcc"
+      module_name: "moveInitConfig4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+      data: "100"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "maxJntVel"
+      module_name: "moveInitConfig4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+      data: "40"
+    }
+  }
+}
+node_list {
+  node_name: "runCaliRobotDynamics4"
+  pt_name: "caliRobotDynamics"
+  pt_type: "CALIROBOTDYNAMICS"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "trajParams"
+      module_name: "runCaliRobotDynamics4"
+      type: "ARRAY_DOUBLE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "ARRAY_DOUBLE"
+      category: "CONST"
+      data: "-0.521901799"
+      data: "0.15284476"
+      data: "0.0456806303"
+      data: "0.131458916"
+      data: "0.191917493"
+      data: "-0.846067851"
+      data: "0.164983912"
+      data: "0.15691895"
+      data: "-0.0100960958"
+      data: "0.017145512"
+      data: "0.070622485"
+      data: "-0.618155771"
+      data: "0.0171083046"
+      data: "0.316016933"
+      data: "0.0603199661"
+      data: "0.224710689"
+      data: "0.320310013"
+      data: "0.0852013591"
+      data: "-0.347114452"
+      data: "-0.252803276"
+      data: "0.312368789"
+      data: "-0.168094501"
+      data: "0.131757385"
+      data: "0.12462567"
+      data: "-0.187682678"
+      data: "-0.0532612039"
+      data: "-0.0154391237"
+      data: "0.979225054"
+      data: "-0.094865298"
+      data: "0.138712658"
+      data: "-0.37753397"
+      data: "0.0609006961"
+      data: "-0.236426569"
+      data: "-0.44674776"
+      data: "0.0820419983"
+      data: "-0.0628077801"
+      data: "0.315466302"
+      data: "0.112047253"
+      data: "0.715227761"
+      data: "0.128473168"
+      data: "-0.075067243"
+      data: "-0.314672067"
+      data: "0.102343172"
+      data: "0.512465261"
+      data: "0.65419782"
+      data: "0.202461687"
+      data: "-0.183986743"
+      data: "-0.215198319"
+      data: "-0.457474434"
+      data: "0.525115026"
+      data: "-0.278642638"
+      data: "-0.465648108"
+      data: "0.385951404"
+      data: "-0.0229382091"
+      data: "0.307828412"
+      data: "-0.698510699"
+      data: "-0.354416813"
+      data: "0.211352311"
+      data: "0.541064062"
+      data: "0.300511158"
+      data: "-0.0144909132"
+      data: "-0.788861241"
+      data: "1.02544157"
+      data: "-0.0425669377"
+      data: "-0.262768703"
+      data: "1.08692037"
+      data: "-0.28949663"
+      data: "-0.419343583"
+      data: "0.464906591"
+      data: "0.362949721"
+      data: "-0.1190161"
+      data: "1.00254098"
+      data: "-0.318430707"
+      data: "0.0130063284"
+      data: "-0.192077607"
+      data: "0.0727223748"
+      data: "-0.161197151"
+    }
+  }
+}
+node_list {
+  node_name: "endNode"
+  pt_name: "End"
+  pt_type: "END"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+plan_log {
+  enable_log: true
+  time_interval: 1
+  max_duration: 200
+}
+plan_desc: ""

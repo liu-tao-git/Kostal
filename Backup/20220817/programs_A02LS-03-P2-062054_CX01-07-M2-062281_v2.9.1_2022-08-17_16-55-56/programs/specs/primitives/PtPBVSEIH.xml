@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <pt_desc>This primitive actually performs PBVS for dynamic objects.
+                 AI detect pose of an mobile object in camera coordinate continously, and
+                 robot tries to track this pose.</pt_desc>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         check more detailed setting in CommonParams.xml
+         ====================================================================-->
+        <ui_par_config>
+            <icon>:blockpalette/images/block/icon_Visual_Control.svg</icon>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         ====================================================================-->
+         <input_par_config>
+            <par_name> velScale</par_name>
+            <par_desc> "scale to speed up visual servo velocity. Mainly works near targets
+                        object. May cause vibration if set too large" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+            <par_max> 10.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> rotVelScale</par_name>
+            <par_desc> "scale to speed up visual servo angular velocity. Mainly works near targets
+                        object. May cause vibration if set too large" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+            <par_max> 10.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "maximum Cartesian linear velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0.6 </par_default>
+            <par_max> 0.6 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> "maximum Cartesian angular velocity " </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>20.0 </par_default>
+            <par_max> 100 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> motionTimeNoVision </par_name>
+            <par_desc> "robot motion time with observed object velocity after AI vision lose object " </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.25 </par_default>
+            <par_max> 2.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> trackTolLevel </par_name>
+            <par_desc> "tracking error tolerance level" </par_desc>
+            <par_type> INT </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>10 </par_default>
+            <par_max> 100 </par_max>
+            <par_min> 1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objVel </par_name>
+            <par_desc> "object velocity. The controller will adjust the strategy based on the object velocity.
+                        The tracking performance is better when the given value is close to the actual velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.1 </par_default>
+            <par_max> 0.2 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objWVel </par_name>
+            <par_desc> "object angular velocity. Works as input parameter objVel above " </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>1.0 </par_default>
+            <par_max> 60 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objVelCov </par_name>
+            <par_desc> "object velocity covariance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.001 </par_default>
+            <par_max> 0.08 </par_max>
+            <par_min> 0.001 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objWVelCov </par_name>
+            <par_desc> "object angular velocity covariance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.1 </par_default>
+            <par_max> 5 </par_max>
+            <par_min> 0.1 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> detectPosCov </par_name>
+            <par_desc> "AI detected object position covariance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.004 </par_default>
+            <par_max> 0.01 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> detectOriCov </par_name>
+            <par_desc> "AI detected object orientation covariance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+            <par_required> 0 </par_required>
+            <par_default>0.1 </par_default>
+            <par_max> 30.0 </par_max>
+            <par_min> 0.0 </par_min>
+        </input_par_config>
+        <input_par_config>
+            <par_name> waypointInObj</par_name>
+            <par_desc> "camera waypoint pose in object coordinate" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> cmdPoseInObj </par_name>
+            <par_desc> "target camera pose in object coordinate" </par_desc>
+            <par_type> POSE </par_type>
+            <par_unit> m-deg </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> objName </par_name>
+            <par_desc> "object's name" </par_desc>
+            <par_type> OBJNAME </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+        </input_par_config>
+        <input_par_config>
+            <par_name> camId </par_name>
+            <par_desc> "camera id" </par_desc>
+            <par_type> TYPE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> CAMID_0 CAMID_1 CAMID_2 CAMID_3 CAMID_4 CAMID_5 CAMID_6 CAMID_7 </par_option>
+        </input_par_config>
+        <input_par_config>
+            <par_name> openVSPrediction </par_name>
+            <par_desc> "if set as true, robot would make prediction during for AI interval delay." </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <state_par_config>
+            <par_name> reachedTarget </par_name>
+            <par_desc> "flag to indicate if the camera has reached target" </par_desc>
+            <par_type> BOOL</par_type>
+            <par_unit> none </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> posTrackErr </par_name>
+            <par_desc> "current position error between object and tcp" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m </par_unit>
+        </state_par_config>
+        <state_par_config>
+            <par_name> oriTrackErr </par_name>
+            <par_desc> "current orientation error between object and tcp" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg </par_unit>
+        </state_par_config>
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL </condition_type>
+            <lhs_param_name> reachedTarget</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data> 10 </rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>

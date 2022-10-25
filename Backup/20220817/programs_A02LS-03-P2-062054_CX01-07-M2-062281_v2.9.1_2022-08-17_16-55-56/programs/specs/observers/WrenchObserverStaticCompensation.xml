@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<fvr>
+    <gains>
+        <!-- Empty for now -->
+    </gains>
+    <!-- Filter on raw reading from 6-DOF FT sensor. Options for filter cutoff frequency:
+	    "FREQ_NONE", "FREQ_200", "FREQ_100", "FREQ_50", "FREQ_40", "FREQ_30",
+	    "FREQ_25", "FREQ_20", "FREQ_15", "FREQ_10", "FREQ_5", "FREQ_2", "FREQ_1"
+	    Options for filter type: 1st order = 1, 2nd order = 2 -->
+    <ft_sensor_filter>
+        <cutoff_freq> FREQ_NONE </cutoff_freq>
+        <type> 1 </type>
+    </ft_sensor_filter>
+</fvr>

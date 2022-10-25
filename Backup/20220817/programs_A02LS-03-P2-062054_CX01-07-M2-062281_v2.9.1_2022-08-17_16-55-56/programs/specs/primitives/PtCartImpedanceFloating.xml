@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<fvr>
+    <primitive>
+        <!-- ===================================================================
+         input parameter configuration
+
+         par_type : "CART_POS", "QUAT", "POSE", "BOOL", "DOUBLE", "INT", "STRING"
+         par_input_type : "KEYIN", "TEACH" , "PT"
+         ====================================================================-->
+        <input_par_config>
+            <par_name> maxVel </par_name>
+            <par_desc> "max magnitude of cartesian linear velocity" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> m/s </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 2.5 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 2.5</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> maxRotVel </par_name>
+            <par_desc> "max magnitude of cartesian angular velocity used in trajectory filter" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> deg/s </par_unit>
+            <par_min> 0 </par_min>
+            <par_max> 573.0 </par_max>
+            <par_required> 0 </par_required>
+            <par_default> 573.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceDeadband </par_name>
+            <par_desc> "cartesian force deadband, robot tcp position would keep still when external force is within this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> N </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 1.0</par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> momentDeadband </par_name>
+            <par_desc> " cartesian moment deadband, robot tcp orientation would keep still when external moment is within this value" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> Nm </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 0.2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> forceDeadbandTimeThreshold </par_name>
+            <par_desc> "if the external force stays in deadband for longer than this time, it is condisered no external force" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> momentDeadbandTimeThreshold </par_name>
+            <par_desc> "if the external moment stays in deadband for longer than this time, it is condisered no external moment" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> s </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> cartFloatingAxis </par_name>
+            <par_desc> "Cartesian floating axes, 1: floating. 0: fixed" </par_desc>
+            <par_type> VEC_6i </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1 1 1 1 1 1 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> enableJointFloating </par_name>
+            <par_desc> "flag to enable joint space floating" </par_desc>
+            <par_type> BOOL </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> jointTorqueDeadBand </par_name>
+            <par_desc> "joint torque deadband, robot' null space keep still when each external joint torque is within its deadband" </par_desc>
+            <par_type> VEC_7d </par_type>
+            <par_unit> Nm </par_unit>
+            <par_min> 0 0 0 0 0 0 0</par_min>
+            <par_required> 0 </par_required>
+            <par_default> 1.0  1.0  0.8  0.8  0.5  0.5  0.2 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> cartFloatingFrame </par_name>
+            <par_desc> "the Cartesian floating frame, "work" or "tcp": axis are locked in floating frame" </par_desc>
+            <par_type> STRING </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> tcp  </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kpFloatingScale </par_name>
+            <par_desc> "scaling factors for kp when floating" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> kvFloatingScale </par_name>
+            <par_desc> "scaling factors for kv when floating" </par_desc>
+            <par_type> VEC_6d </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 0 </par_required>
+            <par_default> 1.0 1.0 1.0 1.0 1.0 1.0 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> posSingularThresh </par_name>
+            <par_desc> "threshold of position singular values for singularity avoidance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 0.12 </par_default>
+        </input_par_config>
+        <input_par_config>
+            <par_name> oriSingularThresh </par_name>
+            <par_desc> "threshold of orientation singular values for singularity avoidance" </par_desc>
+            <par_type> DOUBLE </par_type>
+            <par_unit> none </par_unit>
+            <par_min> 0 </par_min>
+            <par_required> 0 </par_required>
+            <par_default> 0.12 </par_default>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+    </primitive>
+</fvr>

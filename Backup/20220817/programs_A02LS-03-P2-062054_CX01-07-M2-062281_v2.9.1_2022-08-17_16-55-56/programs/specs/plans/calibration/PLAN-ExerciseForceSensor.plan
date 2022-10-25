@@ -1,0 +1,91 @@
+plan_name: "PLAN-ExerciseForceSensor"
+config {
+  node_name: "rootNode"
+  pt_name: "Plan"
+  pt_type: "PLAN"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+transit_list {
+  start_node_name: "startNode"
+  end_node_name: "CaliForceSensor"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "NO_CHECK"
+  }
+}
+transit_list {
+  start_node_name: "CaliForceSensor"
+  end_node_name: "exeForceSensor"
+  transit_period: 0
+  trigger_condition {
+    condition_type: "EQUAL"
+    lhs_param {
+      name: "terminated"
+      module_name: "CaliForceSensor"
+      type: "BOOL"
+      category: "PT_STATE"
+    }
+    rhs_param {
+      name: "threshold"
+      type: "BOOL"
+      category: "CONST"
+      data: "1"
+    }
+  }
+}
+node_list {
+  node_name: "CaliForceSensor"
+  pt_name: "CaliForceSensor"
+  pt_type: "CALIFORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+}
+node_list {
+  node_name: "exeForceSensor"
+  pt_name: "exeForceSensor"
+  pt_type: "EXE_FORCESENSOR"
+  switch_tcp_param {
+    switch_tcp: false
+    tool_name: ""
+    tcp_index: 0
+  }
+  param_assignment {
+    lhs_param {
+      name: "pathfile"
+      module_name: "exeForceSensor"
+      type: "STRING"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "STRING"
+      category: "CONST"
+      data: "forceTrajectory.txt"
+    }
+  }
+  param_assignment {
+    lhs_param {
+      name: "exeType"
+      module_name: "exeForceSensor"
+      type: "TYPE"
+      category: "PT_INPUT"
+    }
+    rhs_param {
+      type: "TYPE"
+      category: "CONST"
+      data: "TRAJ"
+    }
+  }
+}
+plan_log {
+  enable_log: false
+  time_interval: 0
+  max_duration: 0
+}
+plan_desc: ""

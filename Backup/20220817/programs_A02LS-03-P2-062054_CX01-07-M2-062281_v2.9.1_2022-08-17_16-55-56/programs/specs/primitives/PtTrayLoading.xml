@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- ==========================================================================
+ primitive type options :
+ "INIT", "MOVE", "READY", "CONTACT", "SLIDE", "SLIDE_ADAPTIVE", "SLIDE_SPIRAL",
+ "SLIDE_SINEWAVE", "MAGNET", "PEGINHOLE"
+
+robot type options : Flexiv, UR5, Bullet, Klampt
+ ===========================================================================-->
+<fvr>
+    <primitive>
+        <pt_desc>This primitive helps configure a tray loading task</pt_desc>
+        <pt_plan_name>Pt-TrayLoading</pt_plan_name>
+        <!-- ==================================================================
+         ui parameter configuration (optional)
+         ====================================================================-->
+        <ui_par_config>
+            <block_edit_color> #3987c6 </block_edit_color>
+            <block_execute_color> #ab666666 </block_execute_color>
+            <menu_option>Edit App Expand Connect Duplicate Delete</menu_option>
+            <menu_exe_option>Monitor Start</menu_exe_option>
+            <app_option>TrayLoading</app_option>
+            <icon>:blockpalette/images/block/icon_trayLoading.svg</icon>
+            <block_shortcut>one-layer::cells-in-tray::single-cell one-layer::single-tray</block_shortcut>
+        </ui_par_config>
+        <!-- ===================================================================
+         input parameter configuration
+         ====================================================================-->
+        <input_par_config>
+            <par_name> trayLoadingFile </par_name>
+            <par_desc> tray loading task file</par_desc>
+            <par_type> FILE </par_type>
+            <par_unit> none </par_unit>
+            <par_required> 1 </par_required>
+            <par_option> .tl </par_option>
+        </input_par_config>
+        <!-- ===================================================================
+         state parameter configuration
+         ====================================================================-->
+        <!-- ==================================================================
+         default transition condition
+          condition_type : trigger condition type
+          lhs_param_name : LHS parameter name. It must be one of the state parameters in primitive
+          lhs_param_category : LHS parameter category. This should be PT_STATE for now
+          rhs_param_name (optional): RHS parameter name. no need to fill this field if rhs is a constant.
+          rhs_param_category : RHS parameter category
+          rhs_param_data (optional) : RHS parameter data.
+         ====================================================================-->
+        <default_transition_condition>
+            <condition_type> EQUAL</condition_type>
+            <lhs_param_name>terminated</lhs_param_name>
+            <lhs_param_category>PT_STATE</lhs_param_category>
+            <rhs_param_category>CONST</rhs_param_category>
+            <rhs_param_data>1</rhs_param_data>
+        </default_transition_condition>
+    </primitive>
+</fvr>
